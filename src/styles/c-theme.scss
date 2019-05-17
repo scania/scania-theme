@@ -106,7 +106,6 @@ $h6-font-size-article:        $font-size-article;
 
 
 // Lists
-
 $theme-colors: (
   'theme-01': $theme-01,
   'theme-02': $theme-02,
@@ -173,6 +172,7 @@ $heading-sizes-article: (
   'h5': $h5-font-size-article,
   'h6': $h6-font-size-article
 );
+
 
 // Merge all colors in to theme-colors and 
 // let "root.scss" render the css variables

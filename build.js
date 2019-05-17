@@ -2,25 +2,35 @@ const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
 const Fontmin = require('fontmin');
-
+const webpack = require('webpack');
 const { renderSync } = require('node-sass');
 
-fs.removeSync('dist');
+const outputFolder = 'dist';
 
-fs.mkdirSync('dist');
-
-initTheme();
-
-initFonts();
+fs.remove(outputFolder, function() {
+  fs.mkdir(outputFolder, function() {
+    initTheme();
+    initFonts();
+  });
+});
 
 function initTheme() {
-  glob.sync('./src/*.scss').forEach(renderModule);
+  let theme = {};
 
-  // renderModule('./src/assets/favicon.ico');
+  glob.sync('./src/styles/*.scss').forEach((file) => {
+    const component = renderModule(file);
+    theme = { ...theme, ...component };
+  });
+
+  console.log(theme);
+
+  fs.writeFileSync(`${outputFolder}/styles.js`, `export const theme = ${ JSON.stringify(theme) };`, { flag: 'w' });
+
+  // renderModule('./src/images/favicon.ico');
 }
 
 function initFonts() {
-  const fonts = 'src/assets/fonts/**/*.ttf';
+  const fonts = 'src/fonts/**/*.ttf';
 
   var fontmin = new Fontmin()
     .src(fonts)
@@ -29,14 +39,35 @@ function initFonts() {
     }))
     .use(Fontmin.ttf2woff2())
     // .use(Fontmin.css())
-    .dest('dist/fonts');
-  
+    .dest(outputFolder);
+
   fontmin.run(function(err, files) {
     if (err) {
       throw err;
     }
-  
+
     glob.sync(fonts).forEach(generateCss);
+    
+    var compiler = webpack({
+      entry: './src/fonts.js',
+      mode: 'development',
+      output: {
+        path: path.resolve(__dirname, outputFolder),
+        filename: 'fonts.js'
+      },
+      module: {
+        rules: [
+          { test: /\.css$/, loader: 'style-loader!css-loader' },
+          { test: /\.(png|woff2|ttf)$/, loader: 'url-loader?limit=100000' }
+        ]
+      }
+    });
+
+    compiler.run(function(err, stats) {
+      if (err) {
+        throw err;
+      }
+    });
   });
 }
 
@@ -46,11 +77,10 @@ function generateCss(file) {
   const name = props.name
     .replace(/CY|-|Regular/g, '')
     .split(/(?=[A-Z])/).join(' ');
-  const filename = file.replace(/src\/assets\/|.ttf/g, '');
   const unicode = type === 'cyrillic' ? `
   unicode-range: U+0400-04FF;` : '';
 
-  let content = '';
+  let content;
 
   if(props.name.indexOf('Bold') > -1) {
     content = `
@@ -71,42 +101,38 @@ function generateCss(file) {
   }`;
   }
 
-  const data = generateFontFace(filename, content);
+  const data = generateFontFace(file, content);
 
-  fs.writeFileSync(`dist/${type}.css`, data, { flag: 'a' });
+  fs.writeFileSync(`${outputFolder}/fonts.css`, data, { flag: 'a' });
 }
 
-function generateFontFace(file, props) {
+function generateFontFace64(file, props) {
+  const content = fs.readFileSync(file).toString('base64');
   return `@font-face {${
     props
   }
-  src: url("${file}.woff2") format("woff2"), /* Modern Browsers */
-       url("${file}.ttf") format("truetype"), /* Safari, Android, iOS 4.2+ */\n}\n`;
+  src: url(data:application/font-woff2;charset=utf-8;base64,${content}) format("woff2"), /* Modern Browsers */
+       url(data:font/ttf;charset=utf-8;base64,${content}) format("truetype"), /* Safari, Android, iOS 4.2+ */\n}\n`;
+}
+
+function generateFontFace(file, props) {
+  const filename = file.replace(/src\/fonts\/|.ttf/g, '');
+  return `@font-face {${
+    props
+  }
+  src: url("${filename}.woff2") format("woff2"), /* Modern Browsers */
+       url("${filename}.ttf") format("truetype"), /* Safari, Android, iOS 4.2+ */\n}\n`;
 }
 
 function renderModule(file) {
-  const filename = path.parse(file).name.replace('-', '_');
-  const content = convertContent(file);
+  const filename = path.parse(file).name.replace(/-/g, '_');
+  const data = fs.readFileSync(path.resolve(file), 'utf8');
+  const content = renderSync({ data: data }).css.toString();
+  let obj = {};
 
-  fs.writeFileSync('dist/theme.ts', `export const ${filename} = \`\n${content}\`;\n\n`, { flag: 'a' });
-}
+  obj[ path.parse(file).name ] = {
+    "default": content,
+  };
 
-function convertContent(file) {
-  const extension = path.parse(file).ext;
-  let data = fs.readFileSync(file);
-  let content;
-
-  switch(extension) {
-    case '.scss':
-      data = fs.readFileSync(path.resolve(file), 'utf8');
-      content = renderSync({ data: data }).css;
-      break;
-    case '.ico':
-      content = data.toString('base64');
-      break;
-    default:
-      content = data;
-  }
-
-  return content;
+  return obj;
 }
