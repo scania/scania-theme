@@ -53,8 +53,9 @@ c-navigation {
     &:before {
       display: block;
       content: '';
-      background-image: url('https://static.scania.com/resources/logotype/scania/scania-wordmark.png');
-      background-image: url('https://static.scania.com/resources/logotype/scania/scania-wordmark.svg');
+      // These files are generated and will exist in dist
+      background-image: url(../images/wordmark.png);
+      background-image: url(../images/wordmark.svg);
       background-repeat: no-repeat;
       background-size: cover;
       width: 170px;
@@ -103,8 +104,9 @@ c-navigation {
   &:before {
     display: block;
     content: '';
-    background-image: url('https://static.scania.com/resources/logotype/scania/scania-symbol.png');
-    background-image: url('https://static.scania.com/resources/logotype/scania/scania-symbol.svg');
+    // These files are generated and will exist in dist
+    background-image: url(../images/symbol.png);
+    background-image: url(../images/symbol.svg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 40px;

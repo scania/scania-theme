@@ -108,9 +108,10 @@ p {
     height: 18px;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: var(--footer-background-url);
-    background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
-    background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
+    // background-image: var(--footer-background-url);
+    // These files are generated and will exist in dist
+    background-image: url(../images/wordmark-white.png);
+    background-image: url(../images/wordmark-white.svg);
   }
 }
 .navbar-collapse {
