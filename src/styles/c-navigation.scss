@@ -41,7 +41,9 @@ $link-color-hover: darken($link-color, 40%);
 :host([slot=sub].open) {
   display: block;
 }
-:host([open][open=true]:not([slot=sub])),
+// If we can fix the bug in the css parser for ie
+// Then this rule needs to have [open] as well
+:host([open=true]:not([slot=sub])),
 :host(.open:not([slot=sub])) {
 
   > .navbar {
@@ -192,7 +194,9 @@ ul {
   :host([slot=sub].active) {
     display: block;
   }
-  :host([open]:not([open=false]):not([slot=sub])),
+  // We have a bug in the css parser for ie, it cant handle multiple :not
+  // Would like to have: :host([open=true]:not([open=false]):not([slot=sub])),
+  :host([open=true]:not([slot=sub])),
   :host(.open:not([slot=sub])) {
 
     > .navbar {

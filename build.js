@@ -14,9 +14,11 @@ const { CssSelectorParser } = require('css-selector-parser');
 const outputFolder = 'dist';
 const themeName = 'scania';
 
+let faviconItems = [];
+
 const selectorParser = new CssSelectorParser();
 
-selectorParser.registerSelectorPseudos('hover', 'active', 'focus', 'before', 'after');
+selectorParser.registerSelectorPseudos('hover', 'active', 'focus', 'before', 'after', 'not', 'dir', 'nth-child');
 selectorParser.registerNestingOperators('>', '+', '~');
 selectorParser.registerAttrEqualityMods('^', '$', '*', '~');
 selectorParser.enableSubstitutes();
@@ -35,7 +37,7 @@ async function initFolders(cb) {
 
   ['fonts', 'images', 'styles'].map(folder => {
     fs.mkdirSync(`${outputFolder}/${folder}`, { recursive: true });
-  })
+  });
 
   cb();
 }
@@ -50,7 +52,10 @@ function initFonts(cb) {
     .use(Fontmin.glyph({
       hinting: false         // keep ttf hint info (fpgm, prep, cvt). default = true
     }))
-    .use(Fontmin.ttf2woff2())
+    // .use(Fontmin.ttf2woff2())
+    .use(Fontmin.ttf2woff({
+      deflate: true         // remove metadata. default = false
+    }))
     // .use(Fontmin.css())
     .dest(outputFolder + '/fonts');
 
@@ -83,6 +88,9 @@ function initFonts(cb) {
 
     //   cb();
     // });
+
+    // Remove orgional ttf font from dist, we dont need it
+    glob.sync('dist/fonts/**/*.ttf').forEach(file => fs.remove(file));
 
     cb();
   });
@@ -121,8 +129,8 @@ async function initFavicons(cb) {
 }
 
 async function initTheme() {
-  let style = {};
-  let theme = {};
+  let theme = { default: { [themeName]: {} }, ie: { [themeName]: {} } };
+  let themeNoRefs = { default: { [themeName]: {} }, ie: { [themeName]: {} } };
 
   console.log('7. Styles');
 
@@ -131,29 +139,43 @@ async function initTheme() {
   console.log('8. Style module');
 
   await glob.sync(`${outputFolder}/styles/*.css`).forEach(file => {
-    const name = path.parse(file).name;
     const data = fs.readFileSync(path.resolve(file), 'utf8');
+    let name = path.parse(file).name;
+    let type = 'default';
 
-    style[name] = refToData(data);
     // TODO: branch variable should be fetched from travis and contain either branch path
     // For example: "branch/improvement/footer_mobile_mode/www" or "4.0.0-alpha.1/www"
     var branch = '';
+    var root = branch ? `https://static.scania.com/build/global/${branch}` : '';
 
-    var root = branch ? `https://static.scania.com/build/global/'${branch}` : '';
-    theme[name] = data.replace(/url\(../g, 'url(' + root);
+    if(name.substr(-3) === '_ie') {
+      type = 'ie';
+      name = name.substr(0, name.length - 3);
+    }
+
+    theme[type][themeName][name] = data.replace(/url\(../g, 'url(' + root);
+    themeNoRefs[type][themeName][name] = refToData(data);
   });
 
-  fs.writeFileSync(`${outputFolder}/module.js`, `export const theme = ${ JSON.stringify(style, null, 2) };`, { flag: 'a' });
+  // TODO: We might wanna solve this without the need of global variables
+  theme.favicons = faviconItems;
+  themeNoRefs.favicons = faviconItemsNoRefs;
+
+  fs.writeFileSync(`${outputFolder}/module.js`, `export const theme = ${ JSON.stringify(themeNoRefs, null, 2) };`, { flag: 'a' });
 
   console.log('9. Theme module');
 
   fs.writeFileSync(`${outputFolder}/${themeName}-theme.js`, `
-const components = ${ JSON.stringify(theme, null, 2) };
+var theme = ${ JSON.stringify(theme, null, 2) };
 
 document.addEventListener('storeReady', event => {
-  const store = event.detail.store;
-  const actions = event.detail.actions;
-  const theme = { ${themeName}: components };
+  var favicons = theme.favicons;
+  var store = event.detail.store;
+  var actions = event.detail.actions;
+
+  theme = document.head.attachShadow ? theme.default : theme.ie;
+  theme.${themeName}.favicons = favicons;
+
   store.dispatch({ type: actions.ADD_THEME, theme });
 });
   `,
@@ -215,6 +237,8 @@ async function generateImages(file) {
 async function generateFavicons(error, response) {
   if (error) throw error;
 
+  console.log('6. Favicon module');
+
   [ ...response.images, ...response.files ].map(image => {
     fs.writeFileSync(`${outputFolder}/${image.name}`, image.contents);
   });
@@ -230,9 +254,10 @@ async function generateFavicons(error, response) {
     });
   });
 
-  console.log('6. Favicon module');
+  faviconItems = response.html;
+  faviconItemsNoRefs = content;
 
-  await fs.writeFileSync(`${outputFolder}/module.js`, `export const favicons = ${ JSON.stringify(content) };\n`);
+  // await fs.writeFileSync(`${outputFolder}/module.js`, `export const favicons = ${ JSON.stringify(content) };\n`);
 }
 
 function generateFontFace64(file, props) {
@@ -249,8 +274,7 @@ function generateFontFace(file, props) {
   return `@font-face {${
     props
   }
-  src: url("${filename}.woff2") format("woff2"), /* Modern Browsers */
-       url("${filename}.ttf") format("truetype"); /* Safari, Android, iOS 4.2+ */\n}\n`;
+  src: url("${filename}.woff") format("woff")\n}\n`;
 }
 
 function generateCss(file) {
@@ -290,12 +314,13 @@ function refToData(data) {
       case '.jpg':
         content = base64Img.base64Sync(`${outputFolder}/styles/${filepath}`);
         break;
-      case '.ttf':
-        head = 'data:font/ttf;charset=utf-8;base64,';
+      case '.woff2':
+      case '.woff':
+        head = `data:application/font-${extension.substr(1)};charset=utf-8;base64,`;
         content = fs.readFileSync(`${outputFolder}/fonts/${filepath}`, 'base64');
         break;
-      case '.woff2':
-        head = 'data:application/font-woff2;charset=utf-8;base64,';
+      case '.ttf':
+        head = 'data:font/ttf;charset=utf-8;base64,';
         content = fs.readFileSync(`${outputFolder}/fonts/${filepath}`, 'base64');
         break;
       default:
@@ -333,28 +358,37 @@ function polyfill(name, content) {
 
   const cssObj = css.parse(content);
 
-  cssObj.stylesheet.rules.map(rule => {
-    if(!rule.selectors) return;
-
-    const selectorObj = selectorParser.parse( rule.selectors.join(',') );
-
-    (selectorObj.selectors ? selectorObj.selectors : [ selectorObj ])
-      .map(selector => ie(selector, name));
-
-    rule.selectors = selectorParser.render(selectorObj).split(',');
-  });
+  cssObj.stylesheet.rules.map(rule => generateSelectors(rule, name));
 
   return css.stringify(cssObj);
+}
+
+function generateSelectors(rule, name) {
+  if(rule.type === 'media') {
+    rule.rules.map(rule => generateSelectors(rule, name));
+  }
+
+  if(rule.type !== 'rule') return;
+
+  const selectorObj = selectorParser.parse( rule.selectors.join(',') );
+
+  (selectorObj.selectors ? selectorObj.selectors : [ selectorObj ])
+    .map(selector => ie(selector, name));
+
+  rule.selectors = selectorParser.render(selectorObj).split(',');
 }
 
 function ie(item, name) {
   const cls = 'sc-' + name;
   const classes = [ cls ];
+
   if(item.type === 'rule' && (item.classNames || []).join().indexOf(cls) === -1) {
     item.classNames = item.classNames ? [ ...item.classNames, ...classes ] : classes
   }
+
   if(item.rule && (item.classNames || []).indexOf(cls + '-s') === -1) {
     item.rule = ie(item.rule, name);
   }
+
   return item;
 }

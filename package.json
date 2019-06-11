@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/module.js",
   "scripts": {
+    "start": "node build.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ttf2eot": "ttf2eot src/assets/fonts/cyrillic/ScaniaSansCY-Bold.ttf ScaniaSansCY-Bold.eot",
     "ttf2woff": "ttf2woff src/assets/fonts/cyrillic/ScaniaSansCY-Bold.ttf ScaniaSansCY-Bold.woff",
