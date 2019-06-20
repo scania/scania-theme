@@ -11,6 +11,19 @@ $link-color: #747472;
 %nav-link-hover {
   text-decoration: underline;
 }
+%title {
+  font-family: 'Scania Sans Headline';
+  font-weight: normal;
+  font-size: 1.8rem;
+  color: #53565a;
+  line-height: 1;
+  padding: 0 10px;
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 :host {
   --link-color: #{$link-color};
@@ -46,6 +59,10 @@ c-navigation {
   background-color: inherit;
   z-index: 1;
   border-bottom: 1px solid #e2e2e2;
+  
+  &:after {
+    @extend %title;
+  }
 
   .navbar-brand {
     padding: 13px;
@@ -63,17 +80,7 @@ c-navigation {
     }
   }
   .navbar-title {
-    font-family: 'Scania Sans Headline';
-    font-weight: normal;
-    font-size: 1.8rem;
-    color: #53565a;
-    line-height: 1;
-    padding: 0 10px;
-    flex: 1;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @extend %title;
   }
   .navbar-nav {
     font-family: 'Scania Sans';
@@ -141,6 +148,17 @@ c-navigation {
     padding: 19px 11px 10px;
     margin-right: 20px;
     border-bottom: 0;
+
+    &[short-name] {
+
+      &:after {
+        display: none;
+      }
+
+      .navbar-title {
+        display: inline-block;
+      }
+    }
 
     .navbar-brand {
       margin-left: 6px;

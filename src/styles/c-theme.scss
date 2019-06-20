@@ -50,7 +50,7 @@ $gray-colors: (
 $element-colors: (
   'headings-color': var(--headings-color),
   'link-color': var(--tertiary-01),
-  'link-color-hover': darken($tertiary-01, 40%)
+  'link-color-hover': $link-color-hover
 );
 
 $heading-sizes: (
