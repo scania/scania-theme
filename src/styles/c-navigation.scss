@@ -1,5 +1,9 @@
+@import 'variables';
+
 $link-color: #909090;
-$link-color-hover: darken($link-color, 40%);
+// TODO: This color should be set using variable $theme-01 change this
+// when variables in theme have been moved to a separate variables file.
+$link-color-hover: $theme-01;
 
 %nav-item {
   color: $link-color; // Fallback for non supported browsers
@@ -53,6 +57,9 @@ $link-color-hover: darken($link-color, 40%);
 
 ::slotted(a) {
   @extend %nav-item;
+}
+::slotted(div) {
+  padding: 10px 25px;
 }
 ::slotted(a:not(:first-child)) {
   @extend %nav-item-separator;
@@ -109,7 +116,6 @@ ul {
 .navbar-collapse {
   transition: max-height 550ms ease-in;
   max-height: 100vh;
-  overflow: hidden;
 
   &:not(.show) {
     display: block;
@@ -203,11 +209,21 @@ ul {
       margin-left: 0;
     }
   }
-
-  ::slotted(a) {
+  // TODO: Add support for IE styles generation for multiple selectors using comma separation
+  ::slotted(a),
+  ::slotted(div) {
     @extend %nav-item-desktop;
+
+    display: flex;
   }
   ::slotted(a:not(:first-child)) {
+    @extend %nav-item-separator-desktop;
+
+    &:before {
+      @extend %nav-item-separator-desktop-before;
+    }
+  }
+  ::slotted(div:not(:first-child)) {
     @extend %nav-item-separator-desktop;
 
     &:before {
@@ -217,7 +233,7 @@ ul {
   ::slotted(a[slot="secondary-items"]):before {
     border-left: 0;
   }
-  ::slotted(a[slot="secondary-items"]:not(:last-child)):after {
+  ::slotted(a[slot="secondary-items"]:not(:last-of-type)):after {
     border-right: 1px solid #e2e2e2;
   }
 
@@ -245,7 +261,6 @@ ul {
       max-height: none;
 
       + .navbar-collapse {
-        overflow: visible;
         border-top: 0;
       }
     }

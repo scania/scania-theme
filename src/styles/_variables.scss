@@ -87,6 +87,7 @@ $body-bg:                     $white;
 $body-color:                  $primary-03;
 
 $link-color:                  $tertiary-01;
+$link-color-hover:            darken($tertiary-01, 40%);
 
 $font-size-article:           1.8rem;
 $font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
