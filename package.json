@@ -1,14 +1,11 @@
 {
   "name": "scania-theme",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.1",
   "description": "",
   "main": "dist/module.js",
   "scripts": {
     "start": "node build.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "ttf2eot": "ttf2eot src/assets/fonts/cyrillic/ScaniaSansCY-Bold.ttf ScaniaSansCY-Bold.eot",
-    "ttf2woff": "ttf2woff src/assets/fonts/cyrillic/ScaniaSansCY-Bold.ttf ScaniaSansCY-Bold.woff",
-    "ttf2woff2": "cat src/assets/fonts/cyrillic/ScaniaSansCY-Bold.ttf | ttf2woff2 >> ScaniaSansCY-Bold.woff2"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

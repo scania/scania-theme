@@ -101,6 +101,12 @@ c-navigation {
     }
   }
 }
+.navbar-default[short-name] {
+
+  .navbar-title {
+    display: none;
+  }
+}
 .navbar-symbol {
   padding: 13px;
   border-left: 1px solid #e2e2e2;
