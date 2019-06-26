@@ -198,7 +198,7 @@ document.addEventListener('storeReady', event => {
   var favicons = theme.favicons;
   var store = event.detail.store;
   var actions = event.detail.actions;
-  var root = document.head.querySelector('script[src$="${themeName}-theme.js"]').src.replace('${themeName}-theme.js', '');
+  var root = document.querySelector('script[src$="${themeName}-theme.js"]').src.replace('${themeName}-theme.js', '');
 
   theme = document.head.attachShadow ? theme.default : theme.ie;
   Object.keys(theme.${themeName}).map(key => theme.${themeName}[key] = theme.${themeName}[key].replace(/\%root\%/g, root) );
