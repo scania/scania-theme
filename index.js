@@ -61,8 +61,10 @@ async function initFolders(cb) {
 
   await fs.remove(outputFolder);
 
-  ['fonts', 'images', 'styles'].map(folder => {
-    fs.mkdirSync(`${outputFolder}/${folder}`, { recursive: true });
+  setTimeout(() => {
+    ['fonts', 'images', 'styles'].map(folder => {
+      fs.mkdirSync(`${outputFolder}/${folder}`, { recursive: true });
+    });
   });
 
   cb();
@@ -201,8 +203,8 @@ document.addEventListener('storeReady', event => {
   var root = document.querySelector('script[src$="${themeName}-theme.js"]').src.replace('${themeName}-theme.js', '');
 
   theme = document.head.attachShadow ? theme.default : theme.ie;
-  Object.keys(theme.${themeName}).map(key => theme.${themeName}[key] = theme.${themeName}[key].replace(/\%root\%/g, root) );
-  favicons = favicons.map(val => val.replace(/\%root\%/g, root) );
+  Object.keys(theme.${themeName}).map(key => theme.${themeName}[key] = theme.${themeName}[key].replace(/\%root\%\\//g, root) );
+  favicons = favicons.map(val => val.replace(/\%root\%\\//g, root) );
   theme.${themeName}.favicons = favicons;
 
   store.dispatch({ type: actions.ADD_THEME, theme });
