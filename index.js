@@ -8,6 +8,8 @@ const css = require('css');
 const favicons = require('favicons');
 const sass = require('node-sass');
 const base64Img = require('base64-img');
+const express = require('express');
+const cors = require('cors');
 
 const { CssSelectorParser } = require('css-selector-parser');
 
@@ -23,11 +25,35 @@ selectorParser.registerNestingOperators('>', '+', '~');
 selectorParser.registerAttrEqualityMods('^', '$', '*', '~');
 selectorParser.enableSubstitutes();
 
-console.log('-- Start 9 steps --');
+if(process.argv.indexOf('--serve') > -1) {
+  serve();
+} else {
+  build();
+}
 
-// TODO: When we use a task handler we dont need this cb setup
-initFolders(() => initFonts(() => initImages(() => initFavicons(initTheme))));
 
+function build() {
+
+  console.log('-- Start 9 steps --');
+
+  // TODO: When we use a task handler we dont need this cb setup
+  initFolders(() => initFonts(() => initImages(() => initFavicons(initTheme))));
+}
+
+function serve() {
+
+  console.log('-- Server Start --');
+
+  const app = express();
+  const port = 1338;
+
+  app.use(cors());
+  app.use(express.static('./dist'));
+
+  console.log('Server running on port %i', port);
+
+  app.listen(port);
+}
 
 async function initFolders(cb) {
 
@@ -35,8 +61,10 @@ async function initFolders(cb) {
 
   await fs.remove(outputFolder);
 
-  ['fonts', 'images', 'styles'].map(folder => {
-    fs.mkdirSync(`${outputFolder}/${folder}`, { recursive: true });
+  setTimeout(() => {
+    ['fonts', 'images', 'styles'].map(folder => {
+      fs.mkdirSync(`${outputFolder}/${folder}`, { recursive: true });
+    });
   });
 
   cb();
@@ -153,12 +181,12 @@ async function initTheme() {
       name = name.substr(0, name.length - 3);
     }
 
-    theme[type][themeName][name] = data.replace(/url\(../g, 'url(' + root);
+    theme[type][themeName][name] = data.replace(/url\(../g, 'url(%root%' + root);
     themeNoRefs[type][themeName][name] = refToData(data);
   });
 
   // TODO: We might wanna solve this without the need of global variables
-  theme.favicons = faviconItems;
+  theme.favicons = faviconItems.map(item => item.replace(/(href|content)="/g, '$1="%root%/') )
   themeNoRefs.favicons = faviconItemsNoRefs;
 
   fs.writeFileSync(`${outputFolder}/module.js`, `export const theme = ${ JSON.stringify(themeNoRefs, null, 2) };`, { flag: 'a' });
@@ -172,8 +200,11 @@ document.addEventListener('storeReady', event => {
   var favicons = theme.favicons;
   var store = event.detail.store;
   var actions = event.detail.actions;
+  var root = document.querySelector('script[src$="${themeName}-theme.js"]').src.replace('${themeName}-theme.js', '');
 
   theme = document.head.attachShadow ? theme.default : theme.ie;
+  Object.keys(theme.${themeName}).map(key => theme.${themeName}[key] = theme.${themeName}[key].replace(/\%root\%\\//g, root) );
+  favicons = favicons.map(val => val.replace(/\%root\%\\//g, root) );
   theme.${themeName}.favicons = favicons;
 
   store.dispatch({ type: actions.ADD_THEME, theme });
