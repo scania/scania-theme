@@ -1,0 +1,108 @@
+@import 'variables';
+@import 'mixins';
+
+$interaction-types: success, info, warning, danger;
+$interaction-types2: secondary, light;
+$interaction-types3: primary, dark;
+
+.btn {
+
+  @include list-to-string(join($interaction-types, $interaction-types3), "&-") {
+
+    &,
+    &:hover {
+      color: $white;
+      color: var(--white);
+    }
+    &:hover {
+      box-shadow: inset 0 0 0 99999px rgba(255, 255, 255, 0.2);
+    }
+  }
+  @include list-to-string($interaction-types2, "&-") {
+
+    &,
+    &:hover {
+      color: map-get($interaction-colors, primary);
+      background-color: map-get($interaction-colors, secondary);
+      border-color: map-get($interaction-colors, primary);
+      color: var(--primary);
+      background-color: var(--secondary);
+      border-color: var(--primary);
+    }
+    &:hover {
+      box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.1);
+    }
+  }
+  // Normally we wouldnt need to override the attributes set using css
+  // vars. But because we need a fallback color, we now need to
+  @each $type in join($interaction-types, $interaction-types3) {
+    &-#{$type} {
+
+      &,
+      &:hover {
+        background-color: map-get($interaction-colors, $type);
+        border-color: map-get($interaction-colors, $type);
+        background-color: var(--#{$type});
+        border-color: var(--#{$type});
+      }
+    }
+  }
+  @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
+    &-outline-#{$type} {
+
+      & {
+        color: map-get($interaction-colors, $type);
+        color: var(--#{$type});
+      }
+      &:hover {
+        background-color: map-get($interaction-colors, $type);
+        background-color: var(--#{$type});
+      }
+      &,
+      &:hover {
+        border-color: map-get($interaction-colors, $type);
+        border-color: var(--#{$type});
+      }
+    }
+  }
+  @each $type in $interaction-types {
+    &-outline-#{$type} {
+
+      &:hover {
+        color: $white;
+        color: var(--white);
+      }
+    }
+  }
+  @each $type in $interaction-types2 {
+    &-outline-#{$type} {
+
+      &:hover {
+        color: $primary;
+        color: var(--primary);
+      }
+    }
+  }
+  @each $type in $interaction-types3 {
+    &-outline-#{$type} {
+      color: $white;
+      color: var(--white);
+    }
+  }
+}
+.bg {
+  @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
+    &-#{$type} {
+      background-color: map-get($interaction-colors, $type) !important;
+      background-color: var(--#{$type}) !important;
+    }
+  }
+}
+.text {
+  @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
+    &-#{$type} {
+      color: map-get($interaction-colors, $type) !important;
+      color: var(--#{$type}) !important;
+    }
+  }
+}
