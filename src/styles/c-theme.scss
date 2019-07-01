@@ -19,6 +19,9 @@
 
 
 // Output rules
+:root {
+  --link-decoration-hover: $link-decoration-hover;
+}
 * {
   box-sizing: border-box;
 }
@@ -44,6 +47,7 @@ a {
   &:active,
   &.active {
     color: var(--link-color-hover);
+    text-decoration: var(--link-decoration-hover);
   }
 }
 p {
