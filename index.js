@@ -61,7 +61,7 @@ async function initFolders(cb) {
 
   await fs.remove(outputFolder);
 
-  setTimeout(() => {
+  await setTimeout(() => {
     ['fonts', 'images', 'styles'].map(folder => {
       fs.mkdirSync(`${outputFolder}/${folder}`, { recursive: true });
     });
@@ -327,7 +327,7 @@ function generateCss(file) {
 }
 
 function refToData(data) {
-  data = data.replace(/@import url\((.*?)\)/g, (hit, group) => {
+  data = data.replace(/@import url\((.*?)(\);|\))/g, (hit, group) => {
     let content = fs.readFileSync(`${outputFolder}/styles/${group}`, 'utf8');
     return content;
   });

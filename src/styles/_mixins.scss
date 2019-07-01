@@ -1,0 +1,16 @@
+
+@mixin renderMap($mapping, $prop) {
+  @each $key, $value in $mapping {
+    #{$key} { #{$prop}: $value; }
+  }
+}
+
+@mixin list-to-string($items, $prefix) {
+  $list: ();
+  @each $item in $items {
+    $list: append($list, "#{$prefix}#{$item},");
+  }
+  #{$list} {
+    @content;
+  }
+}
