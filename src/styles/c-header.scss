@@ -48,17 +48,12 @@ $link-color: #747472;
   @extend %nav-link-hover;
 }
 
-c-navigation {
-  background-color: #f5f5f5;
-}
-
 .navbar {
   flex: 1;
   padding: 0;
   overflow: hidden;
   background-color: inherit;
   z-index: 1;
-  border-bottom: 1px solid #e2e2e2;
   
   &:after {
     @extend %title;
@@ -110,7 +105,7 @@ c-navigation {
 .navbar-symbol {
   padding: 13px;
   border-left: 1px solid #e2e2e2;
-  border-bottom: 1px solid #e2e2e2;
+
   background-color: inherit;
   z-index: 1;
 
@@ -124,12 +119,14 @@ c-navigation {
     background-size: cover;
     width: 40px;
     height: 37px;
+    transition: all 100ms ease-in-out;
   }
 }
 .navbar-toggler {
   border-width: 0 1px 0 0;
   border-color: #e2e2e2;
   padding: 13px;
+  height: 100%;
 
   &-icon {
     // This make the icon the same size as the logotype, making it easier to handle the parent element padding needed
@@ -141,19 +138,18 @@ c-navigation {
 
   :host {
     position: sticky;
-    top: -84px;
+    position: -webkit-sticky;
+    top: var(--stickyMargin);
   }
 
-  ::slotted(c-navigation),
-  c-navigation {
+  ::slotted(c-navigation){
     background-color: transparent;
     border-top: 1px solid #e2e2e2;
   }
 
   .navbar-default {
     padding: 19px 11px 10px;
-    margin-right: 20px;
-    border-bottom: 0;
+    margin-right: 75px;
 
     &[short-name] {
 
@@ -177,18 +173,37 @@ c-navigation {
     }
   }
   .navbar-symbol {
-    position: sticky;
     top: 0;
+    right: 0;
+    position: absolute;
     margin-top: 8px;
     margin-right: 12px;
     margin-bottom: 2px;
     border-left: 0;
     border-bottom: 0;
     background-color: transparent;
+    transition: top 0.2s ease-out;
 
     &:before {
       width: 48px;
       height: 46px;
+    }
+  }
+  :host([stuck]) {
+
+    .navbar-symbol{
+      margin-top: 18px;
+      top:65px;
+      &:before{
+        width: 40px;
+        height: 38px;
+      }
+    }
+
+    ::slotted(c-navigation),
+    &::slotted(c-navigation) {
+      -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
     }
   }
 }
