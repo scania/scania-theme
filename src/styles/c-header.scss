@@ -37,10 +37,6 @@ $link-color: #747472;
   z-index: 1000;
   padding: 0;
   border-bottom: 1px solid #e2e2e2;
-::slotted(c-navigation),
-  c-navigation {
-    transition: padding-right 150ms cubic-bezier(0.22, 0.61, 0.36, 1);
-  }
 }
 
 ::slotted(a) {
@@ -50,10 +46,6 @@ $link-color: #747472;
 // we need to have the hover separated instead of nested
 ::slotted(a:hover) {
   @extend %nav-link-hover;
-}
-
-c-navigation {
-  background-color: #f5f5f5;
 }
 
 .navbar {
@@ -150,8 +142,7 @@ c-navigation {
     top: var(--stickyMargin);
   }
 
-  ::slotted(c-navigation),
-  c-navigation {
+  ::slotted(c-navigation){
     background-color: transparent;
     border-top: 1px solid #e2e2e2;
   }
@@ -211,7 +202,6 @@ c-navigation {
 
     ::slotted(c-navigation),
     &::slotted(c-navigation) {
-      padding-right: 80px;
       -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
       box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
     }

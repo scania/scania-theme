@@ -250,7 +250,7 @@ ul {
 
   .navbar {
     display: flex;
-    transition: none;
+    transition: padding-right 150ms cubic-bezier(0.22, 0.61, 0.36, 1);
 
     .navbar-nav {
 
@@ -270,5 +270,11 @@ ul {
     .navbar-collapse {
       max-height: none;
     }
+  }
+
+  :host([stuck]:not([slot=sub])) {  
+    > .navbar {  
+      padding-right: 80px;  
+    }  
   }
 }
