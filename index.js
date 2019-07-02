@@ -318,7 +318,7 @@ function generateCss(file) {
     .toString()
     .replace(/:root {([^}]*)}/, '');
 
-  if(name !== 'c-theme') {
+  if(name !== 'c-theme' && name !== 'c-global-style') {
     content_ie = polyfill(name, content_ie);
   }
 
