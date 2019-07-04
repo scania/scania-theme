@@ -4,15 +4,14 @@ $link-color-hover: darken($link-color, 100%);
 %nav-link {
   color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
-  text-decoration: none;
   padding: 5px;
   text-align: center;
+
+  // This is used for elements rendered inside host by data
+  text-decoration: var(--link-decoration-hover, underline);
 }
 // Sass compiler renders :hover and :before differently
 // and this is due to browsers lackof support
-%nav-link-hover {
-  text-decoration: underline;
-}
 %nav-link-social {
   color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
@@ -20,7 +19,6 @@ $link-color-hover: darken($link-color, 100%);
   border-radius: 22px;
   padding: 8px;
   line-height: 0;
-  margin-top: 30px;
   margin-right: 20px;
 }
 %nav-link-social-hover {
@@ -44,9 +42,6 @@ $link-color-hover: darken($link-color, 100%);
 }
 // Due to browsers not supporting: ::slotted(a):hover 
 // we need to have the hover separated instead of nested
-::slotted(a:hover) {
-  @extend %nav-link-hover;
-}
 ::slotted(a[slot="social-items"]) {
   @extend %nav-link-social;
 }
@@ -79,11 +74,6 @@ p {
 
       &.nav-link {
         @extend %nav-link;
-
-        &:hover,
-        &:focus {
-          @extend %nav-link-hover;
-        }
       }
     }
   }
@@ -96,9 +86,6 @@ p {
 
     &:hover  {
       @extend %nav-link-social-hover;
-    }
-    &:last-of-type {
-      @extend %nav-link-social-last;
     }
 
     a {
@@ -118,6 +105,7 @@ p {
     content: '';
     width: 182px;
     height: 31px;
+    margin-bottom: 30px;
     background-size: 100%;
     background-repeat: no-repeat;
     // These files are generated and will exist in dist
@@ -135,9 +123,6 @@ p {
   }
   // Sass compiler renders :hover and :before differently
   // and this is due to browsers lackof support
-  %nav-link-hover-desktop {
-    text-decoration: underline;
-  }
   %nav-link-social-desktop {
     margin-top: 0;
   }
@@ -153,9 +138,6 @@ p {
   }
   // Due to browsers not supporting: ::slotted(a):hover 
   // we need to have the hover separated instead of nested
-  ::slotted(a:hover) {
-    @extend %nav-link-hover-desktop;
-  }
   ::slotted(a[slot="social-items"]) {
     @extend %nav-link-social-desktop;
   }
@@ -178,16 +160,13 @@ p {
 
         &.nav-link {
           @extend %nav-link-desktop;
-  
-          &:hover {
-            @extend %nav-link-hover-desktop;
-          }
         }
       }
     }
   }
   .social-items {
     margin-bottom: 20px;
+    padding-left: 0;
     text-align: left;
     
     a.social-item {

@@ -83,8 +83,6 @@ $body-color:                  $primary-03;
 
 $link-color:                  $tertiary-01;
 $link-color-hover:            darken($tertiary-01, 40%);
-$link-bg:                     inherit;
-$link-decoration-hover:       underline;
 
 $font-size-article:           1.8rem;
 $font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
@@ -155,8 +153,7 @@ $interaction-colors: (
 $element-colors: (
   'headings-color': $headings-color,
   'link-color': var(--tertiary-01),
-  'link-color-hover': $link-color-hover,
-  'link-bg': $link-bg
+  'link-color-hover': $link-color-hover
 );
 
 $heading-sizes: (
