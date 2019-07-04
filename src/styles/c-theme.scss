@@ -42,6 +42,7 @@ body {
 }
 a {
   color: var(--link-color);
+  background-color: var(--link-bg);
 
   &:hover,
   &:active,
