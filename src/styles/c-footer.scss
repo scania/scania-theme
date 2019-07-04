@@ -6,7 +6,8 @@ $link-color-hover: darken($link-color, 100%);
   color: var(--link-color);
   padding: 5px;
   text-align: center;
-
+}
+%nav-link-hover {
   // This is used for elements rendered inside host by data
   text-decoration: var(--link-decoration-hover, underline);
 }
@@ -39,6 +40,9 @@ $link-color-hover: darken($link-color, 100%);
 
 ::slotted(a) {
   @extend %nav-link;
+}
+::slotted(a:hover) {
+  @extend %nav-link-hover;
 }
 // Due to browsers not supporting: ::slotted(a):hover 
 // we need to have the hover separated instead of nested
@@ -74,6 +78,10 @@ p {
 
       &.nav-link {
         @extend %nav-link;
+
+        &:hover {
+          @extend %nav-link-hover;
+        }
       }
     }
   }
