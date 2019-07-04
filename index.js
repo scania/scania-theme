@@ -196,18 +196,18 @@ async function initTheme() {
   fs.writeFileSync(`${outputFolder}/${themeName}-theme.js`, `
 var theme = ${ JSON.stringify(theme, null, 2) };
 
-document.addEventListener('storeReady', event => {
+document.addEventListener('storeReady', function(event) {
   var favicons = theme.favicons;
   var store = event.detail.store;
   var actions = event.detail.actions;
   var root = document.querySelector('script[src$="${themeName}-theme.js"]').src.replace('${themeName}-theme.js', '');
 
   theme = document.head.attachShadow ? theme.default : theme.ie;
-  Object.keys(theme.${themeName}).map(key => theme.${themeName}[key] = theme.${themeName}[key].replace(/\%root\%\\//g, root) );
-  favicons = favicons.map(val => val.replace(/\%root\%\\//g, root) );
+  Object.keys(theme.${themeName}).map(function(key) { theme.${themeName}[key] = theme.${themeName}[key].replace(/\%root\%\\//g, root) } );
+  favicons = favicons.map(function(val) { val.replace(/\%root\%\\//g, root) } );
   theme.${themeName}.favicons = favicons;
 
-  store.dispatch({ type: actions.ADD_THEME, theme });
+  store.dispatch({ type: actions.ADD_THEME, theme : theme });
 });
   `,
   { flag: 'w' });
