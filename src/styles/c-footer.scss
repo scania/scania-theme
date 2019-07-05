@@ -9,6 +9,7 @@ $link-color-hover: darken($link-color, 100%);
 }
 %nav-link-hover {
   // This is used for elements rendered inside host by data
+  text-decoration: underline;
   text-decoration: var(--link-decoration-hover, underline);
 }
 // Sass compiler renders :hover and :before differently
@@ -21,14 +22,17 @@ $link-color-hover: darken($link-color, 100%);
   padding: 8px;
   line-height: 0;
   margin-right: 20px;
+  width: 46px;
 }
 %nav-link-social-hover {
   --link-bg: white;
   --link-color-hover: black;
 
   // These are used for elements rendered inside host by data
-  color: var(--link-color-hover);
+  background-color: white;
   background-color: var(--link-bg);
+  color: black;
+  color: var(--link-color-hover);
 }
 
 :host {
@@ -189,24 +193,5 @@ p {
     &:before {
       margin-left: auto;
     }
-  }
-}
-
-// handling for hover styling in IE and Edge (should target social-media a:hover)
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  ::slotted(a[slot="social-items"]:hover) {
-    background-color: white;
-    color: black;
-    border-color: white;
-    border-radius: 22px;
-  }
-}
-
-@supports (-ms-ime-align:auto) {
-  ::slotted(a[slot="social-items"]:hover) {
-    background-color: white;
-    color: black;
-    border-color: white;
-    border-radius: 22px;
   }
 }
