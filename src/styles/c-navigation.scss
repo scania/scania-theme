@@ -5,7 +5,6 @@ $link-color: #909090;
 // when variables in theme have been moved to a separate variables file.
 $link-color-hover: $theme-01;
 $sub-hover-underline-color: #d6001c;
-$link-decoration-hover: none;
 
 %nav-item {
   color: $link-color; // Fallback for non supported browsers
@@ -22,6 +21,7 @@ $link-decoration-hover: none;
   color: $link-color-hover; // Fallback for non supported browsers
   color: var(--theme-01);
   text-decoration: none;
+  --link-decoration-hover: none;
 }
 
 :host {
