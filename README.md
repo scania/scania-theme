@@ -17,7 +17,7 @@ Replace `x` with [available releases](https://www.npmjs.com/package/scania-theme
 
 Install scania-theme package by running the command below.
 ```
-npm i scania-theme@beta
+npm i scania-theme
 ```
 Import `theme` in the project and use it with `addTheme` function from corporate-ui.
 
