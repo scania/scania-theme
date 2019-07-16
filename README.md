@@ -50,3 +50,7 @@ git clone https://github.com/scania/scania-theme.git
 4. From the scania-theme folder, run `npm i` to install package dependencies
 5. Start the local setup by running `npm start`
 6. Scania theme scripts will be served on http://localhost:1338/scania-theme.js
+
+## License
+
+The Scania brand identity and the interaction patterns found in this repository are not available on an open source basis. Although we have great freedom to make improvements and new components, some changes to interaction patterns and use of colours etc may not be approved.
