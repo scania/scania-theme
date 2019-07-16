@@ -48,5 +48,5 @@ git clone https://github.com/scania/scania-theme.git
 2. Download and install node.js: https://nodejs.org/en/
 3. If you're behind a firewall, CONFIGURE THE PROXY
 4. From the scania-theme folder, run `npm i` to install package dependencies
-5. Start the local setup by running npm start
-6. Scania theme scripts will be served on http://localhost:1338
+5. Start the local setup by running `npm start`
+6. Scania theme scripts will be served on http://localhost:1338/scania-theme.js
