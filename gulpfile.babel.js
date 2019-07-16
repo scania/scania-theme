@@ -32,19 +32,54 @@ selectorParser.registerNestingOperators('>', '+', '~');
 selectorParser.registerAttrEqualityMods('^', '$', '*', '~');
 selectorParser.enableSubstitutes();
 
-const start = series(clean, initFolders, initFonts, initImages, initFavicons, initTheme);
+const build = series(clean, initFolders, initFonts, initImages, initFavicons, initTheme);
+const start = series(build, serve, watches);
 
 export {
   start as default,
+  build,
 };
 
 function clean() {
   return del(outputFolder);
 }
 
+function watches(cb) {
+  watch(
+    [
+      'src/styles/*'
+    ],
+    series(cleanStyles, initTheme),
+  );
+  cb();
+}
+
+function cleanStyles() {
+  return del([
+    `${outputFolder}/styles/*`,
+    `${outputFolder}/module.js`,
+    `${outputFolder}/${themeName}-theme.js`
+  ])
+}
+
+function serve(done) {
+
+  console.log('-- Server Start --');
+
+  const app = express();
+  const port = 1338;
+
+  app.use(cors());
+  app.use(express.static('./dist'));
+
+  app.listen(port);
+
+  done(console.log('Server running on port %i', port));
+}
+
 function initFolders(cb) {
 
-  console.log('1. Folders');
+  console.log('Create folders ...');
 
   fs.remove(outputFolder);
 
@@ -59,7 +94,7 @@ function initFolders(cb) {
 
 function initFonts(cb) {
 
-  console.log('2. Fonts');
+  console.log('Add fonts ...');
 
   const fonts = 'src/fonts/**/*.ttf';
   const fontmin = new Fontmin()
@@ -78,7 +113,7 @@ function initFonts(cb) {
   fontmin.run((error, files) => {
     if (error) throw error;
 
-    console.log('3. Font face');
+    console.log('Generate font face ...');
     let pending = files.length;
 
     files.forEach(file => {
@@ -96,14 +131,14 @@ function initFonts(cb) {
 
 function initImages(cb) {
 
-  console.log('4. Images');
+  console.log('Add images ...');
 
   return series(copyImages, generateImages)(cb);
 }
 
-function initFavicons(cb) {
+function initFavicons() {
 
-  console.log('5. Favicons');
+  console.log('Generate favicons ...');
 
   const options = {
     path: '',
@@ -119,21 +154,21 @@ function initFavicons(cb) {
     }
   };
 
- favicons('src/images/symbol.svg', options, function(error, response){
+ return favicons('src/images/symbol.svg', options, function(error, response){
     if (error) throw error;
 
-    console.log('6. Favicon module');
+    console.log('Generate favicon module ...');
 
     [ ...response.images, ...response.files ].map(image => {
       fs.writeFileSync(`${outputFolder}/${image.name}`, image.contents);
-      cb();
+      
     });
 
     const content = response.html.map(data => {
       return data.replace(/(href|content)="(.*?)"/g, (hit, group1, group2) => {
         var elm = hit;
         if(group2.indexOf('.') > -1) {
-          data2 = base64Img.base64Sync(`${outputFolder}/${group2}`);
+          const data2 = base64Img.base64Sync(`${outputFolder}/${group2}`);
           elm = elm.replace(group2, data2);
         }
         return elm;
@@ -142,6 +177,7 @@ function initFavicons(cb) {
 
     faviconItems = response.html;
     faviconItemsNoRefs = content;
+    
  });
 }
 
@@ -149,11 +185,11 @@ function initTheme(cb) {
   let theme = { default: { [themeName]: {} }, ie: { [themeName]: {} } };
   let themeNoRefs = { default: { [themeName]: {} }, ie: { [themeName]: {} } };
 
-  console.log('7. Styles');
+  console.log('Generate css styles ...');
 
   glob.sync('src/styles/[!_]*.scss').forEach(generateCss);
 
-  console.log('8. Style module');
+  console.log('Generate style module ...');
 
   glob.sync(`${outputFolder}/styles/*.css`).forEach(file => {
     const data = fs.readFileSync(path.resolve(file), 'utf8');
@@ -181,8 +217,6 @@ function initTheme(cb) {
 
   fs.writeFileSync(`${outputFolder}/module.js`, `export const theme = ${ JSON.stringify(themeNoRefs, null, 2) };`, { flag: 'a' });
 
-  console.log('9. Theme module');
-
   fs.writeFileSync(`${outputFolder}/${themeName}-theme.js`, `
 var theme = ${ JSON.stringify(theme, null, 2) };
 
@@ -202,7 +236,7 @@ document.addEventListener('storeReady', function(event) {
   `,
   { flag: 'w' });
 
-  console.log('-- Done 9 steps --');
+  console.log('Style updated.');
 
   // renderModule('src/images/favicon.ico');
 }
