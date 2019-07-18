@@ -63,6 +63,7 @@ $sub-hover-underline-color: #d6001c;
   border-top: 1px solid #e2e2e2;
   padding: 10px 25px;
 }
+
 // Due to browsers not supporting: ::slotted(a):hover
 // we need to have the hover separated instead of nested
 ::slotted(a:hover),
@@ -111,6 +112,20 @@ ul {
 .navbar-collapse {
   transition: max-height 550ms ease-in;
   max-height: 100vh;
+
+  &:first-child {
+    // remove border top so it's not overlap with header
+    ::slotted(a:first-of-type) {
+      border-top:0;
+    }
+    .navbar-nav .nav-item:first-of-type{
+      border-top: 0;
+      // if follows with slot, then second items need border
+      + ::slotted(a:first-of-type) {
+        border-top: 1px solid #e2e2e2;
+      }
+    }
+  }
 
   &:not(.show) {
     display: block;
@@ -163,6 +178,32 @@ ul {
     background-color: #fff;
     overflow: visible;
     flex-direction: column;
+    position: sticky;
+    position: -webkit-sticky;
+    top:0;
+    .navbar-symbol {
+      padding: 13px;
+      background-color: inherit;
+      z-index: 1;
+      display: block;
+      position: absolute;
+      top:0px;
+      right: 55px;
+    
+      &:before {
+        position: absolute;
+        content: '';
+        // These files are generated and will exist in dist
+        background-image: url(../images/symbol.png);
+        background-image: url(../images/symbol.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 48px;
+        height: 0;
+        transition: top 250ms ease-in-out 50ms, height 50ms ease-in-out;
+        top: -50px;
+      }
+    }
   }
   :host([slot=sub]) {
     background-color: #f5f5f5;
@@ -177,6 +218,10 @@ ul {
     ::slotted(a:active),
     ::slotted(a[active]) {
       @extend %nav-item-sub-desktop-hover
+    }
+
+    .navbar-symbol {
+      display: none;
     }
 
     .navbar {
@@ -217,13 +262,13 @@ ul {
       margin-left: 0;
     }
   }
-  // TODO: Add support for IE styles generation for multiple selectors using comma separation
+
   ::slotted(a){
     @extend %nav-item-desktop;
 
     display: flex;
-}  
-::slotted(div) {
+  }  
+  ::slotted(div) {
     @extend %nav-item-desktop;
 
     display: flex;
@@ -258,6 +303,9 @@ ul {
         @extend %nav-item-desktop;
 
         border-top: 0;
+        &:first-of-type {
+          border-bottom: 0;
+        }
 
         + .nav-item {
 
@@ -269,12 +317,34 @@ ul {
     }
     .navbar-collapse {
       max-height: none;
+      &:first-child {
+        .navbar-nav .nav-item:first-of-type{
+          + ::slotted(a:first-of-type) {
+            border-top: 0;
+          }
+        }
+      }
     }
   }
 
-  :host([stuck]:not([slot=sub])) {  
+  :host([stuck=true]:not([slot=sub])) {
+    -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);  
     > .navbar {  
       padding-right: 80px;  
-    }  
+    }
+    .navbar-symbol {
+      &:before {
+        top:12px;
+        width: 40px;
+        height: 38px;
+      }
+    }
+  }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  :host([stuck=true]:not([slot=sub])) {
+    position: fixed;
   }
 }

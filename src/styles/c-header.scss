@@ -137,14 +137,13 @@ $link-color: #747472;
 @media (min-width: 992px) {
 
   :host {
-    position: sticky;
-    position: -webkit-sticky;
-    top: var(--stickyMargin);
-  }
+    // IE fallback
+    position: relative;
+    transition: all 0.2s ease-out;
 
-  ::slotted(c-navigation){
-    background-color: transparent;
-    border-top: 1px solid #e2e2e2;
+    * {
+      transition: all 0.2s ease-out;
+    }
   }
 
   .navbar-default {
@@ -182,28 +181,11 @@ $link-color: #747472;
     border-left: 0;
     border-bottom: 0;
     background-color: transparent;
-    transition: top 0.2s ease-out;
 
     &:before {
       width: 48px;
       height: 46px;
     }
-  }
-  :host([stuck]) {
-
-    .navbar-symbol{
-      margin-top: 18px;
-      top:65px;
-      &:before{
-        width: 40px;
-        height: 38px;
-      }
-    }
-
-    ::slotted(c-navigation),
-    &::slotted(c-navigation) {
-      -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
-      box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
-    }
+    
   }
 }
