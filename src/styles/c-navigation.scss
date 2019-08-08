@@ -34,7 +34,6 @@ $sub-hover-underline-color: #d6001c;
   font-size: 1.4rem;
   font-weight: bold;
   text-transform: uppercase;
-  overflow: hidden;
 }
 :host([slot=sub]) {
   background-color: #fff;
@@ -50,7 +49,6 @@ $sub-hover-underline-color: #d6001c;
 // Then this rule needs to have [open] as well
 :host([open=true]:not([slot=sub])),
 :host(.open:not([slot=sub])) {
-
   > .navbar {
     margin-left: -100%;
   }
@@ -176,11 +174,11 @@ ul {
 
   :host {
     background-color: #fff;
-    overflow: visible;
     flex-direction: column;
     position: sticky;
     position: -webkit-sticky;
     top:0;
+    margin-bottom:var(--navHeight);
     .navbar-symbol {
       padding: 13px;
       background-color: inherit;
@@ -205,11 +203,13 @@ ul {
       }
     }
   }
+  :host(:not([slot=sub])) {
+    border-bottom: 1px solid #d3d3d3;
+  }
   :host([slot=sub]) {
     background-color: #f5f5f5;
     border-top: 1px solid #d3d3d3;
     padding: 0 15px;
-
     ::slotted(a) {
       @extend %nav-item-sub-desktop;
     }
@@ -344,7 +344,12 @@ ul {
 }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  :host([stuck=true]:not([slot=sub])) {
-    position: fixed;
+  @media (min-width: 992px) {
+    :host {
+      position: relative;
+    }
+    :host([stuck=true]:not([slot=sub])) {
+      position: fixed;
+    }
   }
 }
