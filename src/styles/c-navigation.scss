@@ -356,3 +356,11 @@ ul {
     }
   }
 }
+
+// We need this rule because !important will replace IE inline style value on desktop
+// set margin-bottom to unset, auto, or initial on IE desktop will cause flickering because of miscalculation in IE
+@media (max-width: 992px) {
+  :host {
+    margin-bottom: 0!important;
+  }
+}
