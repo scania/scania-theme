@@ -91,6 +91,16 @@ article {
   @include renderMap($heading-sizes-article, 'font-size');
 }
 
+body.nav-show {
+  overflow: hidden;
+}
+
+@media (min-width: 992px) {
+  body.nav-show {
+    overflow: auto;
+  }
+}
+
 // .app {
 
 //   body,
