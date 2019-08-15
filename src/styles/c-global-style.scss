@@ -106,3 +106,19 @@ $interaction-types3: primary, dark;
     }
   }
 }
+
+$elements : alert, badge, table;
+
+@each $el in $elements {
+  .#{$el} {
+    @each $type in join($interaction-types, $interaction-types3) {
+      $selector: if($el == table, '&-#{$type} th, &-#{$type} td', '&-#{$type}');
+      #{$selector} {
+        background-color: map-get($interaction-colors, $type);
+        background-color: var(--#{$type});
+        color: #fff;
+        color: var(--white);
+      }
+    }
+  }
+}
