@@ -101,7 +101,7 @@ $link-color: #747472;
     left: 0;
     width: 100%;
     bottom: 0;
-    max-height: 25vh;
+    height: 25vh;
     align-content: center;
     display: flex;
     transition: all 300ms ease-in-out;
@@ -130,7 +130,7 @@ $link-color: #747472;
     }
     &:not(.show) {
       display: block;
-      max-height: 0;
+      height: 0;
     }
   }
 }
@@ -214,6 +214,7 @@ $link-color: #747472;
     }
     
     .navbar-collapse {
+      height: auto;
       position: relative;
       width: auto;
       .navbar-nav { 
