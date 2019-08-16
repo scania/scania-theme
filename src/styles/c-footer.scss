@@ -23,6 +23,11 @@ $link-color-hover: darken($link-color, 100%);
   line-height: 0;
   margin-right: 20px;
   width: 46px;
+
+  // These settings are needed to adjust the miss
+  // alignment for brand icon files
+  font-size: 3.8rem;
+  padding: 2px;
 }
 %nav-link-social-hover {
   --link-bg: white;

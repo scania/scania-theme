@@ -4,6 +4,8 @@ import {
 
 import del from 'del';
 
+require("babel-polyfill");
+
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
@@ -16,6 +18,10 @@ const sass = require('node-sass');
 const base64Img = require('base64-img');
 const express = require('express');
 const cors = require('cors');
+// import webfont from "webfont";
+const SVGO = require('svgo');
+const { parse } = require('svgson');
+const { Crop } = require('simple-svg-tools');
 
 const { CssSelectorParser } = require('css-selector-parser');
 
@@ -32,7 +38,7 @@ selectorParser.registerNestingOperators('>', '+', '~');
 selectorParser.registerAttrEqualityMods('^', '$', '*', '~');
 selectorParser.enableSubstitutes();
 
-const build = series(clean, initFolders, initFonts, initImages, initFavicons, initTheme);
+const build = series(clean, initFolders, initFonts, initImages, initIcons, initFavicons, initTheme);
 const start = series(build, serve, watches);
 
 export {
@@ -63,9 +69,6 @@ function cleanStyles() {
 }
 
 function serve(done) {
-
-  console.log('-- Server Start --');
-
   const app = express();
   const port = 1338;
 
@@ -78,9 +81,6 @@ function serve(done) {
 }
 
 function initFolders(cb) {
-
-  console.log('Create folders ...');
-
   fs.remove(outputFolder);
 
   setTimeout(() => {
@@ -93,9 +93,6 @@ function initFolders(cb) {
 }
 
 function initFonts(cb) {
-
-  console.log('Add fonts ...');
-
   const fonts = 'src/fonts/**/*.ttf';
   const fontmin = new Fontmin()
     .src(fonts)
@@ -108,19 +105,18 @@ function initFonts(cb) {
     }))
     // .use(Fontmin.css())
     .dest(outputFolder + '/fonts');
-    
 
   fontmin.run((error, files) => {
     if (error) throw error;
 
-    console.log('Generate font face ...');
+    console.log('Generate font face');
+
     let pending = files.length;
 
     files.forEach(file => {
       pending--;
       // Remove orgional ttf font from dist, we dont need it
       if(pending === 0) {glob.sync('dist/fonts/**/*.ttf').forEach(file => fs.remove(file))};
-      
     })
     
     glob.sync(fonts).forEach(generateFontCss);
@@ -130,16 +126,77 @@ function initFonts(cb) {
 }
 
 function initImages(cb) {
-
-  console.log('Add images ...');
-
   return series(copyImages, generateImages)(cb);
 }
 
+function initIcons(cb) {
+  // Here we will generate the icon font if we want one
+  cb();
+}
+
+async function generateIcons(iconsFolder) {
+  const svgo = new SVGO({
+    plugins: [
+      { cleanupAttrs: true },
+      { removeDoctype: true },
+      { removeXMLProcInst: true },
+      { removeComments: true },
+      { removeMetadata: true },
+      { removeTitle: true },
+      { removeDesc: true },
+      { removeUselessDefs: true },
+      { removeEditorsNSData: true },
+      { removeEmptyAttrs: true },
+      { removeHiddenElems: true },
+      { removeEmptyText: true },
+      { removeEmptyContainers: true },
+      { removeViewBox: false },
+      { cleanupEnableBackground: true },
+      { convertStyleToAttrs: true },
+      { convertColors: true },
+      { convertPathData: true },
+      { convertTransform: true },
+      { removeUnknownsAndDefaults: true },
+      { removeNonInheritableGroupAttrs: true },
+      { removeUselessStrokeAndFill: true },
+      { cleanupNumericValues: true },
+      { moveElemsAttrsToGroup: false },
+      { collapseGroups: true },
+      { mergePaths:
+        { force: true },
+      },
+      { convertShapeToPath: true },
+      { removeDimensions: true },
+      { removeXMLNS: true }
+    ]
+  });
+  const items = [];
+
+  for(const file of glob.sync(iconsFolder)) {
+    const props = path.parse(file);
+    const content = fs.readFileSync(file);
+
+    const response = await svgo.optimize(content);
+    const result = await parse(response.data);
+
+    const name = props.name;
+    const [ x, y, height, width ] = result.attributes.viewBox.split(' ');
+    const obj = result.children.find(item => item.name === 'path' || item.name === 'g');
+    const node = obj.children.length ? obj.children.find(item => item.name === 'path') : obj;
+    const definition = node.attributes.d;
+
+    items.push({ name, width, height, definition });
+  };
+
+  return Promise.all(items)
+    .then(icons => {
+      // console.log(icons);
+      // cb();
+      return icons;
+    });
+}
+
 function initFavicons() {
-
-  console.log('Generate favicons ...');
-
   const options = {
     path: '',
     icons: {
@@ -154,14 +211,13 @@ function initFavicons() {
     }
   };
 
- return favicons('src/images/symbol.svg', options, function(error, response){
+  return favicons('src/images/symbol.svg', options, function(error, response) {
     if (error) throw error;
 
-    console.log('Generate favicon module ...');
+    console.log('Generate favicon module');
 
     [ ...response.images, ...response.files ].map(image => {
       fs.writeFileSync(`${outputFolder}/${image.name}`, image.contents);
-      
     });
 
     const content = response.html.map(data => {
@@ -177,19 +233,18 @@ function initFavicons() {
 
     faviconItems = response.html;
     faviconItemsNoRefs = content;
-    
  });
 }
 
-function initTheme(cb) {
+async function initTheme(cb) {
   let theme = { default: { [themeName]: {} }, ie: { [themeName]: {} } };
   let themeNoRefs = { default: { [themeName]: {} }, ie: { [themeName]: {} } };
 
-  console.log('Generate css styles ...');
+  console.log('Generate css styles');
 
   glob.sync('src/styles/[!_]*.scss').forEach(generateCss);
 
-  console.log('Generate style module ...');
+  console.log('Generate style module');
 
   glob.sync(`${outputFolder}/styles/*.css`).forEach(file => {
     const data = fs.readFileSync(path.resolve(file), 'utf8');
@@ -208,12 +263,17 @@ function initTheme(cb) {
 
     theme[type][themeName][name] = data.replace(/url\(../g, 'url(%root%' + root);
     themeNoRefs[type][themeName][name] = refToData(data);
-    cb();
   });
 
   // TODO: We might wanna solve this without the need of global variables
   theme.favicons = faviconItems.map(item => item.replace(/(href|content)="/g, '$1="%root%/') )
   themeNoRefs.favicons = faviconItemsNoRefs;
+
+  const icons = await generateIcons('src/icons/*.svg');
+
+  theme.icons = {};
+  icons.map(item => theme.icons[item.name] = item);
+  themeNoRefs.icons = theme.icons;
 
   fs.writeFileSync(`${outputFolder}/module.js`, `export const theme = ${ JSON.stringify(themeNoRefs, null, 2) };`, { flag: 'a' });
 
@@ -238,7 +298,7 @@ document.addEventListener('storeReady', function(event) {
 
   console.log('Style updated.');
 
-  // renderModule('src/images/favicon.ico');
+  cb();
 }
 
 function generateFontCss(file) {
@@ -301,7 +361,6 @@ function generateImages(cb) {
       cb();
     });
   });
-  
 }
 
 function generateCss(file) {
