@@ -90,24 +90,23 @@ $interaction-types3: primary, dark;
     }
   }
 }
-.bg {
-  @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
-    &-#{$type} {
-      background-color: map-get($interaction-colors, $type) !important;
-      background-color: var(--#{$type}) !important;
-    }
-  }
-}
-.text {
-  @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
-    &-#{$type} {
-      color: map-get($interaction-colors, $type) !important;
-      color: var(--#{$type}) !important;
+
+$util-elems : bg, text, border;
+
+@each $elem in $util-elems {
+  .#{$elem} {
+    @if($elem == bg) {$elem : background;}
+    @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
+      $css-prop : if($elem == text, '', '#{$elem}-');
+      &-#{$type} {
+        #{$css-prop}color: map-get($interaction-colors, $type) !important;
+        #{$css-prop}color: var(--#{$type}) !important;
+      }
     }
   }
 }
 
-$elements : alert, badge, table;
+$elements : alert, badge, table, list-group-item;
 
 @each $el in $elements {
   .#{$el} {
