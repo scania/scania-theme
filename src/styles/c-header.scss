@@ -103,30 +103,22 @@ $link-color: #747472;
     bottom: 0;
     height: 25vh;
     align-content: center;
-    display: flex;
-    transition: all 300ms ease-in-out;
+    transition: height 300ms ease-in-out;
     background: #fff;
 
     .navbar-nav {
       margin-top: 0;
-      flex: 1 100%;
+      display: flex;
+      align-items: center;
     }
     ::slotted(a) {
       text-align: center;
       font-weight: bold;
       text-transform: capitalize;
     }
+    // add line in between header link items
     ::slotted(a:first-of-type) {
-      position: relative;
-      &:after {
-        content: '';
-        position: absolute;
-        border-bottom: 1px solid #e2e2e2;
-        width: 30%;
-        bottom: 0;
-        transform: translateX(-50%);
-        left: 50%;
-      }
+      border-bottom: 1px solid #e2e2e2;
     }
     &:not(.show) {
       display: block;
@@ -182,10 +174,6 @@ $link-color: #747472;
     // IE fallback
     position: relative;
     transition: all 0.2s ease-out;
-
-    * {
-      transition: all 0.2s ease-out;
-    }
   }
 
   .navbar {
@@ -225,9 +213,7 @@ $link-color: #747472;
         text-transform: uppercase; 
       }
       ::slotted(a:first-of-type) {
-        &:after {
-          border-bottom: 0;
-        }
+        border-bottom: 0;
       }
     }
   }
@@ -247,16 +233,5 @@ $link-color: #747472;
       height: 46px;
     }
     
-  }
-}
-
-// IE special handling
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .navbar {
-    .navbar-collapse {
-      ::slotted(a:first-of-type) {
-        position: static;
-      }
-    }
   }
 }
