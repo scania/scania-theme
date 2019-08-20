@@ -5,32 +5,63 @@ $interaction-types: success, info, warning, danger;
 $interaction-types2: secondary, light;
 $interaction-types3: primary, dark;
 
+$types: join(join($interaction-types, $interaction-types2), $interaction-types3);
+
 .btn {
+
+  &:not(:disabled):not(.disabled) {
+
+    &:focus,
+    &.focus {
+
+      &,
+      &:active,
+      &.active {
+        box-shadow: none;
+      }
+    }
+  }
 
   @include list-to-string(join($interaction-types, $interaction-types3), "&-") {
 
     &,
-    &:hover {
-      color: $white;
-      color: var(--white);
-    }
-    &:hover {
-      box-shadow: inset 0 0 0 99999px rgba(255, 255, 255, 0.2);
+    &:not(:disabled):not(.disabled) {
+
+      &,
+      &:hover,
+      &:active,
+      &.active {
+        color: $white;
+        color: var(--white);
+      }
+      &:hover,
+      &:active,
+      &.active {
+        box-shadow: inset 0 0 0 99999px rgba(255, 255, 255, 0.2);
+      }
     }
   }
   @include list-to-string($interaction-types2, "&-") {
 
     &,
-    &:hover {
-      color: map-get($interaction-colors, primary);
-      background-color: map-get($interaction-colors, secondary);
-      border-color: map-get($interaction-colors, primary);
-      color: var(--primary);
-      background-color: var(--secondary);
-      border-color: var(--primary);
-    }
-    &:hover {
-      box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.1);
+    &:not(:disabled):not(.disabled) {
+
+      &,
+      &:hover,
+      &:active,
+      &.active {
+        color: map-get($interaction-colors, primary);
+        color: var(--primary);
+        background-color: map-get($interaction-colors, secondary);
+        background-color: var(--secondary);
+        border-color: map-get($interaction-colors, primary);
+        border-color: var(--primary);
+      }
+      &:hover,
+      &:active,
+      &.active {
+        box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.1);
+      }
     }
   }
   // Normally we wouldnt need to override the attributes set using css
@@ -39,47 +70,71 @@ $interaction-types3: primary, dark;
     &-#{$type} {
 
       &,
-      &:hover {
-        background-color: map-get($interaction-colors, $type);
-        border-color: map-get($interaction-colors, $type);
-        background-color: var(--#{$type});
-        border-color: var(--#{$type});
+      &:not(:disabled):not(.disabled) {
+
+        &,
+        &:hover,
+        &:active,
+        &.active {
+          background-color: map-get($interaction-colors, $type);
+          background-color: var(--#{$type});
+          border-color: map-get($interaction-colors, $type);
+          border-color: var(--#{$type});
+        }
       }
     }
   }
-  @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
+  @each $type in $types {
     &-outline-#{$type} {
 
       & {
         color: map-get($interaction-colors, $type);
         color: var(--#{$type});
       }
-      &:hover {
-        background-color: map-get($interaction-colors, $type);
-        background-color: var(--#{$type});
-      }
       &,
-      &:hover {
-        border-color: map-get($interaction-colors, $type);
-        border-color: var(--#{$type});
+      &:not(:disabled):not(.disabled) {
+
+        &,
+        &:hover,
+        &:active,
+        &.active {
+          border-color: map-get($interaction-colors, $type);
+          border-color: var(--#{$type});
+        }
+        &:hover,
+        &:active,
+        &.active {
+          background-color: map-get($interaction-colors, $type);
+          background-color: var(--#{$type});
+        }
       }
     }
   }
   @each $type in $interaction-types {
     &-outline-#{$type} {
 
-      &:hover {
-        color: $white;
-        color: var(--white);
+      &:not(:disabled):not(.disabled) {
+
+        &:hover,
+        &:active,
+        &.active {
+          color: $white;
+          color: var(--white);
+        }
       }
     }
   }
   @each $type in $interaction-types2 {
     &-outline-#{$type} {
 
-      &:hover {
-        color: $primary;
-        color: var(--primary);
+      &:not(:disabled):not(.disabled) {
+
+        &:hover,
+        &:active,
+        &.active {
+          color: $primary;
+          color: var(--primary);
+        }
       }
     }
   }
@@ -101,7 +156,7 @@ $util-props: (
 @each $key, $value in $util-props {
   .#{$key} {
    
-    @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
+    @each $type in $types {
       &-#{$type} {
         #{$value}: map-get($interaction-colors, $type) !important;
         #{$value}: var(--#{$type}) !important;
