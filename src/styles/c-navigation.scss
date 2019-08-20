@@ -5,6 +5,7 @@ $link-color: #909090;
 // when variables in theme have been moved to a separate variables file.
 $link-color-hover: $theme-01;
 $sub-hover-underline-color: #d6001c;
+$link-bg : #f5f5f5;
 
 %nav-item {
   color: $link-color; // Fallback for non supported browsers
@@ -12,6 +13,8 @@ $sub-hover-underline-color: #d6001c;
   padding: 10px 25px;
   text-decoration: none;
   border-top: 1px solid #e2e2e2;
+  background-color: $link-bg;
+  background-color: var(--link-bg);
 }
 // Sass compiler renders :hover and :before differently
 // and this is due to browsers lackof support
@@ -27,13 +30,14 @@ $sub-hover-underline-color: #d6001c;
 :host {
   --link-color: #{$link-color};
   --link-color-hover: var(--theme-01);
+  --link-bg: #{$link-bg};
 
-  background-color: #f5f5f5;
   display: flex;
   font-family: 'Scania Sans';
   font-size: 1.4rem;
   font-weight: bold;
   text-transform: uppercase;
+  background-color: #fff;
 }
 :host([slot=sub]) {
   background-color: #fff;
@@ -61,6 +65,9 @@ $sub-hover-underline-color: #d6001c;
   border-top: 1px solid #e2e2e2;
   padding: 10px 25px;
 }
+:host(:not([slot=sub])) ::slotted(a:first-of-type) {
+  border-top: 0;
+}
 
 // Due to browsers not supporting: ::slotted(a):hover
 // we need to have the hover separated instead of nested
@@ -77,8 +84,13 @@ ul {
 .navbar {
   display: block;
   padding: 0;
-  transition: margin 250ms ease;
+  transition: all 250ms ease; // transition on height and margin-left
   order: -1; /* This is needed for ie - due to it beeing render after slots */
+  // header-item links took 25% of the screen,
+  // so the height of navigation is 75% minus height of header (64px)
+  height: calc(75vh - 64px); 
+  overflow-y: auto;
+  padding-bottom: 5px;
 
   .navbar-nav {
 
@@ -94,6 +106,7 @@ ul {
         }
       }
       &.toggle-sub {
+        border-top: 0;
         position: relative;
         background-color: #f5f5f5;
       }
@@ -102,37 +115,18 @@ ul {
       display: none;
     }
   }
+  &:not(.show) {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 0;
+  }
 }
 :host([slot=sub]),
 .navbar {
   min-width: 100%;
 }
-.navbar-collapse {
-  transition: all 300ms ease-in-out;
-  max-height: 100vh;
-  margin-top: 0;
 
-  &:first-child {
-    // remove border top so it's not overlap with header
-    ::slotted(a:first-of-type) {
-      border-top:0;
-    }
-    .navbar-nav .nav-item:first-of-type{
-      border-top: 0;
-      // if follows with slot, then second items need border
-      + ::slotted(a:first-of-type) {
-        border-top: 1px solid #e2e2e2;
-      }
-    }
-  }
-
-  &:not(.show) {
-    display: block;
-    max-height: 0;
-    overflow: hidden;
-    margin-top: -10px;
-  }
-}
 .sub-navigation {
   overflow: hidden;
   border-top: 1px solid #d3d3d3;
@@ -143,6 +137,8 @@ ul {
   %nav-item-desktop {
     padding: 20px 0;
     border-top: 0;
+    background:transparent;
+    background:var(--link-bg);
 
     &:before,
     &:after {
@@ -176,6 +172,8 @@ ul {
   }
 
   :host {
+    --link-bg : transparent;
+
     background-color: #fff;
     flex-direction: column;
     position: sticky;
@@ -228,7 +226,6 @@ ul {
     }
 
     .navbar {
-      
       .navbar-nav {
 
         .nav-item {
@@ -299,6 +296,9 @@ ul {
   .navbar {
     display: flex;
     transition: padding-right 150ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    height: auto;
+    padding-bottom: 0;
+    overflow-y: visible;
 
     .navbar-nav {
 
@@ -318,15 +318,10 @@ ul {
         }
       }
     }
-    .navbar-collapse {
-      max-height: none;
-      &:first-child {
-        .navbar-nav .nav-item:first-of-type{
-          + ::slotted(a:first-of-type) {
-            border-top: 0;
-          }
-        }
-      }
+    &:not(.show) {
+      display: flex;
+      height: auto;
+      overflow: auto;
     }
   }
 
@@ -346,7 +341,11 @@ ul {
   }
 }
 
+// IE special handling
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  :host {
+    height: auto;
+  }
   @media (min-width: 992px) {
     :host {
       position: relative;

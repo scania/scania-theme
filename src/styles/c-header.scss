@@ -95,6 +95,36 @@ $link-color: #747472;
       }
     }
   }
+
+  .navbar-collapse {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    height: 25vh;
+    align-content: center;
+    transition: height 300ms ease-in-out;
+    background: #fff;
+
+    .navbar-nav {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+    }
+    ::slotted(a) {
+      text-align: center;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+    // add line in between header link items
+    ::slotted(a:first-of-type) {
+      border-bottom: 1px solid #e2e2e2;
+    }
+    &:not(.show) {
+      display: block;
+      height: 0;
+    }
+  }
 }
 .navbar-default[short-name] {
 
@@ -128,6 +158,10 @@ $link-color: #747472;
   padding: 13px;
   height: 100%;
 
+  &:focus {
+    outline: none;
+  }
+
   &-icon {
     // This make the icon the same size as the logotype, making it easier to handle the parent element padding needed
     margin: 8px;
@@ -140,13 +174,9 @@ $link-color: #747472;
     // IE fallback
     position: relative;
     transition: all 0.2s ease-out;
-
-    * {
-      transition: all 0.2s ease-out;
-    }
   }
 
-  .navbar-default {
+  .navbar {
     padding: 19px 11px 10px;
     margin-right: 75px;
 
@@ -169,6 +199,22 @@ $link-color: #747472;
       text-align: left;
       border-left: 1px solid #e2e2e2;
       padding-left: 15px;
+    }
+    
+    .navbar-collapse {
+      height: auto;
+      position: relative;
+      width: auto;
+      .navbar-nav { 
+        flex:0; 
+      }
+      ::slotted(a) {
+        font-weight: normal;
+        text-transform: uppercase; 
+      }
+      ::slotted(a:first-of-type) {
+        border-bottom: 0;
+      }
     }
   }
   .navbar-symbol {
