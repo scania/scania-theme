@@ -90,19 +90,38 @@ $interaction-types3: primary, dark;
     }
   }
 }
-.bg {
-  @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
-    &-#{$type} {
-      background-color: map-get($interaction-colors, $type) !important;
-      background-color: var(--#{$type}) !important;
+
+// map css properties that will be modified for each element
+$util-props: (
+  bg : background-color,
+  text : color,
+  border: border-color
+);
+
+@each $key, $value in $util-props {
+  .#{$key} {
+   
+    @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
+      &-#{$type} {
+        #{$value}: map-get($interaction-colors, $type) !important;
+        #{$value}: var(--#{$type}) !important;
+      }
     }
   }
 }
-.text {
-  @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
-    &-#{$type} {
-      color: map-get($interaction-colors, $type) !important;
-      color: var(--#{$type}) !important;
+
+$elements : alert, badge, table, list-group-item;
+
+@each $el in $elements {
+  .#{$el} {
+    @each $type in join($interaction-types, $interaction-types3) {
+      $selector: if($el == table, '&-#{$type} th, &-#{$type} td', '&-#{$type}');
+      #{$selector} {
+        background-color: map-get($interaction-colors, $type);
+        background-color: var(--#{$type});
+        color: #fff;
+        color: var(--white);
+      }
     }
   }
 }
