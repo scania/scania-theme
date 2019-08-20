@@ -91,8 +91,6 @@ $interaction-types3: primary, dark;
   }
 }
 
-$util-elems : bg, text, border;
-
 // map css properties that will be modified for each element
 $util-props: (
   bg : background-color,
@@ -100,14 +98,13 @@ $util-props: (
   border: border-color
 );
 
-@each $elem in $util-elems {
-  .#{$elem} {
+@each $key, $value in $util-props {
+  .#{$key} {
    
     @each $type in join(join($interaction-types, $interaction-types2), $interaction-types3) {
-      $css-prop : map-get($util-props, $elem);
       &-#{$type} {
-        #{$css-prop}: map-get($interaction-colors, $type) !important;
-        #{$css-prop}: var(--#{$type}) !important;
+        #{$value}: map-get($interaction-colors, $type) !important;
+        #{$value}: var(--#{$type}) !important;
       }
     }
   }
