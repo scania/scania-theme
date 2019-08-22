@@ -5,6 +5,8 @@
   --link-decoration-hover: none;
 
   border-radius: 3px;
+  padding: 9px 18px 8px;
+  font-size: 1.4rem;
 
   &-link {
     color: $info;
@@ -93,17 +95,20 @@
 
         &,
         &:hover,
+        &:focus,
         &:active,
         &.active {
           border-color: map-get($interaction-colors, $type);
           border-color: var(--#{$type});
         }
         &:hover,
+        &:focus,
         &:active,
         &.active {
           background-color: map-get($interaction-colors, $type);
           background-color: var(--#{$type});
         }
+        &:focus,
         &:focus,
         &:focus:active,
         &:focus.active {
@@ -118,6 +123,7 @@
       &:not(:disabled):not(.disabled) {
 
         &:hover,
+        &:focus,
         &:active,
         &.active {
           color: $white;
@@ -132,6 +138,7 @@
       &:not(:disabled):not(.disabled) {
 
         &:hover,
+        &:focus,
         &:active,
         &.active {
           color: $primary;
