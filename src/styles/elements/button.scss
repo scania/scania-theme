@@ -1,29 +1,20 @@
-@import 'variables';
-@import 'mixins';
-
-$interaction-types: success, info, warning, danger;
-$interaction-types2: secondary, light;
-$interaction-types3: primary, dark;
-
-$types: join(join($interaction-types, $interaction-types2), $interaction-types3);
+@import '../variables';
+@import '../mixins';
 
 .btn {
+  --link-decoration-hover: none;
 
-  &:not(:disabled):not(.disabled) {
+  border-radius: 3px;
 
-    &:focus,
-    &.focus {
-
-      &,
-      &:active,
-      &.active {
-        box-shadow: none;
-      }
-    }
+  &-link {
+    color: $info;
+    color: var(--info);
   }
 
   @include list-to-string(join($interaction-types, $interaction-types3), "&-") {
 
+    // We need to have the :not notation due to the bootstrap
+    // default style will otherwise be overiding our style
     &,
     &:not(:disabled):not(.disabled) {
 
@@ -35,8 +26,11 @@ $types: join(join($interaction-types, $interaction-types2), $interaction-types3)
         color: var(--white);
       }
       &:hover,
+      &:focus,
       &:active,
-      &.active {
+      &.active,
+      &:focus:active,
+      &:focus.active {
         box-shadow: inset 0 0 0 99999px rgba(255, 255, 255, 0.2);
       }
     }
@@ -58,8 +52,11 @@ $types: join(join($interaction-types, $interaction-types2), $interaction-types3)
         border-color: var(--primary);
       }
       &:hover,
+      &:focus,
       &:active,
-      &.active {
+      &.active,
+      &:focus:active,
+      &:focus.active {
         box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.1);
       }
     }
@@ -107,6 +104,11 @@ $types: join(join($interaction-types, $interaction-types2), $interaction-types3)
           background-color: map-get($interaction-colors, $type);
           background-color: var(--#{$type});
         }
+        &:focus,
+        &:focus:active,
+        &:focus.active {
+          box-shadow: none;
+        }
       }
     }
   }
@@ -142,41 +144,6 @@ $types: join(join($interaction-types, $interaction-types2), $interaction-types3)
     &-outline-#{$type} {
       color: $white;
       color: var(--white);
-    }
-  }
-}
-
-// map css properties that will be modified for each element
-$util-props: (
-  bg : background-color,
-  text : color,
-  border: border-color
-);
-
-@each $key, $value in $util-props {
-  .#{$key} {
-   
-    @each $type in $types {
-      &-#{$type} {
-        #{$value}: map-get($interaction-colors, $type) !important;
-        #{$value}: var(--#{$type}) !important;
-      }
-    }
-  }
-}
-
-$elements : alert, badge, table, list-group-item;
-
-@each $el in $elements {
-  .#{$el} {
-    @each $type in join($interaction-types, $interaction-types3) {
-      $selector: if($el == table, '&-#{$type} th, &-#{$type} td', '&-#{$type}');
-      #{$selector} {
-        background-color: map-get($interaction-colors, $type);
-        background-color: var(--#{$type});
-        color: #fff;
-        color: var(--white);
-      }
     }
   }
 }

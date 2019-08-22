@@ -53,7 +53,7 @@ function clean() {
 function watches(cb) {
   watch(
     [
-      'src/styles/*'
+      'src/styles/**'
     ],
     series(cleanStyles, initTheme),
   );
@@ -242,7 +242,7 @@ async function initTheme(cb) {
 
   console.log('Generate css styles');
 
-  glob.sync('src/styles/[!_]*.scss').forEach(generateCss);
+  glob.sync('src/styles/components/*.scss').forEach(generateCss);
 
   console.log('Generate style module');
 
@@ -367,7 +367,7 @@ function generateCss(file) {
   const name = path.parse(file).name;
   const data = fs.readFileSync(path.resolve(file), 'utf8');
   const filepath = `${outputFolder}/styles/${name}`;
-  const content = sass.renderSync({ data, includePaths: [ 'src/styles' ] }).css;
+  const content = sass.renderSync({ data, includePaths: [ 'src/styles/**' ] }).css;
   // c-theme is shadow true so we dont need to polyfill its content
   let content_ie =  content
     .toString()
