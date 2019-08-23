@@ -4,86 +4,88 @@
 .btn {
   --link-decoration-hover: none;
 
+  border-radius: .3rem;
   border-radius: 3px;
-  padding: 9px 18px 8px;
+  padding: .9rem 1.8rem .8rem;
   font-size: 1.4rem;
 
-  &-link {
-    color: $info;
-    color: var(--info);
-  }
+  &,
+  &.disabled,
+  &:disabled {
 
-  @include list-to-string(join($interaction-types, $interaction-types3), "&-") {
-
-    // We need to have the :not notation due to the bootstrap
-    // default style will otherwise be overiding our style
     &,
-    &:not(:disabled):not(.disabled) {
+    &:hover {
+      color: $white;
+      color: var(--white);
+    }
+  }
+  &.disabled,
+  &:disabled {
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  &:not(:disabled):not(.disabled) {
+
+    &:hover,
+    &:focus {
+      box-shadow: inset 0 0 0 99999px rgba(255, 255, 255, 0.2);
+    }
+    &:active,
+    &.active {
+      color: $white;
+      color: var(--white);
 
       &,
-      &:hover,
-      &:active,
-      &.active {
-        color: $white;
-        color: var(--white);
-      }
-      &:hover,
-      &:focus,
-      &:active,
-      &.active,
-      &:focus:active,
-      &:focus.active {
+      &:focus {
         box-shadow: inset 0 0 0 99999px rgba(255, 255, 255, 0.2);
       }
     }
   }
-  @include list-to-string($interaction-types2, "&-") {
+  &-link {
 
     &,
+    &:hover {
+      color: $info;
+      color: var(--info);
+    }
     &:not(:disabled):not(.disabled) {
 
-      &,
       &:hover,
+      &:focus {
+        box-shadow: none;
+      }
       &:active,
       &.active {
-        color: map-get($interaction-colors, primary);
-        color: var(--primary);
-        background-color: map-get($interaction-colors, secondary);
-        background-color: var(--secondary);
-        border-color: map-get($interaction-colors, primary);
-        border-color: var(--primary);
-      }
-      &:hover,
-      &:focus,
-      &:active,
-      &.active,
-      &:focus:active,
-      &:focus.active {
-        box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.1);
-      }
-    }
-  }
-  // Normally we wouldnt need to override the attributes set using css
-  // vars. But because we need a fallback color, we now need to
-  @each $type in join($interaction-types, $interaction-types3) {
-    &-#{$type} {
-
-      &,
-      &:not(:disabled):not(.disabled) {
+        color: $info;
+        color: var(--info);
 
         &,
-        &:hover,
-        &:active,
-        &.active {
-          background-color: map-get($interaction-colors, $type);
-          background-color: var(--#{$type});
-          border-color: map-get($interaction-colors, $type);
-          border-color: var(--#{$type});
+        &:focus {
+          box-shadow: none;
         }
       }
     }
   }
+  &-sm {
+    padding: .5rem 1.6rem .5rem;
+    font-size: 1.2rem;
+  }
+  &-lg {
+    padding: 1.4rem 2.0rem;
+    font-size: 1.6rem;
+  }
+
+  @at-root a#{&}.disabled {
+    pointer-events: auto;
+    cursor: default;
+  }
+  // Normally we wouldnt need to override the attributes set using css
+  // vars. But because we need a fallback color, we now need to
   @each $type in $types {
+
+    // TODO: The outline style should be reworked to optimize performance
     &-outline-#{$type} {
 
       & {
@@ -108,13 +110,42 @@
           background-color: map-get($interaction-colors, $type);
           background-color: var(--#{$type});
         }
+        &:hover,
         &:focus,
-        &:focus,
+        &:active,
+        &.active,
         &:focus:active,
         &:focus.active {
           box-shadow: none;
         }
       }
+    }
+  }
+  @each $type in join($interaction-types, $interaction-types3) {
+    &-#{$type} {
+
+      &,
+      &:disabled,
+      &.disabled {
+
+        &,
+        &:hover {
+          background-color: map-get($interaction-colors, $type);
+          background-color: var(--#{$type});
+          border-color: map-get($interaction-colors, $type);
+          border-color: var(--#{$type});
+        }
+      }
+      &:not(:disabled):not(.disabled) {
+
+        &:active,
+        &.active {
+          background-color: map-get($interaction-colors, $type);
+          background-color: var(--#{$type});
+          border-color: map-get($interaction-colors, $type);
+          border-color: var(--#{$type});
+        }
+      }  
     }
   }
   @each $type in $interaction-types {
@@ -133,6 +164,45 @@
     }
   }
   @each $type in $interaction-types2 {
+    &-#{$type} {
+
+      &,
+      &:disabled,
+      &.disabled {
+
+        &,
+        &:hover {
+          color: map-get($interaction-colors, primary);
+          color: var(--primary);
+          background-color: map-get($interaction-colors, secondary);
+          background-color: var(--secondary);
+          border-color: map-get($interaction-colors, primary);
+          border-color: var(--primary);
+        }
+      }
+      &:not(:disabled):not(.disabled) {
+
+        &:hover,
+        &:focus {
+          box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.1);
+        }
+        &:active,
+        &.active {
+          color: map-get($interaction-colors, primary);
+          color: var(--primary);
+          background-color: map-get($interaction-colors, secondary);
+          background-color: var(--secondary);
+          border-color: map-get($interaction-colors, primary);
+          border-color: var(--primary);
+
+          &,
+          &:focus {
+            box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+
     &-outline-#{$type} {
 
       &:not(:disabled):not(.disabled) {
