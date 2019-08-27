@@ -21,4 +21,9 @@
       background-color: var(--primary);
     }
   }
+  th,
+  td {
+    background-color: inherit;
+    box-shadow: inherit;
+  }
 }

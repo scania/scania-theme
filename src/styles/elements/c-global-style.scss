@@ -1,0 +1,79 @@
+@import '../variables';
+@import '../mixins';
+
+// TODO: We might wanna add a global loader to load **
+@import '../components/button.scss';
+@import '../components/table.scss';
+
+// TODO: Refine this primary color setup
+.progress-bar {
+  @include background('primary');
+}
+.list-group-item.active {
+  @include component('primary');
+  @include border('primary');
+}
+.nav-pills {
+  
+  .nav-link.active,
+  .show > .nav-link {
+    @include component('primary');
+  }
+}
+.page-link {
+  @include text('primary', false);
+
+  .page-item.active & {
+    @include component('primary');
+    @include border('primary');
+  }
+}
+
+$elements: alert, badge, table, list-group-item;
+
+@each $type in $types {
+  .bg-#{$type} {
+    @include background($type);
+  }
+
+  .text-#{$type} {
+    @include text($type);
+  }
+
+  .border-#{$type} {
+    @include border($type);
+  }
+
+  @each $element in $elements {
+    .#{$element}-#{$type} {
+      @include component($type, $element);
+    }
+  }
+}
+
+
+// @each $key, $value in $util-props {
+//   .#{$key} {
+   
+//     @each $type in $types {
+//       &-#{$type} {
+//         #{$value}: map-get($interaction-colors, $type) !important;
+//         #{$value}: var(--#{$type}) !important;
+//       }
+//     }
+//   }
+// }
+
+// @each $el in $elements {
+//   .#{$el} {
+//     @each $type in join($interaction-types, $interaction-types3) {
+//       $selector: if($el == table, '&-#{$type} th, &-#{$type} td', '&-#{$type}');
+//       #{$selector} {
+//         background-color: map-get($interaction-colors, $type);
+//         background-color: var(--#{$type});
+//         color: #fff;
+//         color: var(--white);
+//       }
+//     }
+//   }
+// }
