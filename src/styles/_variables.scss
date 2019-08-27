@@ -48,7 +48,7 @@ $gray-800:      #343a40;
 $gray-900:      #212529;
 
 // Interaction colors
-$primary:       $theme-01;
+$primary:       #033a6a;
 $secondary:     #fafafa;
 $success:       #44a878;
 $info:          #4a8ba4;
@@ -173,3 +173,10 @@ $heading-sizes-article: (
   'h5': $h5-font-size-article,
   'h6': $h6-font-size-article
 );
+
+// Interaction lists
+$interaction-types: success, info, warning, danger;
+$interaction-types2: secondary, light;
+$interaction-types3: primary, dark;
+
+$types: join(join($interaction-types, $interaction-types2), $interaction-types3);
