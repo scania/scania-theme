@@ -1,0 +1,16 @@
+// TODO: Move modal specific var to _var.scss?
+$modal-padding: 15px;
+
+.modal {
+
+  .modal-header {
+    padding: $modal-padding;
+  }
+  .modal-body {
+    padding: $modal-padding;
+  }
+  .modal-footer {
+    padding: $modal-padding;
+  }
+
+}
