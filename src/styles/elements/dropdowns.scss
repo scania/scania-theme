@@ -2,4 +2,15 @@
   padding: 8px 10px;
   border: 1px solid #d3d3d3;
   font-size: 14px;
+
+}
+
+.dropdown-item {
+  color: #909090;
+  padding: 4px 2px;
+
+  &:focus,
+  &:hover {
+    color:#262626;
+  }
 }
