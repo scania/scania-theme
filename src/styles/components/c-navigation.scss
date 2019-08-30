@@ -32,29 +32,51 @@ $link-bg : #f5f5f5;
   --link-color-hover: var(--theme-01);
   --link-bg: #{$link-bg};
 
-  display: flex;
   font-family: 'Scania Sans';
   font-size: 1.4rem;
   font-weight: bold;
   text-transform: uppercase;
   background-color: #fff;
 }
+
 :host([slot=sub]) {
   background-color: #fff;
-  display: none;
   text-transform: capitalize;
   font-weight: normal;
+  width: 0;
+  transition: width 250ms ease;
 }
 :host([slot=sub][open=true]),
 :host([slot=sub].open) {
-  display: block;
+  width: 100%;
 }
+
+:host(:not([slot=sub])) {
+  >.navbar-container {
+    display: flex;
+    flex-flow: row nowrap;
+    height: calc(75vh - 64px);
+    transition: height 500ms ease;
+    &:not(.show) {
+      height: 0;
+    }
+
+    > .navbar {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+}
+
 // If we can fix the bug in the css parser for ie
 // Then this rule needs to have [open] as well
 :host([open=true]:not([slot=sub])),
 :host(.open:not([slot=sub])) {
-  > .navbar {
-    margin-left: -100%;
+  >.navbar-container {
+    > .navbar {
+      margin-left: -100%;
+    }
   }
 }
 
@@ -82,15 +104,10 @@ ul {
 }
 
 .navbar {
+  transition: margin-left 250ms ease;
   display: block;
   padding: 0;
-  transition: all 250ms ease; // transition on height and margin-left
-  order: -1; /* This is needed for ie - due to it beeing render after slots */
-  // header-item links took 25% of the screen,
-  // so the height of navigation is 75% minus height of header (64px)
-  height: calc(75vh - 64px); 
   overflow-y: auto;
-  padding-bottom: 5px;
 
   .navbar-nav {
 
@@ -115,22 +132,8 @@ ul {
       display: none;
     }
   }
-  &:not(.show) {
-    display: block;
-    height: 0;
-    overflow: hidden;
-    padding-bottom: 0;
-  }
-}
-:host([slot=sub]),
-.navbar {
-  min-width: 100%;
 }
 
-.sub-navigation {
-  overflow: hidden;
-  border-top: 1px solid #d3d3d3;
-}
 
 @media (min-width: 992px) {
 
@@ -179,7 +182,7 @@ ul {
     position: sticky;
     position: -webkit-sticky;
     top:0;
-    margin-bottom:var(--navHeight);
+
     .navbar-symbol {
       padding: 13px;
       background-color: inherit;
@@ -205,12 +208,21 @@ ul {
     }
   }
   :host(:not([slot=sub])) {
-    border-bottom: 1px solid #d3d3d3;
+    >.navbar-container {
+      border-bottom: 1px solid #d3d3d3;
+      display: block;
+      height: auto;
+      &:not(.show) {
+        height: auto;
+      }
+    }
+     
   }
   :host([slot=sub]) {
     background-color: #f5f5f5;
     border-top: 1px solid #d3d3d3;
     padding: 0 15px;
+    min-width: 100%;
     ::slotted(a) {
       @extend %nav-item-sub-desktop;
     }
@@ -258,7 +270,7 @@ ul {
   :host([open=true]:not([slot=sub])),
   :host(.open:not([slot=sub])) {
 
-    > .navbar {
+    .navbar {
       margin-left: 0;
     }
   }
@@ -318,19 +330,18 @@ ul {
         }
       }
     }
-    &:not(.show) {
-      display: flex;
-      height: auto;
-      overflow: auto;
-    }
   }
 
   :host([stuck=true]:not([slot=sub])) {
-    -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);  
-    > .navbar {  
-      padding-right: 80px;  
+    > .navbar-container  {
+      background: #fff;
+      -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
+      > .navbar {  
+        padding-right: 80px;
+      }
     }
+    
     .navbar-symbol {
       &:before {
         top:12px;
@@ -351,15 +362,10 @@ ul {
       position: relative;
     }
     :host([stuck=true]:not([slot=sub])) {
-      position: fixed;
+      >.navbar-container {
+        position: fixed;
+        top: 0;
+      }
     }
-  }
-}
-
-// We need this rule because !important will replace IE inline style value on desktop
-// set margin-bottom to unset, auto, or initial on IE desktop will cause flickering because of miscalculation in IE
-@media (max-width: 992px) {
-  :host {
-    margin-bottom: 0!important;
   }
 }
