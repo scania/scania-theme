@@ -1,16 +1,31 @@
-// TODO: Move modal specific var to _var.scss?
+// TODO: Move modal specific var to _var.scss
 $modal-padding: 15px;
+$modal-border-color: #e5e5e5;
 
 .modal {
 
+  .modal-content {
+    border-radius: 4px;
+    box-shadow: 0px 2px 20px rgba(0,0,0,0.2); //TODO: check intesnity of the shadow against the .fade
+    border: none;
+    margin-top: 30px;
+  }
   .modal-header {
     padding: $modal-padding;
+    border-color: $modal-border-color;
+
+    & .close { //TODO: Should look into the btn.close
+      font-size: 3rem;
+      font-weight: normal;
+      padding: 5px;
+    }
   }
   .modal-body {
     padding: $modal-padding;
   }
   .modal-footer {
     padding: $modal-padding;
+    border-color: $modal-border-color;
   }
 
 }
