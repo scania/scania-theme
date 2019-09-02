@@ -45,6 +45,11 @@ $link-bg : #f5f5f5;
   font-weight: normal;
   width: 0;
   transition: width 250ms ease;
+  .navbar-container:not(.show) {
+    .navbar {
+      height: 0;
+    }
+  }
 }
 :host([slot=sub][open=true]),
 :host([slot=sub].open) {
@@ -52,7 +57,7 @@ $link-bg : #f5f5f5;
 }
 
 :host(:not([slot=sub])) {
-  >.navbar-container {
+  > .navbar-container {
     display: flex;
     flex-flow: row nowrap;
     height: calc(75vh - 64px);
@@ -207,8 +212,9 @@ ul {
       }
     }
   }
+
   :host(:not([slot=sub])) {
-    >.navbar-container {
+    > .navbar-container {
       border-bottom: 1px solid #d3d3d3;
       display: block;
       height: auto;
@@ -223,10 +229,16 @@ ul {
     border-top: 1px solid #d3d3d3;
     padding: 0 15px;
     min-width: 100%;
+    
+    .navbar-container {
+      &, &:not(.show) .navbar {
+        height: auto;
+      }
+    }
+
     ::slotted(a) {
       @extend %nav-item-sub-desktop;
     }
-
     ::slotted(a:hover),
     ::slotted(a:active),
     ::slotted(a[active]) {
@@ -269,9 +281,10 @@ ul {
   // Would like to have: :host([open=true]:not([open=false]):not([slot=sub])),
   :host([open=true]:not([slot=sub])),
   :host(.open:not([slot=sub])) {
-
-    .navbar {
-      margin-left: 0;
+    >.navbar-container {
+      > .navbar {
+        margin-left: 0;
+      }
     }
   }
 
