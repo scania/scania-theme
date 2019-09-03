@@ -2,7 +2,6 @@
   padding: 8px 10px;
   border: 1px solid #d3d3d3;
   font-size: 14px;
-
 }
 
 .dropdown-item {
@@ -10,7 +9,15 @@
   padding: 4px 2px;
 
   &:focus,
-  &:hover {
+  &:hover,
+  &:active,
+  &.active {
     color:#262626;
+    background-color: #fff;
+  }
+
+  &:active, //TODO: Look into active state, based on 3.5.x
+  &.active {
+    background-color: #f5f5f5;
   }
 }
