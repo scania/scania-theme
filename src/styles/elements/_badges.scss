@@ -1,0 +1,9 @@
+.badge {
+  font-size: 12px;
+
+  &.badge-pill { //TODO: Look into regular badges design
+    padding: 5px 8px;
+    border-radius: 12px;
+    line-height: 1.2;
+  }
+}
