@@ -88,9 +88,11 @@ $link-bg : #f5f5f5;
 ::slotted(a) {
   @extend %nav-item;
 }
+// TODO: Dropdown should be styled from the global style with css vars
 ::slotted(div) {
   border-top: 1px solid #e2e2e2;
   padding: 10px 25px;
+  background: #f5f5f5;
 }
 :host(:not([slot=sub])) ::slotted(a:first-of-type) {
   border-top: 0;
@@ -298,6 +300,7 @@ ul {
 
     display: flex;
     border-top:0;
+    background: transparent;
   }
   ::slotted(a:not(:first-child)) {
 
