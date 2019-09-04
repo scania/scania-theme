@@ -2,8 +2,9 @@
 @import '../mixins';
 
 // TODO: We might wanna add a global loader to load **
-@import '../components/button.scss';
-@import '../components/table.scss';
+@import '../components/alert';
+@import '../components/button';
+@import '../components/table';
 
 // TODO: Refine this primary color setup
 .progress-bar {
@@ -29,24 +30,74 @@
   }
 }
 
-$elements: alert, badge, table, list-group-item;
+@each $type in $all-colors {
+  $theme-colors: map-merge($theme-colors, $type);
+}
+
+$components: badge, list-group-item;
+$componentsLight: alert, table;
 
 @each $type in $types {
   .bg-#{$type} {
-    @include background($type);
+    // @include background($type);
+    background-color: map-get($interaction-colors, $type);
+    background-color: var(--#{$type});
   }
 
   .text-#{$type} {
-    @include text($type);
+    // @include text($type);
+    color: map-get($interaction-colors, $type);
+    color: var(--#{$type});
   }
 
   .border-#{$type} {
-    @include border($type);
+    // @include border($type);
+    border-color: map-get($interaction-colors, $type);
+    border-color: var(--#{$type});
   }
 
-  @each $element in $elements {
+  @each $element in $components {
     .#{$element}-#{$type} {
-      @include component($type, $element);
+      // @include component($type, $element);
+      background-color: map-get($interaction-colors, $type);
+      background-color: var(--#{$type});
+      color: $white;
+      color: var(--white);
+    }
+  }
+
+  @each $element in $componentsLight {
+    @if map-get($theme-colors, #{$type}-#{'01'}) {
+      .#{$element}-#{$type} {
+        // @include component($type, $element);
+        background-color: map-get($theme-colors, #{$type}-#{'01'});
+        background-color: var(--#{$type}-#{'01'});
+        color: map-get($theme-colors, #{$type}-#{'03'});
+        color: var(--#{$type}-#{'03'});
+        border-color: map-get($theme-colors, #{$type}-#{'02'});
+        border-color: var(--#{$type}-#{'02'});
+      }
+    }
+  }
+}
+
+@each $type in $interaction-types2 {
+  @each $element in $components {
+    .#{$element}-#{$type} {
+      color: $dark;
+      color: var(--dark-#{'03'});
+    }
+  }
+
+  @each $element in $componentsLight {
+    @if map-get($theme-colors, #{$type}-#{'01'}) {
+      .#{$element}-#{$type} {
+        // @include component($type, $element);
+        background-color: $type;
+        background-color: var(--#{$type}-#{'01'});
+        color: $type;
+        color: var(--#{$type}-#{'03'});
+      }
     }
   }
 }

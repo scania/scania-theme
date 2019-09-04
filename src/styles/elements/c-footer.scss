@@ -2,21 +2,12 @@ $link-color: #fff;
 $link-color-hover: darken($link-color, 100%);
 
 %nav-link {
-  color: $link-color; // Fallback for non supported browsers
-  color: var(--link-color);
   padding: 5px;
   text-align: center;
-}
-%nav-link-hover {
-  // This is used for elements rendered inside host by data
-  text-decoration: underline;
-  text-decoration: var(--link-decoration-hover, underline);
 }
 // Sass compiler renders :hover and :before differently
 // and this is due to browsers lackof support
 %nav-link-social {
-  color: $link-color; // Fallback for non supported browsers
-  color: var(--link-color);
   border: 2px solid white;
   border-radius: 22px;
   padding: 8px;
@@ -29,20 +20,12 @@ $link-color-hover: darken($link-color, 100%);
   font-size: 3.8rem;
   padding: 2px;
 }
-%nav-link-social-hover {
-  --link-bg: white;
-  --link-color-hover: black;
-
-  // These are used for elements rendered inside host by data
-  background-color: white;
-  background-color: var(--link-bg);
-  color: black;
-  color: var(--link-color-hover);
-}
 
 :host {
   --link-color: #{$link-color};
   --link-color-hover: #{$link-color};
+  --link-decoration: none;
+  --link-decoration-hover: underline;
 
   background-color: #000;
 }
@@ -50,16 +33,8 @@ $link-color-hover: darken($link-color, 100%);
 ::slotted(a) {
   @extend %nav-link;
 }
-::slotted(a:hover) {
-  @extend %nav-link-hover;
-}
-// Due to browsers not supporting: ::slotted(a):hover 
-// we need to have the hover separated instead of nested
 ::slotted(a[slot="social-items"]) {
   @extend %nav-link-social;
-}
-::slotted(a[slot="social-items"]:hover) {
-  @extend %nav-link-social-hover;
 }
 
 p {
@@ -87,27 +62,18 @@ p {
 
       &.nav-link {
         @extend %nav-link;
-
-        &:hover {
-          @extend %nav-link-hover;
-        }
       }
     }
   }
 }
 .social-items {
+  --link-color-hover: black;
+  --link-bg-hover: white;
+
   padding-left: 20px;
 
   a.social-item {
     @extend %nav-link-social;
-
-    &:hover  {
-      @extend %nav-link-social-hover;
-    }
-
-    a {
-      padding: 0;
-    }
   }
 }
 .navbar-brand {

@@ -8,29 +8,18 @@ $sub-hover-underline-color: #d6001c;
 $link-bg : #f5f5f5;
 
 %nav-item {
-  color: $link-color; // Fallback for non supported browsers
-  color: var(--link-color);
   padding: 10px 25px;
   text-decoration: none;
   border-top: 1px solid #e2e2e2;
   background-color: $link-bg;
   background-color: var(--link-bg);
 }
-// Sass compiler renders :hover and :before differently
-// and this is due to browsers lackof support
-%nav-link-hover {
-  --link-color: var(--link-color-hover);
-
-  color: $link-color-hover; // Fallback for non supported browsers
-  color: var(--theme-01);
-  text-decoration: none;
-  --link-decoration-hover: none;
-}
 
 :host {
+  --link-bg: #{$link-bg};
   --link-color: #{$link-color};
   --link-color-hover: var(--theme-01);
-  --link-bg: #{$link-bg};
+  --link-decoration: none;
 
   display: flex;
   font-family: 'Scania Sans';
@@ -69,14 +58,6 @@ $link-bg : #f5f5f5;
   border-top: 0;
 }
 
-// Due to browsers not supporting: ::slotted(a):hover
-// we need to have the hover separated instead of nested
-::slotted(a:hover),
-::slotted(a.active),
-::slotted(a[active]) {
-  @extend %nav-link-hover;
-}
-
 ul {
   margin: 0;
 }
@@ -97,14 +78,6 @@ ul {
     .nav-item {
       @extend %nav-item;
 
-      &.nav-link {
-
-        &:hover,
-        &.active,
-        &[active] {
-          @extend %nav-link-hover;
-        }
-      }
       &.toggle-sub {
         border-top: 0;
         position: relative;
@@ -156,6 +129,7 @@ ul {
     }
   }
   %nav-item-sub-desktop-hover {
+
     &:after {
       content: '';
       border-bottom: 2px solid $sub-hover-underline-color; // Fallback for non supported browsers
