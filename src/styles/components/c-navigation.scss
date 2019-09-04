@@ -45,14 +45,14 @@ $link-bg : #f5f5f5;
   font-weight: normal;
   width: 0;
   transition: width 250ms ease;
-  .navbar-container:not(.show) {
+  .navbar-container:not(.open) {
     .navbar {
       height: 0;
     }
   }
 }
-:host([slot=sub][open=true]),
-:host([slot=sub].open) {
+:host([slot=sub][expand=true]),
+:host([slot=sub].expand) {
   width: 100%;
 }
 
@@ -62,7 +62,7 @@ $link-bg : #f5f5f5;
     flex-flow: row nowrap;
     height: calc(75vh - 64px);
     transition: height 500ms ease;
-    &:not(.show) {
+    &:not(.open) {
       height: 0;
     }
 
@@ -75,9 +75,9 @@ $link-bg : #f5f5f5;
 }
 
 // If we can fix the bug in the css parser for ie
-// Then this rule needs to have [open] as well
-:host([open=true]:not([slot=sub])),
-:host(.open:not([slot=sub])) {
+// Then this rule needs to have [expand] as well
+:host([expand=true]:not([slot=sub])),
+:host(.expand:not([slot=sub])) {
   >.navbar-container {
     > .navbar {
       margin-left: -100%;
@@ -218,7 +218,7 @@ ul {
       border-bottom: 1px solid #d3d3d3;
       display: block;
       height: auto;
-      &:not(.show) {
+      &:not(.open) {
         height: auto;
       }
     }
@@ -231,7 +231,7 @@ ul {
     min-width: 100%;
     
     .navbar-container {
-      &, &:not(.show) .navbar {
+      &, &:not(.open) .navbar {
         height: auto;
       }
     }
@@ -269,8 +269,8 @@ ul {
       }
     }
   }
-  :host([slot=sub][open]),
-  :host([slot=sub].open) {
+  :host([slot=sub][expand]),
+  :host([slot=sub].expand) {
     display: none;
   }
   :host([slot=sub][active]),
@@ -278,9 +278,9 @@ ul {
     display: block;
   }
   // We have a bug in the css parser for ie, it cant handle multiple :not
-  // Would like to have: :host([open=true]:not([open=false]):not([slot=sub])),
-  :host([open=true]:not([slot=sub])),
-  :host(.open:not([slot=sub])) {
+  // Would like to have: :host([expand=true]:not([expand=false]):not([slot=sub])),
+  :host([expand=true]:not([slot=sub])),
+  :host(.expand:not([slot=sub])) {
     >.navbar-container {
       > .navbar {
         margin-left: 0;
