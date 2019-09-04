@@ -1,0 +1,25 @@
+@import '../variables';
+
+.breadcrumb {
+  font-size: 16px;
+  background-color: #F5F5F5;
+  padding: 12px 16px 13px;;
+
+  .breadcrumb-item {
+
+    a {
+      color: $primary;
+      color: var(--primary);
+    }
+
+    &.active {
+      color: #97999B;
+    }
+
+    &+.breadcrumb-item:before {
+      color: #aaaaaa;
+    }
+
+  }
+
+}
