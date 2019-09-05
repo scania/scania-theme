@@ -8,7 +8,7 @@
     &.active {
       .page-link {
         background-color: transparent;
-        color: var(--primary);
+        color: $primary;
         text-decoration: underline;
       }
     }
@@ -20,7 +20,7 @@
 
       &:hover {
         background-color: transparent;
-        color: var(--primary);
+        color: $primary;
       }
     }
 
