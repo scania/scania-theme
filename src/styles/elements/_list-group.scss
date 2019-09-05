@@ -1,0 +1,33 @@
+@import '../variables';
+
+$border-radius-list-group: 3px;
+
+.list-group {
+
+  .list-group-item {
+    padding: 20px;
+    border-color: #e2e2e2;
+
+    &:first-child {
+      border-top-left-radius: $border-radius-list-group;
+      border-top-right-radius: $border-radius-list-group;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: $border-radius-list-group;
+      border-bottom-right-radius: $border-radius-list-group;
+    }
+
+    &.active {
+      background-color: $info;
+      border-color: $info;
+    }
+  }
+
+  .list-group-item-action {
+
+    &.active {
+      text-decoration: none;
+    }
+  }
+}
