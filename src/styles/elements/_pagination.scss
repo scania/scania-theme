@@ -1,0 +1,28 @@
+@import "../variables";
+
+.pagination {
+  font-size: 16px;
+
+  .page-item {
+
+    &.active {
+      .page-link {
+        background-color: transparent;
+        color: var(--primary);
+        text-decoration: underline;
+      }
+    }
+
+    //TODO: Focus state interaction with page-link
+    .page-link {
+      border: none;
+      color: #909090;
+
+      &:hover {
+        background-color: transparent;
+        color: var(--primary);
+      }
+    }
+
+  }
+}
