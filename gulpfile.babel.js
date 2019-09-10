@@ -21,7 +21,7 @@ const cors = require('cors');
 // import webfont from "webfont";
 const SVGO = require('svgo');
 const { parse } = require('svgson');
-const { Crop } = require('simple-svg-tools');
+const sassExtract = require('sass-extract');
 
 const { CssSelectorParser } = require('css-selector-parser');
 
@@ -196,6 +196,20 @@ async function generateIcons(iconsFolder) {
     });
 }
 
+async function generateColors(file) {
+  const result = await sassExtract.render({ file });
+  const categories = result.vars.global['$all-colors'];
+  const colors = Object.entries(categories.value).map(([type, colors]) => 
+    Object.entries(colors.value).map(([key, item]) => {
+      return { [key]: { type, hex: item.value.hex } };
+    })
+  );
+  const arr = [].concat(...colors);
+  const object = arr.reduce((obj, item) => obj = { ...obj, ...item }, {});
+
+  return object;
+}
+
 function initFavicons() {
   const options = {
     path: '',
@@ -274,6 +288,11 @@ async function initTheme(cb) {
   theme.icons = {};
   icons.map(item => theme.icons[item.name] = item);
   themeNoRefs.icons = theme.icons;
+
+  const colors = await generateColors('src/styles/_variables.scss');
+
+  theme.colors = colors;
+  themeNoRefs.colors = theme.colors;
 
   fs.writeFileSync(`${outputFolder}/module.js`, `export const theme = ${ JSON.stringify(themeNoRefs, null, 2) };`, { flag: 'a' });
 

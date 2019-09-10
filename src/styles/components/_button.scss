@@ -2,6 +2,7 @@
 @import '../mixins';
 
 .btn {
+  --link-decoration: none;
   --link-decoration-hover: none;
 
   border-radius: .3rem;
