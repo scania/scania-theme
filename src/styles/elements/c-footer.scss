@@ -1,13 +1,17 @@
-$link-color: #fff;
-$link-color-hover: darken($link-color, 100%);
+@import '../variables';
 
-%nav-link {
+@mixin nav-link {
+  color: $light-01; // IE
   padding: 5px;
   text-align: center;
+
+  &:hover {
+    color: $light-01; // IE
+    text-decoration: underline;
+  }
 }
-// Sass compiler renders :hover and :before differently
-// and this is due to browsers lackof support
-%nav-link-social {
+
+@mixin nav-link-social {
   border: 2px solid white;
   border-radius: 22px;
   padding: 8px;
@@ -19,11 +23,17 @@ $link-color-hover: darken($link-color, 100%);
   // alignment for brand icon files
   font-size: 3.8rem;
   padding: 2px;
+
+  // IE
+  &:hover {
+    color: #000;
+    background-color: $light-01;
+  }
 }
 
 :host {
-  --link-color: #{$link-color};
-  --link-color-hover: #{$link-color};
+  --link-color: var(--light-01);
+  --link-color-hover: var(--light-01);
   --link-decoration: none;
   --link-decoration-hover: underline;
 
@@ -31,12 +41,19 @@ $link-color-hover: darken($link-color, 100%);
 }
 
 ::slotted(a) {
-  @extend %nav-link;
+  @include nav-link;
 }
 ::slotted(a[slot="social-items"]) {
-  @extend %nav-link-social;
+  @include nav-link-social;
 }
 
+a {
+  color: $light-01; // IE
+
+  &:hover {
+    color: $light-01; // IE
+  }
+}
 p {
   font-size: 1.4rem;
   color: #fff;
@@ -61,7 +78,7 @@ p {
     .nav-item {
 
       &.nav-link {
-        @extend %nav-link;
+        @include nav-link;
       }
     }
   }
@@ -73,7 +90,7 @@ p {
   padding-left: 20px;
 
   a.social-item {
-    @extend %nav-link-social;
+    @include nav-link-social;
   }
 }
 .navbar-brand {

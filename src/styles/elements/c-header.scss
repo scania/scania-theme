@@ -1,12 +1,18 @@
-$link-color: #747472;
+@import '../variables';
 
-%nav-link {
-  color: $link-color; // Fallback for non supported browsers
-  color: var(--link-color);
+@mixin nav-link {
+  color: $dark-02; // IE
   padding: 15px;
   text-decoration: none;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
-%title {
+@mixin title {
   font-family: 'Scania Sans Headline';
   font-weight: normal;
   font-size: 1.8rem;
@@ -21,7 +27,7 @@ $link-color: #747472;
 }
 
 :host {
-  --link-color: #{$link-color};
+  --link-color: var(--dark-02);
   --link-decoration: none;
   --link-decoration-hover: underline;
 
@@ -37,7 +43,10 @@ $link-color: #747472;
 }
 
 ::slotted(a) {
-  @extend %nav-link;
+  @include nav-link;
+}
+::slotted(a:first-of-type) {
+  border-bottom: 1px solid #e2e2e2;
 }
 
 .navbar {
@@ -48,7 +57,7 @@ $link-color: #747472;
   z-index: 1;
   
   &:after {
-    @extend %title;
+    @include title;
   }
 
   .navbar-brand {
@@ -67,7 +76,7 @@ $link-color: #747472;
     }
   }
   .navbar-title {
-    @extend %title;
+    @include title;
   }
   .navbar-nav {
     font-family: 'Scania Sans';
@@ -79,11 +88,10 @@ $link-color: #747472;
     .nav-item {
 
       &.nav-link {
-        @extend %nav-link;
+        @include nav-link;
       }
     }
   }
-
   .navbar-collapse {
     position: fixed;
     left: 0;
@@ -94,23 +102,15 @@ $link-color: #747472;
     transition: height 300ms ease-in-out;
     background: #fff;
 
+    &:not(.show) {
+      display: block;
+      height: 0;
+    }
+
     .navbar-nav {
       margin-top: 0;
       display: flex;
       align-items: center;
-    }
-    ::slotted(a) {
-      text-align: center;
-      font-weight: bold;
-      text-transform: capitalize;
-    }
-    // add line in between header link items
-    ::slotted(a:first-of-type) {
-      border-bottom: 1px solid #e2e2e2;
-    }
-    &:not(.show) {
-      display: block;
-      height: 0;
     }
   }
 }
@@ -164,6 +164,14 @@ $link-color: #747472;
     transition: all 0.2s ease-out;
   }
 
+  ::slotted(a) {
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  ::slotted(a:first-of-type) {
+    border-bottom: 0;
+  }
+
   .navbar {
     padding: 19px 11px 10px;
     margin-right: 75px;
@@ -188,20 +196,14 @@ $link-color: #747472;
       border-left: 1px solid #e2e2e2;
       padding-left: 15px;
     }
-    
     .navbar-collapse {
       height: auto;
       position: relative;
       width: auto;
+      text-align: right;
+
       .navbar-nav { 
-        flex:0; 
-      }
-      ::slotted(a) {
-        font-weight: normal;
-        text-transform: uppercase; 
-      }
-      ::slotted(a:first-of-type) {
-        border-bottom: 0;
+        display: inline-block;
       }
     }
   }
@@ -220,6 +222,5 @@ $link-color: #747472;
       width: 48px;
       height: 46px;
     }
-    
   }
 }
