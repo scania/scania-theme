@@ -6,7 +6,6 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "icons": "gulp generateIcons",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -34,6 +33,7 @@
     "glob": "^7.1.3",
     "gulp": "^4.0.2",
     "node-sass": "^4.11.0",
+    "sass-extract": "^2.1.0",
     "simple-svg-tools": "^1.1.12",
     "style-loader": "^0.23.1",
     "svg2img": "^0.6.0",
