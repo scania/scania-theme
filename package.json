@@ -1,18 +1,25 @@
 {
   "name": "scania-theme",
-  "version": "1.0.0-alpha.15",
+  "version": "1.0.0-alpha.16",
   "description": "",
   "main": "dist/module.js",
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "npm run git && npm publish --tag alpha",
+    "git": "git tag %npm_package_version% && git push --tags",
+    "prepublish": "npm run build"
   },
   "author": "",
   "license": "ISC",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scania/scania-theme.git"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
