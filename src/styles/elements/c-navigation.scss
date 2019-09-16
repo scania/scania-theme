@@ -19,6 +19,7 @@
   --link-color: var(--dark-01);
   --link-color-hover: var(--theme-01);
   --link-decoration: none;
+  --link-bg-hover: var(--light-01);
 
   font-family: 'Scania Sans';
   font-size: 1.4rem;
@@ -167,6 +168,7 @@ ul {
 
   :host {
     --link-bg : transparent;
+    --link-bg-hover: transparent;
 
     background-color: #fff;
     flex-direction: column;
