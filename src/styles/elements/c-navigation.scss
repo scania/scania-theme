@@ -19,8 +19,8 @@
   --link-color: var(--dark-01);
   --link-color-hover: var(--theme-01);
   --link-decoration: none;
+  --link-bg-hover: var(--light-01);
 
-  display: flex;
   font-family: 'Scania Sans';
   font-size: 1.4rem;
   font-weight: bold;
@@ -29,21 +29,51 @@
 }
 :host([slot=sub]) {
   background-color: #fff;
-  display: none;
   text-transform: capitalize;
   font-weight: normal;
+  width: 0;
+  transition: width 250ms ease;
+
+  .navbar-container:not(.open) {
+
+    .navbar {
+      height: 0;
+    }
+  }
 }
-:host([slot=sub][open=true]),
-:host([slot=sub].open) {
-  display: block;
+:host([slot=sub][expand=true]),
+:host([slot=sub].expand) {
+  width: 100%;
+}
+
+:host(:not([slot=sub])) {
+
+  > .navbar-container {
+    display: flex;
+    flex-flow: row nowrap;
+    height: calc(75vh - 64px);
+    transition: height 500ms ease;
+
+    &:not(.open) {
+      height: 0;
+    }
+
+    > .navbar {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
 }
 // If we can fix the bug in the css parser for ie
-// Then this rule needs to have [open] as well
-:host([open=true]:not([slot=sub])),
-:host(.open:not([slot=sub])) {
+// Then this rule needs to have [expand] as well
+:host([expand=true]:not([slot=sub])),
+:host(.expand:not([slot=sub])) {
 
-  > .navbar {
-    margin-left: -100%;
+  >.navbar-container {
+
+    > .navbar {
+      margin-left: -100%;
+    }
   }
 }
 
@@ -53,7 +83,8 @@
 ::slotted(div) {
   border-top: 1px solid #e2e2e2;
   padding: 10px 25px;
-
+  background: #f5f5f5;
+  
   // IE
   a {
     color: $dark-01;
@@ -73,15 +104,10 @@ ul {
 }
 
 .navbar {
+  transition: margin-left 250ms ease;
   display: block;
   padding: 0;
-  transition: all 250ms ease; // transition on height and margin-left
-  order: -1; /* This is needed for ie - due to it beeing render after slots */
-  // header-item links took 25% of the screen,
-  // so the height of navigation is 75% minus height of header (64px)
-  height: calc(75vh - 64px); 
   overflow-y: auto;
-  padding-bottom: 5px;
 
   .navbar-nav {
 
@@ -98,21 +124,6 @@ ul {
       display: none;
     }
   }
-  &:not(.show) {
-    display: block;
-    height: 0;
-    overflow: hidden;
-    padding-bottom: 0;
-  }
-}
-:host([slot=sub]),
-.navbar {
-  min-width: 100%;
-}
-
-.sub-navigation {
-  overflow: hidden;
-  border-top: 1px solid #d3d3d3;
 }
 
 @media (min-width: 992px) {
@@ -120,8 +131,8 @@ ul {
   %nav-item-desktop {
     padding: 20px 0;
     border-top: 0;
-    background:transparent;
-    background:var(--link-bg);
+    background: transparent;
+    background: var(--link-bg);
 
     &:before,
     &:after {
@@ -157,13 +168,14 @@ ul {
 
   :host {
     --link-bg : transparent;
+    --link-bg-hover: transparent;
 
     background-color: #fff;
     flex-direction: column;
     position: sticky;
     position: -webkit-sticky;
     top:0;
-    margin-bottom:var(--navHeight);
+
     .navbar-symbol {
       padding: 13px;
       background-color: inherit;
@@ -189,12 +201,29 @@ ul {
     }
   }
   :host(:not([slot=sub])) {
-    border-bottom: 1px solid #d3d3d3;
+
+    > .navbar-container {
+      border-bottom: 1px solid #d3d3d3;
+      display: block;
+      height: auto;
+
+      &:not(.open) {
+        height: auto;
+      }
+    }
   }
   :host([slot=sub]) {
     background-color: #f5f5f5;
     border-top: 1px solid #d3d3d3;
     padding: 0 15px;
+    min-width: 100%;
+    
+    .navbar-container {
+
+      &, &:not(.open) .navbar {
+        height: auto;
+      }
+    }
     ::slotted(a) {
       @extend %nav-item-sub-desktop;
     }
@@ -210,6 +239,7 @@ ul {
     }
 
     .navbar {
+
       .navbar-nav {
 
         .nav-item {
@@ -229,8 +259,8 @@ ul {
       }
     }
   }
-  :host([slot=sub][open]),
-  :host([slot=sub].open) {
+  :host([slot=sub][expand]),
+  :host([slot=sub].expand) {
     display: none;
   }
   :host([slot=sub][active]),
@@ -238,12 +268,15 @@ ul {
     display: block;
   }
   // We have a bug in the css parser for ie, it cant handle multiple :not
-  // Would like to have: :host([open=true]:not([open=false]):not([slot=sub])),
-  :host([open=true]:not([slot=sub])),
-  :host(.open:not([slot=sub])) {
+  // Would like to have: :host([expand=true]:not([expand=false]):not([slot=sub])),
+  :host([expand=true]:not([slot=sub])),
+  :host(.expand:not([slot=sub])) {
 
-    > .navbar {
-      margin-left: 0;
+    >.navbar-container {
+
+      > .navbar {
+        margin-left: 0;
+      }
     }
   }
 
@@ -257,6 +290,7 @@ ul {
 
     display: flex;
     border-top:0;
+    background: transparent;
   }
   ::slotted(a:not(:first-child)) {
 
@@ -290,6 +324,7 @@ ul {
         @extend %nav-item-desktop;
 
         border-top: 0;
+
         &:first-of-type {
           border-bottom: 0;
         }
@@ -302,20 +337,23 @@ ul {
         }
       }
     }
-    &:not(.show) {
-      display: flex;
-      height: auto;
-      overflow: auto;
-    }
+
   }
 
   :host([stuck=true]:not([slot=sub])) {
-    -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);  
-    > .navbar {  
-      padding-right: 80px;  
+
+    > .navbar-container  {
+      background: #fff;
+      -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
+
+      >.navbar {  
+        padding-right: 80px;  
+      }
     }
+
     .navbar-symbol {
+
       &:before {
         top:12px;
         width: 40px;
@@ -330,20 +368,18 @@ ul {
   :host {
     height: auto;
   }
+
   @media (min-width: 992px) {
     :host {
       position: relative;
     }
-    :host([stuck=true]:not([slot=sub])) {
-      position: fixed;
-    }
-  }
-}
 
-// We need this rule because !important will replace IE inline style value on desktop
-// set margin-bottom to unset, auto, or initial on IE desktop will cause flickering because of miscalculation in IE
-@media (max-width: 992px) {
-  :host {
-    margin-bottom: 0!important;
+    :host([stuck=true]:not([slot=sub])) {
+
+      >.navbar-container {
+        position: fixed;
+        top: 0;
+      }
+    }
   }
 }
