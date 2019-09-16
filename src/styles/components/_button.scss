@@ -2,12 +2,14 @@
 @import '../mixins';
 
 .btn {
+  --link-decoration: none;
   --link-decoration-hover: none;
 
   border-radius: .3rem;
   border-radius: 3px;
   padding: .9rem 1.8rem .8rem;
   font-size: 1.4rem;
+  font-weight: bold;
 
   &,
   &.disabled,

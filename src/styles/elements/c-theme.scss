@@ -7,7 +7,7 @@
 
 // Merge all colors in to theme-colors and 
 // let "root.scss" render the css variables
-@each $type in ($theme-colors, $primary-colors, $secondary-colors, $tertiary-colors, $gray-colors, $element-colors) {
+@each $name, $type in $all-colors {
   $theme-colors: map-merge($theme-colors, $type);
 }
 
@@ -33,20 +33,27 @@ html {
 body {
   font-family: $font-family-base;
   font-size: $font-size-base;
-  color: $body-color;
+  // color: $body-color;
   margin: 0;
   flex: 1;
 }
 a {
+  color: $link-color;
   color: var(--link-color);
-  text-decoration: var(--link-decoration, none);
+  text-decoration: underline;
+  text-decoration: var(--link-decoration, underline);
+  background-color: inherit;
   background-color: var(--link-bg, inherit);
 
   &:hover,
   &:active,
   &.active {
+    color: $link-color-hover;
     color: var(--link-color-hover);
-    text-decoration: var(--link-decoration-hover, underline);
+    text-decoration: none;
+    text-decoration: var(--link-decoration-hover, none);
+    background-color: inherit;
+    background-color: var(--link-bg-hover, inherit);
   }
 }
 p {
