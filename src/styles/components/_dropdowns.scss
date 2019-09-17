@@ -1,13 +1,14 @@
 .dropdown-menu{
-  padding: 8px 10px;
+  padding: .8rem 1rem;
   border: 1px solid #d3d3d3;
-  font-size: 14px;
+  font-size: 1.4rem;
   border-radius: 3px; //TODO: Should be looked into
 }
 
 .dropdown-item {
   color: #909090;
-  padding: 4px 2px;
+  padding: .4rem .2rem;
+  text-decoration: none;
 
   &:focus,
   &:hover,
