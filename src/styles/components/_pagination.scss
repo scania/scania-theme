@@ -1,7 +1,7 @@
 @import "../variables";
 
 .pagination {
-  font-size: 16px;
+  font-size: 1.6rem;
 
   .page-item {
 
@@ -17,6 +17,7 @@
     .page-link {
       border: none;
       color: #909090;
+      text-decoration: none;
 
       &:hover {
         background-color: transparent;
