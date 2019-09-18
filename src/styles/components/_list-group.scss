@@ -5,8 +5,10 @@ $border-radius-list-group: 3px;
 .list-group {
 
   .list-group-item {
-    padding: 20px;
+    padding: 2rem;
     border-color: #e2e2e2;
+    color: #555;
+    font-weight: bold;
 
     &:first-child {
       border-top-left-radius: $border-radius-list-group;
@@ -20,7 +22,8 @@ $border-radius-list-group: 3px;
 
     &.active {
       background-color: $info;
-      border-color: $info;
+      border-color: $info !important; //Needs important, bootstrap override with var(blue)
+      color: #fff;
     }
   }
 
