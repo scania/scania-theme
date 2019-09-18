@@ -252,3 +252,8 @@ $interaction-types2: secondary, light;
 $interaction-types3: primary, dark;
 
 $types: join(join($interaction-types, $interaction-types2), $interaction-types3);
+
+$border-radius: 3px;
+// Modal
+$modal-padding: 15px;
+$modal-border-color: #e5e5e5;
