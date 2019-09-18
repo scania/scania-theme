@@ -4,17 +4,13 @@
 // This file is generated and will exist in dist
 @import url(../fonts/fonts.css);
 
-
-// Merge all colors in to theme-colors and 
-// let "root.scss" render the css variables
-@each $name, $type in $all-colors {
-  $theme-colors: map-merge($theme-colors, $type);
-}
-
-
 // Bootstrap imports
 @import 'node_modules/bootstrap/scss/functions';
 @import 'node_modules/bootstrap/scss/variables';
+
+// Reset bootstrap global colors
+$colors: ();
+
 @import 'node_modules/bootstrap/scss/root';
 
 
