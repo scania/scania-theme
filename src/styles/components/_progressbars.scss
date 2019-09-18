@@ -1,0 +1,8 @@
+// TODO: Font-size for the text inside progressbar
+// TODO: Add variable for border-radius that is global
+
+.progress {
+  border-radius: 3px;
+  height: 12px; //Default height
+  font-size: 1.4rem;
+}
