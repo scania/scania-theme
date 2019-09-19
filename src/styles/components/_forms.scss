@@ -28,15 +28,14 @@
     box-shadow: 0 0 0 50px white inset;
   }
 
-  &:-ms-input-placeholder,
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: $dark-01;
+    color: $dark-01;;
     opacity: 1; /* Firefox */
   }
-  
-  // &:-ms-input-placeholder { /* Internet Explorer 10-11 & Edge */
-  //   color: $dark-01;
-  // }
+  // needs to keep separated to make it works
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 & Edge */
+    color: $dark-01;;
+  }
 }
 
 .form-control-lg {
