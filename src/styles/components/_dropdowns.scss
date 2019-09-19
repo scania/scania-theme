@@ -1,8 +1,12 @@
+@import '../variables';
+@import '../mixins';
+@import 'button';
+
 .dropdown-menu{
   padding: .8rem 1rem;
   border: 1px solid $light-03;
   font-size: 1.4rem;
-  border-radius: 3px; //TODO: Should be looked into
+  border-radius: $border-radius;
 }
 
 .dropdown-item {
@@ -21,5 +25,14 @@
   &:active, //TODO: Look into active state, based on 3.5.x
   &.active {
     background-color: $light-01;
+  }
+}
+
+// Override the .show for buttons
+@each $type in $types {
+  .show {
+    > .btn-#{$type}.dropdown-toggle {
+      @extend .btn-#{$type};
+    }
   }
 }
