@@ -29,8 +29,19 @@
 }
 
 // Override the .show for buttons
-@each $type in $types {
-  .show {
+.show {
+  @each $type in $interaction-types {
+    > .btn-#{$type}.dropdown-toggle {
+      @extend .btn-#{$type};
+      color: $white;
+    }
+  }
+  @each $type in $interaction-types2 {
+    > .btn-#{$type}.dropdown-toggle {
+      @extend .btn-#{$type};
+    }
+  }
+  @each $type in $interaction-types3 {
     > .btn-#{$type}.dropdown-toggle {
       @extend .btn-#{$type};
     }
