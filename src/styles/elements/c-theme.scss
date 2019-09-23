@@ -33,66 +33,6 @@ body {
   margin: 0;
   flex: 1;
 }
-a {
-  color: $link-color;
-  color: var(--link-color);
-  text-decoration: underline;
-  text-decoration: var(--link-decoration, underline);
-  background-color: inherit;
-  background-color: var(--link-bg, inherit);
-
-  &:hover,
-  &:active,
-  &.active {
-    color: $link-color-hover;
-    color: var(--link-color-hover);
-    text-decoration: none;
-    text-decoration: var(--link-decoration-hover, none);
-    background-color: inherit;
-    background-color: var(--link-bg-hover, inherit);
-  }
-}
-p {
-  margin-bottom: 1.5rem;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: $headings-font-family;
-  color: var(--headings-color);
-  font-weight: bold;
-  margin-bottom: 1rem;
-
-  &:first-child {
-    margin-top: 0;
-  }
-}
-h1,
-h2,
-h3 {
-  margin-top: 2.5rem;
-}
-h4,
-h5,
-h6 {
-  margin-top: 1.5rem;
-}
-
-@include renderMap($heading-sizes, 'font-size');
-
-h5,
-h6 { font-family: $font-family-base; }
-h6 { font-style: italic; }
-
-article {
-  font-family: $font-family-article;
-  font-size: $font-size-article;
-
-  @include renderMap($heading-sizes-article, 'font-size');
-}
 
 body.nav-show {
   overflow: hidden;
