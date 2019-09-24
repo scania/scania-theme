@@ -77,12 +77,15 @@ $dark-03:      #212529;
 // $gray-800:      #343a40;
 // $gray-900:      #212529;
 
-
-// Font settings
+// Global Font variables
 $font-size-base:              1.4rem;
 $font-weight-normal:          400;
 $font-weight-base:            $font-weight-normal;
 $line-height-base:            1.5;
+
+$font-family-sans-serif:      'Scania Sans Semi Condensed', 'Scania Sans Condensed', Arial, Helvetica, sans-serif;
+$font-family-monospace:       $font-family-sans-serif;
+$font-family-base:            $font-family-sans-serif;
 
 $h1-font-size:                $font-size-base * 1.72;
 $h2-font-size:                $font-size-base * 1.43;
@@ -90,10 +93,6 @@ $h3-font-size:                $font-size-base * 1.29;
 $h4-font-size:                $font-size-base * 1.14;
 $h5-font-size:                $font-size-base;
 $h6-font-size:                $font-size-base;
-
-$font-family-sans-serif:      'Scania Sans Semi Condensed', 'Scania Sans Condensed', Arial, Helvetica, sans-serif;
-$font-family-monospace:       $font-family-sans-serif;
-$font-family-base:            $font-family-sans-serif;
 
 $headings-font-family:        'Scania Sans Headline', Arial, Helvetica, sans-serif;
 $headings-color:              $theme-01;
@@ -104,6 +103,7 @@ $body-color:                  $primary;
 $link-color:                  $info;
 $link-color-hover:            darken($info, 40%);
 
+// Global Article Font
 $font-size-article:           1.8rem;
 $font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
 
@@ -114,7 +114,7 @@ $h4-font-size-article:        $font-size-article * 1.33;
 $h5-font-size-article:        $font-size-article;
 $h6-font-size-article:        $font-size-article;
 
-// Border settings
+// Global Border settings
 $border-radius:               3px;
 $border-color:                $light;
 
@@ -122,9 +122,10 @@ $border-color:                $light;
 $modal-padding:               15px;
 $modal-border-color:          $light-02;
 
-
+// Table
 $table-border-color:          $border-color;
 
+// Input
 $input-border-color:          $border-color;
 $input-padding-x:             1.2rem;
 $input-padding-y:             1rem;
@@ -272,8 +273,7 @@ $all-colors: (
   'dark':         $dark-colors,
 );
 
-
-// Merge all colors in to theme-colors and 
+// Merge all colors in to theme-colors and
 // let "root.scss" render the css variables
 @each $name, $type in $all-colors {
   $theme-colors: map-merge($theme-colors, $type);
