@@ -22,7 +22,7 @@ npm i scania-theme
 Import `theme` in the project and use it with `addTheme` function from corporate-ui.
 
 ```
-import { defineCustomElements, addTheme } from 'corporate-ui-dev/dist/'; 
+import { defineCustomElements, addTheme } from 'corporate-ui-dev'; 
 import { theme as scania } from 'scania-theme'; 
  
 defineCustomElements('all'); 
