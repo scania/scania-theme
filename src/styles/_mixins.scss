@@ -38,3 +38,35 @@
   #{$type}: map-get($interaction-colors, $color) if($important, !important, null);
   #{$type}: var(--#{$color}) if($important, !important, null);
 }
+
+@mixin form-validation-state($state, $data) {
+  .#{$state}-feedback {
+    border: 1px solid $light-01;
+    border-left: 4px solid map-get($theme-colors, map-get($data, 'border-color'));
+    color: $dark;
+    line-height: normal;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    padding: .8rem;
+  }
+    
+  .form-control {
+
+    &.is-#{$state},
+    .was-validated &:#{$state} {
+      background-image: none;
+      padding-right: 1.2rem;
+
+      @each $key, $value in $data {
+        #{$key} : map-get($theme-colors, $value);
+        #{$key} : var(--#{$value});
+      }
+
+      &:focus {
+        box-shadow: none;
+        border-color: map-get($theme-colors, map-get($data, 'border-color'));
+        border-color: var(--(map-get($data, 'border-color')));
+      }
+    }
+  }
+}
