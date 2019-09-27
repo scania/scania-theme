@@ -59,8 +59,9 @@ $danger-03:    #ebccd1;
 $danger-04:    #a94442;
 
 $light-01:     #f8f9fa;
-$light-02:     #e9ecef;
-$light-03:     #ced4da;
+$light-02:     #efefef;
+$light-03:     #e9ecef;
+$light-04:     #ced4da;
 
 $dark-01:      #94999d;
 $dark-02:      #6c757d;
@@ -120,7 +121,7 @@ $border-color:                $light;
 
 // Modal
 $modal-padding:               15px;
-$modal-border-color:          $light-02;
+$modal-border-color:          $light-03;
 
 // Table
 $table-border-color:          $border-color;
@@ -199,7 +200,8 @@ $danger-colors: (
 $light-colors: (
   'light-01': $light-01,
   'light-02': $light-02,
-  'light-03': $light-03
+  'light-03': $light-03,
+  'light-04': $light-04
 );
 
 $dark-colors: (
