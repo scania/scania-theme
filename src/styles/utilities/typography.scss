@@ -43,7 +43,8 @@ a {
 
   &:hover,
   &:active,
-  &.active {
+  &.active,
+  &[active] {
     color: $link-color-hover;
     color: var(--link-color-hover);
     text-decoration: none;

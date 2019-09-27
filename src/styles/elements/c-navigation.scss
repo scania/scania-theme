@@ -230,7 +230,8 @@ ul {
 
     ::slotted(a:hover),
     ::slotted(a:active),
-    ::slotted(a[active]) {
+    ::slotted(a[active]),
+    ::slotted(a.active) {
       @extend %nav-item-sub-desktop-hover
     }
 
