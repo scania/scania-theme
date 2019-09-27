@@ -38,27 +38,32 @@ $theme-03:      $red;
 // $secondary-02:  #999;
 // $secondary-04:  #fff;
 
-$success-01:   #dff0d8;
-$success-02:   #d6e9c6;
-$success-03:   #3c763d;
+$success-01:   #f2f9f5;
+$success-02:   #dff0d8;
+$success-03:   #d6e9c6;
+$success-04:   #3c763d;
 
-$info-01:      #d9edf7;
-$info-02:      #bce8f1;
-$info-03:      #31708f;
+$info-01:      #ebf6fb;
+$info-02:      #d9edf7;
+$info-03:      #bce8f1;
+$info-04:      #31708f;
 
-$warning-01:   #fcf8e3;
-$warning-02:   #faebcc;
-$warning-03:   #8a6d3b;
+$warning-01:   #fffced;
+$warning-02:   #fcf8e3;
+$warning-03:   #faebcc;
+$warning-04:   #8a6d3b;
 
-$danger-01:    #f2dede;
-$danger-02:    #ebccd1;
-$danger-03:    #a94442;
+$danger-01:    #faeeed;
+$danger-02:    #f2dede;
+$danger-03:    #ebccd1;
+$danger-04:    #a94442;
 
 $light-01:     #f8f9fa;
-$light-02:     #e9ecef;
-$light-03:     #ced4da;
+$light-02:     #efefef;
+$light-03:     #e9ecef;
+$light-04:     #ced4da;
 
-$dark-01:      #909090;
+$dark-01:      #94999d;
 $dark-02:      #6c757d;
 $dark-03:      #212529;
 
@@ -73,12 +78,15 @@ $dark-03:      #212529;
 // $gray-800:      #343a40;
 // $gray-900:      #212529;
 
-
-// Font settings
+// Global Font variables
 $font-size-base:              1.4rem;
 $font-weight-normal:          400;
 $font-weight-base:            $font-weight-normal;
 $line-height-base:            1.5;
+
+$font-family-sans-serif:      'Scania Sans Semi Condensed', 'Scania Sans Condensed', Arial, Helvetica, sans-serif;
+$font-family-monospace:       $font-family-sans-serif;
+$font-family-base:            $font-family-sans-serif;
 
 $h1-font-size:                $font-size-base * 1.72;
 $h2-font-size:                $font-size-base * 1.43;
@@ -86,10 +94,6 @@ $h3-font-size:                $font-size-base * 1.29;
 $h4-font-size:                $font-size-base * 1.14;
 $h5-font-size:                $font-size-base;
 $h6-font-size:                $font-size-base;
-
-$font-family-sans-serif:      'Scania Sans Semi Condensed', 'Scania Sans Condensed', Arial, Helvetica, sans-serif;
-$font-family-monospace:       $font-family-sans-serif;
-$font-family-base:            $font-family-sans-serif;
 
 $headings-font-family:        'Scania Sans Headline', Arial, Helvetica, sans-serif;
 $headings-color:              $theme-01;
@@ -100,6 +104,7 @@ $body-color:                  $primary;
 $link-color:                  $info;
 $link-color-hover:            darken($info, 40%);
 
+// Global Article Font
 $font-size-article:           1.8rem;
 $font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
 
@@ -110,9 +115,28 @@ $h4-font-size-article:        $font-size-article * 1.33;
 $h5-font-size-article:        $font-size-article;
 $h6-font-size-article:        $font-size-article;
 
+// Global Border settings
+$border-radius:               3px;
+$border-color:                $light;
+
+// Modal
+$modal-padding:               15px;
+$modal-border-color:          $light-03;
+
+// Table
+$table-border-color:          $border-color;
+
+// Input
+$input-border-color:          $border-color;
+$input-padding-x:             1.2rem;
+$input-padding-y:             1rem;
+$input-padding-y-sm:          0.7rem;
+$input-padding-x-sm:          1.2rem;
+$input-border-radius:         $border-radius;
+$input-background-color:      $secondary;
 
 // Lists
-$colors: (
+$global-colors: (
   'blue':       $blue,
   // 'indigo':     $indigo,
   // 'purple':     $purple,
@@ -148,31 +172,36 @@ $theme-colors: (
 $success-colors: (
   'success-01': $success-01,
   'success-02': $success-02,
-  'success-03': $success-03
+  'success-03': $success-03,
+  'success-04': $success-04
 );
 
 $info-colors: (
   'info-01': $info-01,
   'info-02': $info-02,
-  'info-03': $info-03
+  'info-03': $info-03,
+  'info-04': $info-04
 );
 
 $warning-colors: (
   'warning-01': $warning-01,
   'warning-02': $warning-02,
-  'warning-03': $warning-03
+  'warning-03': $warning-03,
+  'warning-04': $warning-04
 );
 
 $danger-colors: (
   'danger-01': $danger-01,
   'danger-02': $danger-02,
-  'danger-03': $danger-03
+  'danger-03': $danger-03,
+  'danger-04': $danger-04
 );
 
 $light-colors: (
   'light-01': $light-01,
   'light-02': $light-02,
-  'light-03': $light-03
+  'light-03': $light-03,
+  'light-04': $light-04
 );
 
 $dark-colors: (
@@ -232,7 +261,7 @@ $heading-sizes-article: (
 );
 
 $all-colors: (
-  'global':       $colors,
+  'global':       $global-colors,
   'theme':        $theme-colors,
   'interaction':  $interaction-colors,
   'extra':        $extra-colors,
@@ -246,9 +275,26 @@ $all-colors: (
   'dark':         $dark-colors,
 );
 
+// Merge all colors in to theme-colors and
+// let "root.scss" render the css variables
+@each $name, $type in $all-colors {
+  $theme-colors: map-merge($theme-colors, $type);
+}
+
 // Interaction lists
 $interaction-types: success, info, warning, danger;
 $interaction-types2: secondary, light;
 $interaction-types3: primary, dark;
 
 $types: join(join($interaction-types, $interaction-types2), $interaction-types3);
+
+$form-validation-states: (
+  'valid': (
+    'background-color': 'success-01',
+    'border-color' : 'success'
+  ),
+  'invalid': (
+    'background-color': 'danger-01',
+    'border-color' : 'danger'
+  ),
+);

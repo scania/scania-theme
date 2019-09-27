@@ -1,0 +1,86 @@
+@import '../variables';
+
+.form-control {
+
+  &, &:focus {
+    color: $dark;
+    color: var(--dark);
+  }
+
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  font-weight: 400;
+  height: auto;
+  border-radius: $input-border-radius;
+  padding: $input-padding-y $input-padding-x;
+  background-color: $input-background-color;
+  border-color: $input-border-color;
+
+  &:focus {
+    border-color: $info;
+    background-color: $light-01;
+    box-shadow: none;
+  }
+
+  // Override browser autocomplete background color
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px white inset;
+    box-shadow: 0 0 0 50px white inset;
+  }
+
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $dark-01;;
+    opacity: 1; /* Firefox */
+  }
+  // needs to keep separated to make it works
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 & Edge */
+    color: $dark-01;;
+  }
+}
+
+.form-control-lg {
+  font-size: 2.1rem;
+  line-height: 2.8rem;
+}
+
+.form-control-sm {
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  padding: $input-padding-y-sm $input-padding-x-sm;
+}
+
+.form-control[readonly] {
+  background-color: $input-background-color;
+  border: 0;
+  border-bottom: 1px solid $light-04;
+  border-bottom: 1px solid var(--light-04);
+  padding-left: 0;
+  border-radius: 0;
+  line-height: 2.1rem;
+  opacity: 0.8;
+}
+
+select.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20fill%3D%22currentColor%22%20d%3D%22M177.013%2098.604L128%20147.616%2078.987%2098.604l-7.071%207.071L128%20161.759l56.083-56.084z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-size: 27px;
+  background-position: calc(100% - 1.2rem) center;
+  padding-right: 40px;
+}
+
+select.form-control[multiple] {
+  background-image: none;
+}
+
+textarea.form-control, 
+select.form-control[multiple] {
+  padding: $input-padding-x;
+}
+
+// Form validation
+@each $state, $data in $form-validation-states {
+  @include form-validation-state($state, $data);
+}
