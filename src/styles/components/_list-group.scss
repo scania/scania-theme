@@ -1,13 +1,11 @@
 @import '../variables';
 
-$border-radius-list-group: 3px;
-
 .list-group {
 
   .list-group-item {
-    padding: 2rem;
-    border-color: #e2e2e2;
-    color: #555;
+    padding: 1.7rem;
+    border-color: $light-04;
+    color: $dark;
     font-weight: bold;
 
     &:first-child {
@@ -21,9 +19,9 @@ $border-radius-list-group: 3px;
     }
 
     &.active {
-      background-color: $info;
-      border-color: $info !important; //Needs important, bootstrap override with var(blue)
-      color: #fff;
+      @include component('primary'); //TODO: look into font-color, which is included
+      @include border('primary');
+      color: $white; //TODO: look into what color active should use
     }
   }
 }
