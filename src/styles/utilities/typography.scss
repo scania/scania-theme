@@ -41,15 +41,19 @@ a {
   background-color: inherit;
   background-color: var(--link-bg, inherit);
 
-  &:hover,
-  &:active,
-  &.active {
+  &:hover {
     color: $link-color-hover;
     color: var(--link-color-hover);
     text-decoration: none;
     text-decoration: var(--link-decoration-hover, none);
     background-color: inherit;
     background-color: var(--link-bg-hover, inherit);
+  }
+  
+  &:active,
+  &.active {
+    color: $link-color-active;
+    color: var(--link-color-active);
   }
 }
 p {
