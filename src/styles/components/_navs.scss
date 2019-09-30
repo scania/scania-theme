@@ -17,7 +17,8 @@
   }
 
   &:active,
-  &.active {
+  &.active,
+  &[active]:not([active="false"]) {
     --link-color-active:#{$link-color-active};
   }
 
