@@ -18,6 +18,7 @@
   --link-bg: var(--light-01);
   --link-color: var(--dark-01);
   --link-color-hover: var(--theme-01);
+  --link-color-active: var(--theme-01);
   --link-decoration: none;
   --link-bg-hover: var(--light-01);
 
@@ -230,7 +231,7 @@ ul {
 
     ::slotted(a:hover),
     ::slotted(a:active),
-    ::slotted(a[active]),
+    ::slotted(a[active]:not([active="false"])),
     ::slotted(a.active) {
       @extend %nav-item-sub-desktop-hover
     }
@@ -264,7 +265,7 @@ ul {
   :host([slot=sub].expand) {
     display: none;
   }
-  :host([slot=sub][active]),
+  :host([slot=sub][active]:not([active="false"])),
   :host([slot=sub].active) {
     display: block;
   }
