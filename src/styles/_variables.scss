@@ -102,7 +102,9 @@ $body-bg:                     $white;
 $body-color:                  $primary;
 
 $link-color:                  $info;
-$link-color-hover:            darken($info, 40%);
+$link-color-hover:            $info;
+$link-color-active:           $primary;
+$link-color-disabled:         $light;
 
 // Global Article Font
 $font-size-article:           1.8rem;
@@ -239,7 +241,9 @@ $extra-colors: (
 $element-colors: (
   'headings-color': $headings-color,
   'link-color': var(--info),
-  'link-color-hover': $link-color-hover
+  'link-color-hover': $link-color-hover,
+  'link-color-active': $link-color-active,
+  'link-color-disabled': $link-color-disabled
 );
 
 $heading-sizes: (
