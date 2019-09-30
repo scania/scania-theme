@@ -20,6 +20,8 @@
       border: none;
       color: #909090;
       text-decoration: none;
+      background-color: $pagination-bg-color;
+
 
       &:hover {
         background-color: $pagination-bg-color;
