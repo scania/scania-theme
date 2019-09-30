@@ -2,21 +2,28 @@
 @import '../mixins';
 
 // TODO: We might wanna add a global loader to load **
+// Bootstrap components
 @import '../components/alert';
 @import '../components/button';
 @import '../components/table';
-@import '../components/breadcrumbs';
+@import '../components/modal';
+@import '../components/button-group';
+@import '../components/forms';
+@import '../components/dropdowns';
+@import '../components/progressbars';
+@import '../components/badges';
+@import '../components/input-group';
+
+// Utilities
+@import '../utilities/typography.scss';
 
 // TODO: Refine this primary color setup
-.progress-bar {
-  @include background('primary');
-}
 .list-group-item.active {
   @include component('primary');
   @include border('primary');
 }
 .nav-pills {
-  
+
   .nav-link.active,
   .show > .nav-link {
     @include component('primary');
@@ -33,10 +40,6 @@
 
 $components: badge, list-group-item;
 $componentsLight: alert, table;
-
-@each $name, $type in $all-colors {
-  $theme-colors: map-merge($theme-colors, $type);
-}
 
 @each $name, $hex in $interaction-colors {
   .bg-#{$name} {
@@ -68,15 +71,15 @@ $componentsLight: alert, table;
   }
 
   @each $element in $componentsLight {
-    @if map-get($theme-colors, #{$name}-#{'01'}) {
+    @if map-get($theme-colors, #{$name}-#{'02'}) {
       .#{$element}-#{$name} {
         // @include component($name, $element);
-        background-color: map-get($theme-colors, #{$name}-#{'01'});
-        background-color: var(--#{$name}-#{'01'});
-        color: map-get($theme-colors, #{$name}-#{'03'});
-        color: var(--#{$name}-#{'03'});
-        border-color: map-get($theme-colors, #{$name}-#{'02'});
-        border-color: var(--#{$name}-#{'02'});
+        background-color: map-get($theme-colors, #{$name}-#{'02'});
+        background-color: var(--#{$name}-#{'02'});
+        color: map-get($theme-colors, #{$name}-#{'04'});
+        color: var(--#{$name}-#{'04'});
+        border-color: map-get($theme-colors, #{$name}-#{'03'});
+        border-color: var(--#{$name}-#{'03'});
       }
     }
   }

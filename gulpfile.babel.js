@@ -389,8 +389,8 @@ function generateCss(file) {
   const content = sass.renderSync({ data, includePaths: [ 'src/styles/**' ] }).css;
   // c-theme is shadow true so we dont need to polyfill its content
   let content_ie =  content
-    .toString()
-    .replace(/:root {([^}]*)}/, '');
+    .toString();
+    // .replace(/:root {([^}]*)}/, '');
 
   if(name !== 'c-theme' && name !== 'c-global-style') {
     content_ie = polyfill(name, content_ie);

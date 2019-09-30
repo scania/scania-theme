@@ -1,0 +1,49 @@
+@import '../variables';
+@import '../mixins';
+@import 'button';
+
+.dropdown-menu{
+  padding: .8rem 1rem;
+  border: 1px solid $light-04;
+  font-size: 1.4rem;
+  border-radius: $border-radius;
+}
+
+.dropdown-item {
+  color: $dark-01;
+  padding: .4rem .2rem;
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:active,
+  &.active {
+    color: $dark-03;
+    background-color: $secondary;
+  }
+
+  &:active, //TODO: Look into active state, based on 3.5.x
+  &.active {
+    background-color: $light-01;
+  }
+}
+
+// Override the .show for buttons
+.show {
+  @each $type in $interaction-types {
+    > .btn-#{$type}.dropdown-toggle {
+      @extend .btn-#{$type};
+      color: $white;
+    }
+  }
+  @each $type in $interaction-types2 {
+    > .btn-#{$type}.dropdown-toggle {
+      @extend .btn-#{$type};
+    }
+  }
+  @each $type in $interaction-types3 {
+    > .btn-#{$type}.dropdown-toggle {
+      @extend .btn-#{$type};
+    }
+  }
+}
