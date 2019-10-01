@@ -35,7 +35,7 @@
 }
 
 @mixin rule($type, $color, $important) {
-  #{$type}: map-get($interaction-colors, $color) if($important, !important, null);
+  #{$type}: map-get($theme-colors, $color) if($important, !important, null);
   #{$type}: var(--#{$color}) if($important, !important, null);
 }
 

@@ -4,18 +4,19 @@
 // TODO: We might wanna add a global loader to load **
 // Bootstrap components
 @import '../components/alert';
-@import '../components/button';
-@import '../components/table';
-@import '../components/modal';
-@import '../components/button-group';
-@import '../components/forms';
-@import '../components/dropdowns';
-@import '../components/progressbars';
 @import '../components/badges';
+@import '../components/button';
+@import '../components/button-group';
+@import '../components/data-env';
+@import '../components/dropdowns';
+@import '../components/forms';
 @import '../components/input-group';
-@import '../components/navs';
 @import '../components/list-group';
+@import '../components/modal';
+@import '../components/navs';
 @import '../components/pagination';
+@import '../components/progressbars';
+@import '../components/table';
 
 // Utilities
 @import '../utilities/typography.scss';
