@@ -13,16 +13,13 @@
 @import '../components/progressbars';
 @import '../components/badges';
 @import '../components/input-group';
-@import '../components/breadcrumbs';
+@import '../components/navs';
+@import '../components/list-group';
 
 // Utilities
 @import '../utilities/typography.scss';
 
 // TODO: Refine this primary color setup
-.list-group-item.active {
-  @include component('primary');
-  @include border('primary');
-}
 .nav-pills {
 
   .nav-link.active,

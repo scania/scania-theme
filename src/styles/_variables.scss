@@ -102,7 +102,9 @@ $body-bg:                     $white;
 $body-color:                  $primary;
 
 $link-color:                  $info;
-$link-color-hover:            darken($info, 40%);
+$link-color-hover:            $info;
+$link-color-active:           $primary;
+$link-color-disabled:         $light;
 
 // Global Article Font
 $font-size-article:           1.8rem;
@@ -134,6 +136,9 @@ $input-padding-y-sm:          0.7rem;
 $input-padding-x-sm:          1.2rem;
 $input-border-radius:         $border-radius;
 $input-background-color:      $secondary;
+
+// List-groups
+$border-radius-list-group: $border-radius;
 
 // Lists
 $global-colors: (
@@ -239,7 +244,9 @@ $extra-colors: (
 $element-colors: (
   'headings-color': $headings-color,
   'link-color': var(--info),
-  'link-color-hover': $link-color-hover
+  'link-color-hover': $link-color-hover,
+  'link-color-active': $link-color-active,
+  'link-color-disabled': $link-color-disabled
 );
 
 $heading-sizes: (
