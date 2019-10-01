@@ -10,31 +10,23 @@
 @import '../components/button-group';
 @import '../components/forms';
 @import '../components/dropdowns';
+@import '../components/progressbars';
+@import '../components/badges';
+@import '../components/input-group';
+@import '../components/navs';
+@import '../components/list-group';
+@import '../components/pagination';
+@import '../components/breadcrumbs';
 
 // Utilities
 @import '../utilities/typography.scss';
 
 // TODO: Refine this primary color setup
-.progress-bar {
-  @include background('primary');
-}
-.list-group-item.active {
-  @include component('primary');
-  @include border('primary');
-}
 .nav-pills {
-  
+
   .nav-link.active,
   .show > .nav-link {
     @include component('primary');
-  }
-}
-.page-link {
-  @include text('primary', false);
-
-  .page-item.active & {
-    @include component('primary');
-    @include border('primary');
   }
 }
 

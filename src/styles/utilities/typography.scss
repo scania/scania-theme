@@ -52,6 +52,12 @@ a {
     background-color: inherit;
     background-color: var(--link-bg-hover, inherit);
   }
+  
+  &:active,
+  &.active {
+    color: $link-color-active;
+    color: var(--link-color-active);
+  }
 }
 p {
   margin-bottom: 1.5rem;

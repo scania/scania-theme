@@ -59,8 +59,9 @@ $danger-03:    #ebccd1;
 $danger-04:    #a94442;
 
 $light-01:     #f8f9fa;
-$light-02:     #e9ecef;
-$light-03:     #ced4da;
+$light-02:     #efefef;
+$light-03:     #e9ecef;
+$light-04:     #ced4da;
 
 $dark-01:      #94999d;
 $dark-02:      #6c757d;
@@ -101,7 +102,9 @@ $body-bg:                     $white;
 $body-color:                  $primary;
 
 $link-color:                  $info;
-$link-color-hover:            darken($info, 40%);
+$link-color-hover:            $info;
+$link-color-active:           $primary;
+$link-color-disabled:         $light;
 
 // Global Article Font
 $font-size-article:           1.8rem;
@@ -120,10 +123,13 @@ $border-color:                $light;
 
 // Modal
 $modal-padding:               15px;
-$modal-border-color:          $light-02;
+$modal-border-color:          $light-03;
 
 // Table
 $table-border-color:          $border-color;
+
+//Pagination
+$pagination-bg-color:         transparent;
 
 // Input
 $input-border-color:          $border-color;
@@ -133,6 +139,9 @@ $input-padding-y-sm:          0.7rem;
 $input-padding-x-sm:          1.2rem;
 $input-border-radius:         $border-radius;
 $input-background-color:      $secondary;
+
+// List-groups
+$border-radius-list-group: $border-radius;
 
 // Lists
 $global-colors: (
@@ -199,7 +208,8 @@ $danger-colors: (
 $light-colors: (
   'light-01': $light-01,
   'light-02': $light-02,
-  'light-03': $light-03
+  'light-03': $light-03,
+  'light-04': $light-04
 );
 
 $dark-colors: (
@@ -237,7 +247,9 @@ $extra-colors: (
 $element-colors: (
   'headings-color': $headings-color,
   'link-color': var(--info),
-  'link-color-hover': $link-color-hover
+  'link-color-hover': $link-color-hover,
+  'link-color-active': $link-color-active,
+  'link-color-disabled': $link-color-disabled
 );
 
 $heading-sizes: (

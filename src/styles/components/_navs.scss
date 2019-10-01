@@ -1,0 +1,30 @@
+@import '../variables';
+
+.nav-link {
+  //IE
+  text-decoration: none;
+  
+  --link-color:#{$link-color};
+  --link-decoration: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem 1.4rem 0.9rem;
+
+  &:hover {
+    text-decoration: underline;
+    --link-decoration: underline;
+    --link-color-hover:#{$link-color-hover};
+  }
+
+  &:active,
+  &.active,
+  &[active]:not([active="false"]) {
+    --link-color-active:#{$link-color-active};
+  }
+
+  &.disabled {
+    color: $link-color-disabled;
+    --link-color: #{$link-color-disabled};
+    font-weight: normal;
+  }
+}
