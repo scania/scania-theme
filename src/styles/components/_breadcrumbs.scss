@@ -1,10 +1,10 @@
 @import '../variables';
 
 .breadcrumb {
-  font-size: 16px;
-  background-color: #F5F5F5;
+  font-size: 1.6rem;
   padding: 1.2rem 1.6rem 1.3rem;
-  border-radius: 3px;
+  border-radius: $border-radius;
+  background-color: $light-02; //TODO: Should breadcrumb be transparent
 
   .breadcrumb-item {
 
@@ -16,15 +16,12 @@
         text-decoration: underline;
       }
     }
-
     &.active {
-      color: #97999B;
+      color: $dark-01;
     }
-
+    // For the slash before breadcrumb item
     &+.breadcrumb-item:before {
-      color: #aaaaaa;
+      color: $dark-01;
     }
-
   }
-
 }
