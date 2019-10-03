@@ -9,7 +9,10 @@
   background-color: var(--link-bg);
 
   // IE
-  &:hover {
+  &:hover,
+  &:active,
+  &.active,
+  a[active]:not([active="false"]) {
     color: $theme-01;
   }
 }
@@ -81,6 +84,13 @@
 ::slotted(a) {
   @include nav-item;
 }
+// IE
+::slotted(a:hover),
+::slotted(a:active),
+::slotted(a.active),
+::slotted(a[active]:not([active="false"])) {
+  color: $theme-01;
+}
 ::slotted(div) {
   border-top: 1px solid #e2e2e2;
   padding: 10px 25px;
@@ -91,7 +101,10 @@
     color: $dark-01;
     text-decoration: none;
   
-    &:hover {
+    &:hover,
+    &:active,
+    &.active,
+    a[active]:not([active="false"]) {
       color: $theme-01;
     }
   }
@@ -111,6 +124,8 @@ ul {
   overflow-y: auto;
 
   .navbar-nav {
+
+    background-color: $light-01; // IE
 
     .nav-item {
       @include nav-item;
@@ -231,8 +246,9 @@ ul {
 
     ::slotted(a:hover),
     ::slotted(a:active),
-    ::slotted(a[active]) {
-      @extend %nav-item-sub-desktop-hover
+    ::slotted(a[active]:not([active="false"])),
+    ::slotted(a.active) {
+      @extend %nav-item-sub-desktop-hover;
     }
 
     .navbar-symbol {
@@ -264,7 +280,7 @@ ul {
   :host([slot=sub].expand) {
     display: none;
   }
-  :host([slot=sub][active]),
+  :host([slot=sub][active]:not([active="false"])),
   :host([slot=sub].active) {
     display: block;
   }
@@ -320,6 +336,7 @@ ul {
     overflow-y: visible;
 
     .navbar-nav {
+      background-color: transparent; // IE
 
       .nav-item {
         @extend %nav-item-desktop;
