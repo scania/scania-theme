@@ -36,7 +36,10 @@
   --link-color-hover: var(--light-01);
   --link-decoration: none;
   --link-decoration-hover: underline;
+  --display: block;
 
+  display: block;
+  display: var(--display);
   background-color: #000;
 }
 

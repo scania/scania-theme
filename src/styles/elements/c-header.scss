@@ -30,8 +30,10 @@
   --link-color: var(--dark-02);
   --link-decoration: none;
   --link-decoration-hover: underline;
+  --display: flex;
 
   display: flex;
+  display: var(--display);
   flex-wrap: wrap;
   flex-shrink: 0;
   background-color: #fff;

@@ -24,7 +24,10 @@
   --link-color-active: var(--theme-01);
   --link-decoration: none;
   --link-bg-hover: var(--light-01);
+  --display: block;
 
+  display: block;
+  display: var(--display);
   font-family: 'Scania Sans';
   font-size: 1.4rem;
   font-weight: bold;
