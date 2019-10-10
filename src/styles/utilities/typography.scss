@@ -69,3 +69,9 @@ article {
 
   @include renderMap($heading-sizes-article, 'font-size');
 }
+
+label {
+  font-weight: bold;
+  color: $dark-01;
+  color: var(--dark-01);
+}

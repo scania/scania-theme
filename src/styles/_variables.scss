@@ -141,7 +141,14 @@ $input-border-radius:         $border-radius;
 $input-background-color:      $secondary;
 
 // List-groups
-$border-radius-list-group: $border-radius;
+$border-radius-list-group:    $border-radius;
+
+// Custom form control
+$custom-control-size:               1.8rem;
+$custom-control-padding:            ($custom-control-size + 1);
+$custom-control-radio-space-around: 0.2;
+$custom-control-radio-size:         ($custom-control-size - ($custom-control-radio-space-around * 2));
+$custom-control-radio-padding:      ($custom-control-padding - $custom-control-radio-space-around);
 
 // Lists
 $global-colors: (
