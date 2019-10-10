@@ -52,22 +52,27 @@ a {
     background-color: inherit;
     background-color: var(--link-bg-hover, inherit);
   }
-  
+
   &:active,
   &.active {
     color: $link-color-active;
     color: var(--link-color-active);
   }
 }
+
 p {
   margin-bottom: 1.5rem;
 }
 
-article {
-  font-family: $font-family-article;
-  font-size: $font-size-article;
+// article {
+//   font-family: $font-family-article;
+//   font-size: $font-size-article;
 
-  @include renderMap($heading-sizes-article, 'font-size');
+//   @include renderMap($heading-sizes-article, 'font-size');
+// }
+
+.lead {
+  font-size: 1.8rem;
 }
 
 label {
