@@ -29,7 +29,8 @@ html {
 body {
   font-family: $font-family-base;
   font-size: $font-size-base;
-  // color: $body-color;
+  color: $body-color;
+  color: var(--dark);
   margin: 0;
   flex: 1;
 }

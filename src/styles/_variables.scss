@@ -95,11 +95,11 @@ $h4-font-size:                $font-size-base * 1.14;
 $h5-font-size:                $font-size-base;
 $h6-font-size:                $font-size-base;
 
-$headings-font-family:        'Scania Sans Headline', Arial, Helvetica, sans-serif;
+$headings-font-family:        'Scania Sans Semi Condensed', Arial, Helvetica, sans-serif;
 $headings-color:              $theme-01;
 
 $body-bg:                     $white;
-$body-color:                  $primary;
+$body-color:                  $dark;
 
 $link-color:                  $info;
 $link-color-hover:            $info;
@@ -107,15 +107,16 @@ $link-color-active:           $primary;
 $link-color-disabled:         $light;
 
 // Global Article Font
-$font-size-article:           1.8rem;
-$font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
+// TODO: Disabled article for now
+// $font-size-article:           1.8rem;
+// $font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
 
-$h1-font-size-article:        $font-size-article * 5;
-$h2-font-size-article:        $font-size-article * 3.33;
-$h3-font-size-article:        $font-size-article * 1.94;
-$h4-font-size-article:        $font-size-article * 1.33;
-$h5-font-size-article:        $font-size-article;
-$h6-font-size-article:        $font-size-article;
+// $h1-font-size-article:        $font-size-article * 5;
+// $h2-font-size-article:        $font-size-article * 3.33;
+// $h3-font-size-article:        $font-size-article * 1.94;
+// $h4-font-size-article:        $font-size-article * 1.33;
+// $h5-font-size-article:        $font-size-article;
+// $h6-font-size-article:        $font-size-article;
 
 // Global Border settings
 $border-radius:               3px;
@@ -261,14 +262,14 @@ $heading-sizes: (
   'h6': $h6-font-size
 );
 
-$heading-sizes-article: (
-  'h1': $h1-font-size-article,
-  'h2': $h2-font-size-article,
-  'h3': $h3-font-size-article,
-  'h4': $h4-font-size-article,
-  'h5': $h5-font-size-article,
-  'h6': $h6-font-size-article
-);
+// $heading-sizes-article: (
+//   'h1': $h1-font-size-article,
+//   'h2': $h2-font-size-article,
+//   'h3': $h3-font-size-article,
+//   'h4': $h4-font-size-article,
+//   'h5': $h5-font-size-article,
+//   'h6': $h6-font-size-article
+// );
 
 $all-colors: (
   'global':       $global-colors,
