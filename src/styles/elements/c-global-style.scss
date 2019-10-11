@@ -25,15 +25,6 @@
 @import '../utilities/loading.scss';
 @import '../utilities/typography.scss';
 
-// TODO: Refine this primary color setup
-.nav-pills {
-
-  .nav-link.active,
-  .show > .nav-link {
-    @include component('primary');
-  }
-}
-
 $components: badge, list-group-item;
 $componentsLight: alert, table;
 

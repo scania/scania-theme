@@ -249,7 +249,7 @@ $extra-colors: (
 
 $element-colors: (
   'headings-color': $headings-color,
-  'link-color': var(--info),
+  'link-color': $link-color,
   'link-color-hover': $link-color-hover,
   'link-color-active': $link-color-active,
   'link-color-disabled': $link-color-disabled

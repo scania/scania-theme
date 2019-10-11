@@ -9,6 +9,10 @@
     color: $light-01; // IE
     text-decoration: underline;
   }
+
+  &.active { // IE
+    text-decoration: underline;
+  }
 }
 
 @mixin nav-link-social {
@@ -29,6 +33,12 @@
     color: #000;
     background-color: $light-01;
   }
+
+  &.active {
+    color: #000;
+    background-color: #fff;
+  }
+
 }
 
 :host {
@@ -36,7 +46,7 @@
   --link-color-hover: var(--light-01);
   --link-decoration: none;
   --link-decoration-hover: underline;
-
+  --link-color-active: var(--light-01);
   background-color: #000;
 }
 
@@ -84,8 +94,9 @@ p {
   }
 }
 .social-items {
-  --link-color-hover: black;
-  --link-bg-hover: white;
+  --link-color-hover: #000;
+  --link-bg-hover: #fff;
+  --link-color-active: #000;
 
   padding-left: 20px;
 
@@ -136,7 +147,7 @@ p {
   ::slotted(a) {
     @extend %nav-link-desktop;
   }
-  // Due to browsers not supporting: ::slotted(a):hover 
+  // Due to browsers not supporting: ::slotted(a):hover
   // we need to have the hover separated instead of nested
   ::slotted(a[slot="social-items"]) {
     @extend %nav-link-social-desktop;
@@ -155,7 +166,7 @@ p {
 
     .navbar-nav {
       margin-top: 0px;
-  
+
       .nav-item {
 
         &.nav-link {
@@ -168,7 +179,7 @@ p {
     margin-bottom: 20px;
     padding-left: 0;
     text-align: left;
-    
+
     a.social-item {
       @extend %nav-link-social-desktop;
     }
