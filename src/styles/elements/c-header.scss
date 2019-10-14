@@ -249,7 +249,7 @@
   :host([variation=dealer]) {
     .navbar {
   
-      margin-right: 210px;
+      margin-right: 235px;
   
       > .navbar-title {
         display: none;
@@ -258,7 +258,8 @@
   
     .navbar-symbol {
       &::before {
-        width: 180px;
+        width: 210px;
+        height: 42px;
       }
     }
   }
