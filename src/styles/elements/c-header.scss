@@ -176,6 +176,7 @@
 
 ::slotted(strong[slot="brand-logo"]) {
   @include title;
+  padding-left: 0;
 }
 
 @media (min-width: 992px) {
