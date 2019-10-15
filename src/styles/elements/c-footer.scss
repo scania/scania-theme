@@ -4,15 +4,12 @@
   color: $light-01; // IE
   padding: 5px;
   text-align: center;
+  text-decoration: none;
 
   &:hover {
-    color: $light-01; // IE
     text-decoration: underline;
   }
 
-  &.active { // IE
-    text-decoration: underline;
-  }
 }
 
 @mixin nav-link-social {
@@ -34,17 +31,13 @@
     background-color: $light-01;
   }
 
-  &.active {
-    color: #000;
-    background-color: #fff;
-  }
-
 }
 
 :host {
   --link-color: var(--light-01);
   --link-color-hover: var(--light-01);
   --link-decoration: none;
+  text-decoration: none;
   --link-decoration-hover: underline;
   --link-color-active: var(--light-01);
   background-color: #000;
@@ -57,6 +50,22 @@
   @include nav-link-social;
 }
 
+// IE support links
+::slotted(a:active),
+::slotted(a.active),
+::slotted(a[active]:not([active="false"])) {
+  color: white;
+  text-decoration: underline;
+}
+
+// IE support social items
+::slotted(a[slot="social-items"]:active),
+::slotted(a[slot="social-items"].active),
+::slotted(a[slot="social-items"][active]:not([active="false"])) {
+  color:black;
+  background-color: white;
+}
+
 a {
   color: $light-01; // IE
 
@@ -64,6 +73,7 @@ a {
     color: $light-01; // IE
   }
 }
+// Copyright text
 p {
   font-size: 1.4rem;
   color: #fff;
@@ -153,6 +163,7 @@ p {
     @extend %nav-link-social-desktop;
   }
 
+  // Copyright text
   p {
     text-align: left;
     padding: 0;
