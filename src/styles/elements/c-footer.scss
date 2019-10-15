@@ -6,6 +6,7 @@
   text-align: center;
   text-decoration: none;
 
+  // IE underline
   &:hover {
     text-decoration: underline;
   }
@@ -37,7 +38,6 @@
   --link-color: var(--light-01);
   --link-color-hover: var(--light-01);
   --link-decoration: none;
-  text-decoration: none;
   --link-decoration-hover: underline;
   --link-color-active: var(--light-01);
   background-color: #000;
@@ -50,7 +50,7 @@
   @include nav-link-social;
 }
 
-// IE support links
+// Active state for links
 ::slotted(a:active),
 ::slotted(a.active),
 ::slotted(a[active]:not([active="false"])) {
@@ -58,7 +58,7 @@
   text-decoration: underline;
 }
 
-// IE support social items
+// Active for social items
 ::slotted(a[slot="social-items"]:active),
 ::slotted(a[slot="social-items"].active),
 ::slotted(a[slot="social-items"][active]:not([active="false"])) {
@@ -66,13 +66,6 @@
   background-color: white;
 }
 
-a {
-  color: $light-01; // IE
-
-  &:hover {
-    color: $light-01; // IE
-  }
-}
 // Copyright text
 p {
   font-size: 1.4rem;
