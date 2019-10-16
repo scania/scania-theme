@@ -1,5 +1,12 @@
 @import '../variables';
 
+// Custom form control
+$custom-control-size:               1.8rem;
+$custom-control-padding:            ($custom-control-size + 1);
+$custom-control-radio-space-around: 0.2;
+$custom-control-radio-size:         ($custom-control-size - ($custom-control-radio-space-around * 2));
+$custom-control-radio-padding:      ($custom-control-padding - $custom-control-radio-space-around);
+
 .custom-control {
   padding-left: $custom-control-padding;
 }
@@ -50,6 +57,11 @@
 
   .custom-control-input {
 
+    &:checked ~ .custom-control-label::after {
+      width: 1.6rem;
+      left: -2.7rem;
+    }
+
     &:disabled,
     &.disabled,
     &[disabled] {
@@ -83,7 +95,7 @@
         background-color: var(--primary);
         border-radius: 50%;
         left: ($custom-control-radio-padding * -1);
-        top: #{(2 * $custom-control-radio-space-around)}rem;
+        top: #{(2 * $custom-control-radio-space-around) + 0.05}rem;
       }
     }
 
