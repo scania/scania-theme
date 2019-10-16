@@ -4,11 +4,13 @@
   color: $light-01; // IE
   padding: 5px;
   text-align: center;
+  text-decoration: none;
 
+  // IE underline
   &:hover {
-    color: $light-01; // IE
     text-decoration: underline;
   }
+
 }
 
 @mixin nav-link-social {
@@ -29,6 +31,7 @@
     color: #000;
     background-color: $light-01;
   }
+
 }
 
 :host {
@@ -36,7 +39,7 @@
   --link-color-hover: var(--light-01);
   --link-decoration: none;
   --link-decoration-hover: underline;
-
+  --link-color-active: var(--light-01);
   background-color: #000;
 }
 
@@ -47,13 +50,23 @@
   @include nav-link-social;
 }
 
-a {
-  color: $light-01; // IE
-
-  &:hover {
-    color: $light-01; // IE
-  }
+// Active state for links
+::slotted(a:active),
+::slotted(a.active),
+::slotted(a[active]:not([active="false"])) {
+  color: white;
+  text-decoration: underline;
 }
+
+// Active for social items
+::slotted(a[slot="social-items"]:active),
+::slotted(a[slot="social-items"].active),
+::slotted(a[slot="social-items"][active]:not([active="false"])) {
+  color:black;
+  background-color: white;
+}
+
+// Copyright text
 p {
   font-size: 1.4rem;
   color: #fff;
@@ -84,8 +97,9 @@ p {
   }
 }
 .social-items {
-  --link-color-hover: black;
-  --link-bg-hover: white;
+  --link-color-hover: #000;
+  --link-bg-hover: #fff;
+  --link-color-active: #000;
 
   padding-left: 20px;
 
@@ -136,12 +150,13 @@ p {
   ::slotted(a) {
     @extend %nav-link-desktop;
   }
-  // Due to browsers not supporting: ::slotted(a):hover 
+  // Due to browsers not supporting: ::slotted(a):hover
   // we need to have the hover separated instead of nested
   ::slotted(a[slot="social-items"]) {
     @extend %nav-link-social-desktop;
   }
 
+  // Copyright text
   p {
     text-align: left;
     padding: 0;
@@ -155,7 +170,7 @@ p {
 
     .navbar-nav {
       margin-top: 0px;
-  
+
       .nav-item {
 
         &.nav-link {
@@ -168,7 +183,7 @@ p {
     margin-bottom: 20px;
     padding-left: 0;
     text-align: left;
-    
+
     a.social-item {
       @extend %nav-link-social-desktop;
     }

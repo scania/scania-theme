@@ -3,7 +3,7 @@
 .nav-link {
   //IE
   text-decoration: none;
-  
+
   --link-color:#{$link-color};
   --link-decoration: none;
   font-size: 1.4rem;
@@ -26,5 +26,14 @@
     color: $link-color-disabled;
     --link-color: #{$link-color-disabled};
     font-weight: normal;
+  }
+}
+
+// TODO: Refine this primary color setup
+.nav-pills {
+
+  .nav-link.active,
+  .show > .nav-link {
+    @include component('primary');
   }
 }
