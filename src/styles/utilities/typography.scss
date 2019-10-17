@@ -74,3 +74,9 @@ p {
 .lead {
   font-size: 1.8rem;
 }
+
+label {
+  font-weight: bold;
+  color: $dark-01;
+  color: var(--dark-01);
+}
