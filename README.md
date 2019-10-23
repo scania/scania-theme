@@ -1,3 +1,6 @@
+[![npm version](http://img.shields.io/npm/v/scania-theme.svg?style=flat&color=1081C2)](https://npmjs.org/package/scania-theme)
+[![Github release](https://img.shields.io/github/v/tag/scania/scania-theme.svg?label=release&color=1081C2)](https://github.com/scania/scania-theme/releases)
+
 # Scania Theme
 
 Scania theme is a package to style Scania looks and feel in the [Corporate UI 4.0 setup](https://github.com/scania/corporate-ui-dev/).
