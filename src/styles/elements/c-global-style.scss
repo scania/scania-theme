@@ -85,9 +85,9 @@ $componentsLight: alert, table;
     @if map-get($theme-colors, #{$type}-#{'01'}) {
       .#{$element}-#{$type} {
         // @include component($type, $element);
-        background-color: $type;
+        background-color: map-get($theme-colors, #{$type}-#{'01'});
         background-color: var(--#{$type}-#{'01'});
-        color: $type;
+        color: map-get($theme-colors, #{$type}-#{'03'});
         color: var(--#{$type}-#{'03'});
       }
     }
