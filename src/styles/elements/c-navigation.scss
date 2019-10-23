@@ -30,6 +30,7 @@
   font-weight: bold;
   text-transform: uppercase;
   background-color: #fff;
+  z-index: 2000;
 }
 :host([slot=sub]) {
   background-color: #fff;
