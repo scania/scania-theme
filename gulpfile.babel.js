@@ -251,8 +251,16 @@ function initFavicons() {
 }
 
 async function initTheme(cb) {
-  let theme = { default: { [themeName]: {} }, ie: { [themeName]: {} } };
-  let themeNoRefs = { default: { [themeName]: {} }, ie: { [themeName]: {} } };
+  let theme = { 
+    [themeName]: {
+      components: { default: { }, ie: { } }
+    }
+  };
+  let themeNoRefs = { 
+    [themeName]: {
+      components: { default: { }, ie: { } }
+    }
+  };
 
   console.log('Generate css styles');
 
@@ -275,24 +283,24 @@ async function initTheme(cb) {
       name = name.substr(0, name.length - 3);
     }
 
-    theme[type][themeName][name] = data.replace(/url\(../g, 'url(%root%' + root);
-    themeNoRefs[type][themeName][name] = refToData(data);
+    theme[themeName]['components'][type][name] = data.replace(/url\(../g, 'url(%root%' + root);
+    themeNoRefs[themeName]['components'][type][name] = refToData(data);
   });
 
   // TODO: We might wanna solve this without the need of global variables
-  theme.favicons = faviconItems.map(item => item.replace(/(href|content)="/g, '$1="%root%/') )
-  themeNoRefs.favicons = faviconItemsNoRefs;
+  theme[themeName].favicons = faviconItems.map(item => item.replace(/(href|content)="/g, '$1="%root%/') )
+  themeNoRefs[themeName].favicons = faviconItemsNoRefs;
 
   const icons = await generateIcons('src/icons/*.svg');
 
-  theme.icons = {};
-  icons.map(item => theme.icons[item.name] = item);
-  themeNoRefs.icons = theme.icons;
+  theme[themeName].icons = {};
+  icons.map(item => theme[themeName].icons[item.name] = item);
+  themeNoRefs[themeName].icons = theme[themeName].icons;
 
   const colors = await generateColors('src/styles/_variables.scss');
 
-  theme.colors = colors;
-  themeNoRefs.colors = theme.colors;
+  theme[themeName].colors = colors;
+  themeNoRefs[themeName].colors = theme[themeName].colors;
 
   fs.writeFileSync(`${outputFolder}/module.js`, `export const theme = ${ JSON.stringify(themeNoRefs, null, 2) };`, { flag: 'a' });
 
@@ -306,9 +314,9 @@ document.addEventListener('storeReady', function(event) {
   var root = document.querySelector('script[src$="${themeName}-theme.js"]').src.replace('${themeName}-theme.js', '');
 
   theme = document.head.attachShadow ? theme.default : theme.ie;
-  Object.keys(theme.${themeName}).map(function(key) { theme.${themeName}[key] = theme.${themeName}[key].replace(/\%root\%\\//g, root) } );
+  Object.keys(theme).map(function(key) { theme[key] = theme[key].replace(/\%root\%\\//g, root) } );
   favicons = favicons.map(function(val) { val.replace(/\%root\%\\//g, root) } );
-  theme.${themeName}.favicons = favicons;
+  theme.favicons = favicons;
 
   store.dispatch({ type: actions.ADD_THEME, theme : theme });
 });
