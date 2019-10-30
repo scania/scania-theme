@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "npm run git && npm publish --tag alpha",
     "git": "git checkout master && git tag %npm_package_version% && git push --tags",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build",
+    "latest": "npm dist-tag add scania-theme@%npm_package_version% latest"
   },
   "author": "",
   "license": "ISC",
