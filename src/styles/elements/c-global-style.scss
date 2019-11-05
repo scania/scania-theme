@@ -80,18 +80,6 @@ $componentsLight: alert, table;
       color: var(--dark-#{'03'});
     }
   }
-
-  @each $element in $componentsLight {
-    @if map-get($theme-colors, #{$type}-#{'01'}) {
-      .#{$element}-#{$type} {
-        // @include component($type, $element);
-        background-color: $type;
-        background-color: var(--#{$type}-#{'01'});
-        color: $type;
-        color: var(--#{$type}-#{'03'});
-      }
-    }
-  }
 }
 
 
