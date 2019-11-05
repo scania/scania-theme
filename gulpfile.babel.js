@@ -308,17 +308,18 @@ async function initTheme(cb) {
 var theme = ${ JSON.stringify(theme, null, 2) };
 
 document.addEventListener('storeReady', function(event) {
+  theme = theme.${themeName};
   var favicons = theme.favicons;
   var store = event.detail.store;
   var actions = event.detail.actions;
   var root = document.querySelector('script[src$="${themeName}-theme.js"]').src.replace('${themeName}-theme.js', '');
 
-  theme = document.head.attachShadow ? theme.default : theme.ie;
-  Object.keys(theme).map(function(key) { theme[key] = theme[key].replace(/\%root\%\\//g, root) } );
-  favicons = favicons.map(function(val) { val.replace(/\%root\%\\//g, root) } );
+  theme.components = document.head.attachShadow ? theme.components.default : theme.components.ie;
+  Object.keys(theme.components).map(function(key) { theme.components[key] = theme.components[key].replace(/\%root\%\\//g, root) } );
+  favicons = favicons.map(function(val) { return val.replace(/\%root\%\\//g, root) } );
   theme.favicons = favicons;
 
-  store.dispatch({ type: actions.ADD_THEME, theme : theme });
+  store.dispatch({ type: actions.ADD_THEME, theme : {${themeName}: theme} });
 });
   `,
   { flag: 'w' });
