@@ -8,6 +8,8 @@
 @import '../components/breadcrumbs';
 @import '../components/button';
 @import '../components/button-group';
+@import '../components/cards';
+@import '../components/custom-forms';
 @import '../components/dropdowns';
 @import '../components/forms';
 @import '../components/input-group';
@@ -17,22 +19,12 @@
 @import '../components/pagination';
 @import '../components/progressbars';
 @import '../components/table';
-@import '../components/cards';
 
 
 // Utilities
 @import '../utilities/data-env.scss';
 @import '../utilities/loading.scss';
 @import '../utilities/typography.scss';
-
-// TODO: Refine this primary color setup
-.nav-pills {
-
-  .nav-link.active,
-  .show > .nav-link {
-    @include component('primary');
-  }
-}
 
 $components: badge, list-group-item;
 $componentsLight: alert, table;
@@ -86,18 +78,6 @@ $componentsLight: alert, table;
     .#{$element}-#{$type} {
       color: $dark;
       color: var(--dark-#{'03'});
-    }
-  }
-
-  @each $element in $componentsLight {
-    @if map-get($theme-colors, #{$type}-#{'01'}) {
-      .#{$element}-#{$type} {
-        // @include component($type, $element);
-        background-color: $type;
-        background-color: var(--#{$type}-#{'01'});
-        color: $type;
-        color: var(--#{$type}-#{'03'});
-      }
     }
   }
 }

@@ -3,6 +3,7 @@
 .table {
   border: 1px solid $table-border-color;
 
+
   caption {
     caption-side: top;
     padding: .75rem;
@@ -17,8 +18,13 @@
     &:first-child {
       color: $secondary;
       color: var(--secondary);
-      background-color: $primary;
-      background-color: var(--primary);
+      background-color: $table-thead-bg-color;
+    }
+
+    th {
+      border: 1px solid $table-thead-border-color;
+      border-top-color: $table-thead-border-color;
+      border-bottom-color: $table-thead-border-color;
     }
   }
   th,

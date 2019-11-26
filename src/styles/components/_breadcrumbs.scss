@@ -16,9 +16,6 @@
         text-decoration: underline;
       }
     }
-    &.active {
-      color: $dark-01;
-    }
     // For the slash before breadcrumb item
     &+.breadcrumb-item:before {
       color: $dark-01;

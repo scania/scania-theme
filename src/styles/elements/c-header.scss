@@ -158,6 +158,29 @@
   }
 }
 
+:host([variation=dealer]) {
+  .navbar {
+
+    .navbar-brand {
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .navbar-symbol {
+    &::before {
+      background-image: url(../images/logotype.png);
+      background-image: url(../images/logotype.svg);
+    }
+  }
+}
+
+::slotted(strong[slot="brand-logo"]) {
+  @include title;
+  padding-left: 0;
+}
+
 @media (min-width: 992px) {
 
   :host {
@@ -223,6 +246,23 @@
     &:before {
       width: 48px;
       height: 46px;
+    }
+  }
+  :host([variation=dealer]) {
+    .navbar {
+  
+      margin-right: 235px;
+  
+      > .navbar-title {
+        display: none;
+      }
+    }
+  
+    .navbar-symbol {
+      &::before {
+        width: 210px;
+        height: 42px;
+      }
     }
   }
 }
