@@ -118,9 +118,9 @@ function initFonts(cb) {
       // Remove orgional ttf font from dist, we dont need it
       if(pending === 0) {glob.sync('dist/fonts/**/*.ttf').forEach(file => fs.remove(file))};
     })
-    
+
     glob.sync(fonts).forEach(generateFontCss);
-    
+
     cb();
   });
 }
@@ -395,9 +395,15 @@ function generateCss(file) {
   const name = path.parse(file).name;
   const data = fs.readFileSync(path.resolve(file), 'utf8');
   const filepath = `${outputFolder}/styles/${name}`;
-  const content = sass.renderSync({ data, includePaths: [ 'src/styles/**' ] }).css;
+  const content = sass.renderSync({
+    data,
+    includePaths: [ 'src/styles/**' ],
+    sourceMapEmbed: true,
+    sourceMapContents: true
+  });
+
   // c-theme is shadow true so we dont need to polyfill its content
-  let content_ie =  content
+  let content_ie =  content.css
     .toString();
     // .replace(/:root {([^}]*)}/, '');
 
@@ -405,7 +411,7 @@ function generateCss(file) {
     content_ie = polyfill(name, content_ie);
   }
 
-  fs.writeFileSync(`${filepath}.css`, content);
+  fs.writeFileSync(`${filepath}.css`, content.css);
   fs.writeFileSync(`${filepath}_ie.css`, content_ie);
 }
 
