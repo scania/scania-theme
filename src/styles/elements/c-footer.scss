@@ -40,6 +40,10 @@
   --link-decoration: none;
   --link-decoration-hover: underline;
   --link-color-active: var(--light-01);
+  --display: block;
+
+  display: block;
+  display: var(--display);
   background-color: #000;
 }
 
