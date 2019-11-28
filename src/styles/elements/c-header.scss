@@ -252,6 +252,10 @@
     .navbar {
   
       margin-right: 235px;
+
+      .navbar-brand {
+        text-decoration: none;
+      }
   
       > .navbar-title {
         display: none;
