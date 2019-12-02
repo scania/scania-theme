@@ -12,7 +12,7 @@ Scania theme is a package to style Scania looks and feel in the [Corporate UI 4.
 Add link to the script by adding the following to the `<head></head>`. Make sure to include scania-theme script BEFORE the corporate-ui script.
 ```
 <script src="https://static.scania.com/build/global/themes/scania/1.x/scania-theme.js"></script>
-<script src="https://static.scania.com/build/global/4.x/corporate-ui/corporate-ui.js"></script>
+<script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
 ```
 Replace `x` with [available releases](https://www.npmjs.com/package/scania-theme).
 
