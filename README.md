@@ -7,36 +7,50 @@ Scania theme is a package to style Scania looks and feel in the [Corporate UI 4.
 
 ## Installation
 
-### CDN link
-
-Add link to the script by adding the following to the `<head></head>`. Make sure to include scania-theme script BEFORE the corporate-ui script.
-```
-<script src="https://static.scania.com/build/global/themes/scania/1.x/scania-theme.js"></script>
-<script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
-```
-Replace `x` with [available releases](https://www.npmjs.com/package/scania-theme).
-
-### NPM package
-
+<details open>
+ <summary><strong>NPM package</strong></summary>
+<br/>
+ 
 Install scania-theme package by running the command below.
-```
+ 
+```shell
 npm i scania-theme
 ```
-Import `theme` in the project and use it with `addTheme` function from corporate-ui.
 
-```
+Import theme in the project and use it with addTheme function from corporate-ui.
+
+```js
 import { defineCustomElements, addTheme } from 'corporate-ui-dev'; 
 import { theme as scania } from 'scania-theme'; 
  
-defineCustomElements('all'); 
+defineCustomElements(); 
 addTheme(scania);
 ```
+
+</details>
+
+<details>
+<summary><strong>CDN link</strong></summary>
+<br/>
+ 
+Add link to the script by adding the following to the head element. Make sure to include scania-theme script BEFORE the corporate-ui script.
+ 
+**SUBJECT TO CHANGE!**
+ 
+```html
+<script src="https://static.scania.com/build/global/themes/scania/1.x/scania-theme.js"></script>
+<script src="https://static.scania.com/build/global/4.x/corporate-ui/corporate-ui.js"></script>
+```
+
+Replace `x` with [available releases](https://www.npmjs.com/package/scania-theme).
+
+</details>
 
 ## Setup in project
 
 Initialize the theme with the `c-theme` component. Set `global` attribute to true in order to enable bootstrap styling.
 
-```
+```html
 <c-theme name="scania" global="true"></c-theme>
 ```
 
@@ -44,7 +58,7 @@ Initialize the theme with the `c-theme` component. Set `global` attribute to tru
 
 1. Clone scania-theme repository
 
-```
+```shell
 git clone https://github.com/scania/scania-theme.git
 ```
 
