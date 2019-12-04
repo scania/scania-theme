@@ -302,7 +302,10 @@ ul {
     @extend %nav-item-desktop;
 
     display: flex;
-  }  
+  }
+  ::slotted(a[active]:not([active="false"])) {
+      background: inherit;
+  }
   ::slotted(div) {
     @extend %nav-item-desktop;
 
