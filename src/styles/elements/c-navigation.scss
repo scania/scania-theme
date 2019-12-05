@@ -150,7 +150,6 @@ ul {
     padding: 20px 0;
     border-top: 0;
     background: transparent;
-    background: var(--link-bg);
 
     &:before,
     &:after {
@@ -303,7 +302,10 @@ ul {
     @extend %nav-item-desktop;
 
     display: flex;
-  }  
+  }
+  ::slotted(a[active]:not([active="false"])) {
+      background: inherit;
+  }
   ::slotted(div) {
     @extend %nav-item-desktop;
 
