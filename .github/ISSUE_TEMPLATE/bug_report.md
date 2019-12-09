@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Use this option when you've found an error caused by Corporate UI.
+about: Use this option when you've found an error caused by Scania-theme.
 title: Bug - "title text"
 labels: Bug
 assignees: ''
@@ -23,7 +23,7 @@ _A clear and concise description of what you expected to happen._
 **Screenshots**  
 _If applicable, add screenshots to help explain your problem._
 
-**Version of Corporate-ui**  
+**Version of Scania-theme**  
  _E.g 4.0.0_
 
 **Framework and version**  
