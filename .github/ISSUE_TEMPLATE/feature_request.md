@@ -1,20 +1,19 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: Feature - title
-labels: feature
+about: Suggest an idea for this project. Most often, this would be a component that
+  you're working on, or that you are in need of, that clearly could be of use by other
+  applications than yours.
+title: Feature - "title text"
+labels: Feature
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**What is your feature request?**  
+_A clear and concise description of what the feature is. Ex. I'm always frustrated when [...]_
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Describe the solution you'd like**  
+_A clear and concise description of what you want to happen._
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Additional context**  
+_Add any other context or screenshots about the feature request here._
