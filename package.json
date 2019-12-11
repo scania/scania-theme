@@ -1,7 +1,7 @@
 {
   "name": "scania-theme",
-  "version": "1.0.0-alpha.23",
-  "description": "",
+  "version": "1.0.0-alpha.24",
+  "description": "Scania theme is a package to style Scania looks and feel in the Corporate UI 4.0 setup.",
   "main": "dist/module.js",
   "scripts": {
     "start": "gulp",
