@@ -283,7 +283,7 @@ async function initTheme(cb) {
       name = name.substr(0, name.length - 3);
     }
 
-    theme[themeName]['components'][type][name] = data.replace(/url\(../g, 'url(%root%' + root);
+    theme[themeName]['components'][type][name] = data.replace(/url\(\.\./g, 'url(%root%' + root);
     themeNoRefs[themeName]['components'][type][name] = refToData(data);
   });
 
