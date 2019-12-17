@@ -28,13 +28,13 @@
 }
 
 :host {
-  --link-color: var(--dark-02);
+  --link-color: Var(--dark-02);
   --link-decoration: none;
   --link-decoration-hover: underline;
   --display: flex;
 
   display: flex;
-  display: var(--display);
+  display: Var(--display);
   flex-wrap: wrap;
   flex-shrink: 0;
   background-color: #fff;
