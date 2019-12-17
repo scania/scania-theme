@@ -7,6 +7,7 @@
   text-align: center;
   text-transform: capitalize;
   font-weight: bold;
+  background: transparent;
 
   &:hover {
     text-decoration: underline;
@@ -64,6 +65,7 @@
 
   .navbar-brand {
     padding: 13px;
+    background-color: transparent;
 
     &:before {
       display: block;

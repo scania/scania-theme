@@ -138,6 +138,8 @@ p {
     text-decoration: none;
     padding: 0;
     margin-right: 15px;
+    // TODO : Check stencil generating wrong css variable colors
+    background: inherit;
   }
   // Sass compiler renders :hover and :before differently
   // and this is due to browsers lackof support
