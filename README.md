@@ -3,7 +3,7 @@
 
 # Scania Theme
 
-Scania theme is a package to style Scania looks and feel in the [Corporate UI 4.0 setup](https://github.com/scania/corporate-ui-dev/).
+Scania theme is a package to style Scania looks and feel in the [Corporate UI 4.0 setup](https://github.com/scania/corporate-ui/).
 
 ## Installation
 
@@ -20,7 +20,7 @@ npm i scania-theme
 Import theme in the project and use it with addTheme function from corporate-ui.
 
 ```js
-import { defineCustomElements, addTheme } from 'corporate-ui-dev'; 
+import { defineCustomElements, addTheme } from 'corporate-ui'; 
 import { theme as scania } from 'scania-theme'; 
  
 defineCustomElements(); 
