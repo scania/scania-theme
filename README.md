@@ -1,5 +1,6 @@
 [![npm version](http://img.shields.io/npm/v/scania-theme.svg?style=flat&color=1081C2)](https://npmjs.org/package/scania-theme)
 [![Github release](https://img.shields.io/github/v/tag/scania/scania-theme.svg?label=release&color=1081C2)](https://github.com/scania/scania-theme/releases)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/scania/scania-theme/Node%20CI)
 
 # Scania Theme
 
