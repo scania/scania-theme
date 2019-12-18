@@ -33,28 +33,28 @@ $componentsLight: alert, table;
   .bg-#{$name} {
     // @include background($name);
     background-color: $hex !important;
-    background-color: var(--#{$name}) !important;
+    background-color: Var(--#{$name}) !important;
   }
 
   .text-#{$name} {
     // @include text($name);
     color: $hex !important;
-    color: var(--#{$name}) !important;
+    color: Var(--#{$name}) !important;
   }
 
   .border-#{$name} {
     // @include border($name);
     border-color: $hex !important;
-    border-color: var(--#{$name}) !important;
+    border-color: Var(--#{$name}) !important;
   }
 
   @each $element in $components {
     .#{$element}-#{$name} {
       // @include component($name, $element);
       background-color: $hex;
-      background-color: var(--#{$name});
+      background-color: Var(--#{$name});
       color: $white;
-      color: var(--white);
+      color: Var(--white);
     }
   }
 
@@ -63,11 +63,11 @@ $componentsLight: alert, table;
       .#{$element}-#{$name} {
         // @include component($name, $element);
         background-color: map-get($theme-colors, #{$name}-#{'02'});
-        background-color: var(--#{$name}-#{'02'});
+        background-color: Var(--#{$name}-#{'02'});
         color: map-get($theme-colors, #{$name}-#{'04'});
-        color: var(--#{$name}-#{'04'});
+        color: Var(--#{$name}-#{'04'});
         border-color: map-get($theme-colors, #{$name}-#{'03'});
-        border-color: var(--#{$name}-#{'03'});
+        border-color: Var(--#{$name}-#{'03'});
       }
     }
   }
@@ -77,7 +77,7 @@ $componentsLight: alert, table;
   @each $element in $components {
     .#{$element}-#{$type} {
       color: $dark;
-      color: var(--dark-#{'03'});
+      color: Var(--dark-#{'03'});
     }
   }
 }
