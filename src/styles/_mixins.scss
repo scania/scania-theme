@@ -36,5 +36,5 @@
 
 @mixin rule($type, $color, $important) {
   #{$type}: map-get($theme-colors, $color) if($important, !important, null);
-  #{$type}: var(--#{$color}) if($important, !important, null);
+  #{$type}: Var(--#{$color}) if($important, !important, null);
 }

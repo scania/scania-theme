@@ -34,9 +34,9 @@ $custom-control-radio-padding:      ($custom-control-padding - $custom-control-r
   
   &:checked ~ .custom-control-label::before {
     background-color: $primary;
-    background-color: var(--primary);
+    background-color: Var(--primary);
     border-color: $primary;
-    border-color: var(--primary);
+    border-color: Var(--primary);
   }
 
   &:disabled,
@@ -45,7 +45,7 @@ $custom-control-radio-padding:      ($custom-control-padding - $custom-control-r
 
     & ~ .custom-control-label {
       color: $light;
-      color: var(--light);
+      color: Var(--light);
       &:before {
         background-color: transparent;
       }
@@ -92,7 +92,7 @@ $custom-control-radio-padding:      ($custom-control-padding - $custom-control-r
         width: $custom-control-radio-size;
         height: $custom-control-radio-size;
         background-color: $primary;
-        background-color: var(--primary);
+        background-color: Var(--primary);
         border-radius: 50%;
         left: ($custom-control-radio-padding * -1);
         top: #{(2 * $custom-control-radio-space-around) + 0.05}rem;
@@ -109,7 +109,7 @@ $custom-control-radio-padding:      ($custom-control-padding - $custom-control-r
 
       &:checked ~ .custom-control-label::after {
         background-color: $light;
-        background-color: var(--light);
+        background-color: Var(--light);
       }
     }
   }

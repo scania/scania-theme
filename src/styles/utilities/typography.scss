@@ -35,28 +35,28 @@ h6 { font-style: italic; }
 
 a {
   color: $link-color;
-  color: var(--link-color);
+  color: Var(--link-color);
   text-decoration: underline;
-  text-decoration: var(--link-decoration, underline);
+  text-decoration: Var(--link-decoration, underline);
   background-color: inherit;
-  background-color: var(--link-bg, inherit);
+  background-color: Var(--link-bg, inherit);
 
   &:hover,
   &:active,
   &.active,
   &[active]:not([active="false"]) {
     color: $link-color-hover;
-    color: var(--link-color-hover);
+    color: Var(--link-color-hover);
     text-decoration: none;
-    text-decoration: var(--link-decoration-hover, none);
+    text-decoration: Var(--link-decoration-hover, none);
     background-color: inherit;
-    background-color: var(--link-bg-hover, inherit);
+    background-color: Var(--link-bg-hover, inherit);
   }
 
   &:active,
   &.active {
     color: $link-color-active;
-    color: var(--link-color-active);
+    color: Var(--link-color-active);
   }
 }
 
@@ -78,5 +78,5 @@ p {
 label {
   font-weight: bold;
   color: $dark-01;
-  color: var(--dark-01);
+  color: Var(--dark-01);
 }
