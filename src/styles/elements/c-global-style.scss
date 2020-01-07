@@ -89,7 +89,7 @@ $componentsLight: alert, table;
 //     @each $type in $types {
 //       &-#{$type} {
 //         #{$value}: map-get($interaction-colors, $type) !important;
-//         #{$value}: var(--#{$type}) !important;
+//         #{$value}: Var(--#{$type}) !important;
 //       }
 //     }
 //   }
@@ -101,9 +101,9 @@ $componentsLight: alert, table;
 //       $selector: if($el == table, '&-#{$type} th, &-#{$type} td', '&-#{$type}');
 //       #{$selector} {
 //         background-color: map-get($interaction-colors, $type);
-//         background-color: var(--#{$type});
+//         background-color: Var(--#{$type});
 //         color: #fff;
-//         color: var(--white);
+//         color: Var(--white);
 //       }
 //     }
 //   }

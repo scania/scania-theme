@@ -24,7 +24,7 @@ $form-validation-states: (
 
   &, &:focus {
     color: $dark;
-    color: var(--dark);
+    color: Var(--dark);
   }
 
   font-size: 1.4rem;
@@ -61,7 +61,7 @@ $form-validation-states: (
     background-color: $input-background-color;
     border: 0;
     border-bottom: 1px solid $light-04;
-    border-bottom: 1px solid var(--light-04);
+    border-bottom: 1px solid Var(--light-04);
     padding-left: 0;
     border-radius: 0;
     line-height: 2.1rem;
@@ -71,9 +71,9 @@ $form-validation-states: (
   &:disabled,
   &.disabled,
   &[disabled] {
-    background-color: var(--light-02);
-    color: var(--dark-01);
-    border-color: var(--light-02);
+    background-color: Var(--light-02);
+    color: Var(--dark-01);
+    border-color: Var(--light-02);
   }
 }
 
@@ -135,13 +135,13 @@ select.form-control[multiple] {
 
       @each $key, $value in $data {
         #{$key} : map-get($theme-colors, $value);
-        #{$key} : var(--#{$value});
+        #{$key} : Var(--#{$value});
       }
 
       &:focus {
         box-shadow: none;
         border-color: map-get($theme-colors, map-get($data, 'border-color'));
-        border-color: var(--(map-get($data, 'border-color')));
+        border-color: Var(--(map-get($data, 'border-color')));
       }
     }
   }

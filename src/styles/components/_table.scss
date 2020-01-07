@@ -9,15 +9,15 @@
     padding: .75rem;
     font-weight: bold;
     color: $secondary;
-    color: var(--secondary);
+    color: Var(--secondary);
     background-color: $primary;
-    background-color: var(--primary);
+    background-color: Var(--primary);
   }
   thead {
 
     &:first-child {
       color: $secondary;
-      color: var(--secondary);
+      color: Var(--secondary);
       background-color: $table-thead-bg-color;
     }
 
