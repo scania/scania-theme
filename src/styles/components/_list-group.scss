@@ -2,24 +2,25 @@
 
 .list-group {
 
-  .list-group-item {
+  &-item {
     padding: 1.7rem;
     border-color: $light-04;
-    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
 
     &:first-child {
       border-top-left-radius: $border-radius-list-group;
       border-top-right-radius: $border-radius-list-group;
     }
-
     &:last-child {
       border-bottom-left-radius: $border-radius-list-group;
       border-bottom-right-radius: $border-radius-list-group;
     }
-
     &.active {
-      @include component('primary'); //TODO: look into font-color, which is included
-      @include border('primary');
+      @include component('dark'); //TODO: look into font-color, which is included
+      @include border('dark', false);
+
       color: $white; //TODO: look into what color active should use
     }
   }

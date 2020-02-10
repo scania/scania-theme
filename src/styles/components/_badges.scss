@@ -8,4 +8,11 @@
   &.badge-pill {
     border-radius: 12px;
   }
+
+  @each $type in $types {
+    &-#{$type} {
+      background-color: map-get($interaction-colors, $type);
+      background-color: Var(--#{$type});
+    }
+  }
 }
