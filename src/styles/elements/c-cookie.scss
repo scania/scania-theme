@@ -21,14 +21,14 @@
 ::slotted(a) {
   color: $link-color;
   color: Var(--link-color);
-  text-decoration: underline;
-  text-decoration: Var(--link-decoration, underline);
+  text-decoration: none;
+  text-decoration: Var(--link-decoration, none);
 }
 ::slotted(a:hover) {
   color: $link-color-hover;
   color: Var(--link-color-hover);
-  text-decoration: none;
-  text-decoration: Var(--link-decoration-hover, none);
+  text-decoration: underline;
+  text-decoration: Var(--link-decoration-hover, underline);
 }
 
 footer {
@@ -47,6 +47,9 @@ footer {
     font-size: 1.2rem;
   }
 }
+.list-group-item {
+  font: inherit;
+}
 
 // TODO: Should we reverse these rules so it follows mobile first
 @media (max-width: 991px) {
@@ -55,6 +58,9 @@ footer {
     padding: 1.7rem 3rem;
   }
 
+  .main {
+    flex: 0 0 auto;
+  }
   .list-group {
 
     &-item {
