@@ -6,8 +6,8 @@
     padding: 1.7rem;
     border-color: $light-04;
     display: flex;
-    justify-content: space-between;
     text-decoration: none;
+    align-items: center;
 
     &:first-child {
       border-top-left-radius: $border-radius-list-group;
@@ -21,6 +21,7 @@
       @include component('dark'); //TODO: look into font-color, which is included
       @include border('dark', false);
 
+      font-weight: bold;
       color: $white; //TODO: look into what color active should use
     }
   }
