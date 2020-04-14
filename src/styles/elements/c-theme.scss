@@ -33,13 +33,28 @@ body {
   color: Var(--dark);
   margin: 0;
   flex: 1;
+
+  &.nav-show {
+    overflow: hidden;
+  }
 }
 
-body.nav-show {
-  overflow: hidden;
+// TODO: Should we really do this?
+c-cookie {
+
+  a {
+    color: $info;
+    color: Var(--info);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 @media (min-width: 992px) {
+
   body.nav-show {
     overflow: auto;
   }

@@ -83,6 +83,8 @@
     pointer-events: auto;
     cursor: default;
   }
+  // Maybe this should be done in _variables.scss
+  $all_colors: map-merge($interaction-colors, $extra-colors);
   // Normally we wouldnt need to override the attributes set using css
   // vars. But because we need a fallback color, we now need to
   @each $type in $types {
@@ -91,7 +93,7 @@
     &-outline-#{$type} {
 
       & {
-        color: map-get($interaction-colors, $type);
+        color: map-get($all_colors, $type);
         color: Var(--#{$type});
       }
       &,
@@ -102,14 +104,14 @@
         &:focus,
         &:active,
         &.active {
-          border-color: map-get($interaction-colors, $type);
+          border-color: map-get($all_colors, $type);
           border-color: Var(--#{$type});
         }
         &:hover,
         &:focus,
         &:active,
         &.active {
-          background-color: map-get($interaction-colors, $type);
+          background-color: map-get($all_colors, $type);
           background-color: Var(--#{$type});
         }
         &:hover,

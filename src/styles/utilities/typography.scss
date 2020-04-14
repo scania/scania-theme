@@ -1,39 +1,7 @@
 @import '../variables';
 @import '../mixins';
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: $headings-font-family;
-  color: $headings-color;
-  font-weight: bold;
-  margin-bottom: 1rem;
-
-  &:first-child {
-    margin-top: 0;
-  }
-}
-h1,
-h2,
-h3 {
-  margin-top: 2.5rem;
-}
-h4,
-h5,
-h6 {
-  margin-top: 1.5rem;
-}
-
-@include renderMap($heading-sizes, 'font-size');
-
-h5,
-h6 { font-family: $font-family-base; }
-h6 { font-style: italic; }
-
-a {
+@mixin link {
   color: $link-color;
   color: Var(--link-color);
   text-decoration: underline;
@@ -58,6 +26,28 @@ a {
     color: $link-color-active;
     color: Var(--link-color-active);
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $headings-font-family;
+  color: $headings-color;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+@include renderMap($heading-sizes, 'font-size');
+
+h5,
+h6 { font-family: $font-family-base; }
+h6 { font-style: italic; }
+
+a {
+  @include link;
 }
 
 p {
