@@ -31,5 +31,13 @@
   td {
     background-color: inherit;
     box-shadow: inherit;
+    padding: 1.2rem 1.2rem 1.3rem;
+  }
+
+  &.table-sm {
+    th,
+    td {
+      padding: .4rem .5rem .5rem;
+    }
   }
 }
