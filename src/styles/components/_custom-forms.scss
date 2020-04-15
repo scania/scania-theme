@@ -85,8 +85,8 @@ $custom-switch-indicator-size:                    calc(#{$custom-control-indicat
   .custom-control-input {
 
     &:checked ~ .custom-control-label::after {
-      width: 1.6rem;
-      left: -2.7rem;
+      width: 1.8rem;
+      left: -2.8rem;
     }
 
     &:disabled,
