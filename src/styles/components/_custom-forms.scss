@@ -11,6 +11,9 @@ $component-bg:                                    theme-color("light");
 $component-active-color:                          $white;
 $component-active-bg:                             theme-color("primary");
 
+$custom-control-text-color:                       #53565A;
+$custom-control-disabled-color:                   #97999B;
+
 $custom-control-size:                             1.8rem;
 $custom-control-indicator-size:                   1.8rem;
 $custom-control-indicator-border-color:           transparent;
@@ -36,6 +39,10 @@ $custom-switch-indicator-size:                    calc(#{$custom-control-indicat
 
 .custom-control {
   padding-left: $custom-control-padding;
+
+  label {
+    color: $custom-control-text-color;
+  }
 }
 
 .custom-control-label {
@@ -71,10 +78,10 @@ $custom-switch-indicator-size:                    calc(#{$custom-control-indicat
   &[disabled] {
 
     & ~ .custom-control-label {
-      color: $light;
-      color: Var(--light);
+      color: $custom-control-disabled-color;
       &:before {
         background-color: transparent;
+        border-color: $custom-control-disabled-color;
       }
     }
   }
@@ -96,7 +103,7 @@ $custom-switch-indicator-size:                    calc(#{$custom-control-indicat
 
         &::before {
           background-color:transparent;
-          border-color: $border-color;
+          border-color: $custom-control-disabled-color;
         }
         &::after {
           background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%208%208%22%3E%3Cpath%20fill%3D%22%23C8C9C7%22%20d%3D%22M6.564.75l-3.59%203.612-1.538-1.55L0%204.26%202.974%207.25%208%202.193z%22%2F%3E%3C%2Fsvg%3E');
@@ -133,7 +140,7 @@ $custom-switch-indicator-size:                    calc(#{$custom-control-indicat
     &[disabled] {
       &:checked ~ .custom-control-label::before {
         background-color:transparent;
-        border-color: $border-color;
+        border-color: $custom-control-disabled-color;
       }
 
       &:checked ~ .custom-control-label::after {
