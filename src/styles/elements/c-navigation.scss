@@ -31,7 +31,7 @@
   font-weight: bold;
   text-transform: uppercase;
   background-color: #fff;
-  z-index: 1;
+  z-index: 10;
 }
 :host([slot=sub]) {
   background-color: #fff;
@@ -194,7 +194,7 @@ ul {
     .navbar-symbol {
       padding: 13px;
       background-color: inherit;
-      z-index: 1;
+      z-index: 10;
       display: block;
       position: absolute;
       top:0px;
