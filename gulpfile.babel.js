@@ -4,6 +4,8 @@ import {
 
 import del from 'del';
 
+import { version } from './package.json';
+
 require("babel-polyfill");
 
 const fs = require('fs-extra');
@@ -301,6 +303,9 @@ async function initTheme(cb) {
 
   theme[themeName].colors = colors;
   themeNoRefs[themeName].colors = theme[themeName].colors;
+
+  theme[themeName].version = version;
+  themeNoRefs[themeName].version = version;
 
   fs.writeFileSync(`${outputFolder}/module.js`, `export const theme = ${ JSON.stringify(themeNoRefs, null, 2) };`, { flag: 'a' });
 
