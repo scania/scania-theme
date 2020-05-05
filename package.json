@@ -8,7 +8,7 @@
     "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "npm run git && npm publish",
-    "prerelease": "npm run git && npm publish --tag next",
+    "next": "npm run git && npm publish --tag next",
     "git": "git checkout master",
     "prepublishOnly": "npm run build"
   },
