@@ -1,6 +1,6 @@
 {
   "name": "scania-theme",
-  "version": "1.1.1",
+  "version": "1.1.2-1",
   "description": "Scania theme is a package to style Scania looks and feel in the Corporate UI 4.0 setup.",
   "main": "dist/module.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "npm run git && npm publish",
-    "prerelease": "npm run git && npm publish --tag next",
+    "next": "npm run git && npm publish --tag next",
     "git": "git checkout master",
     "prepublishOnly": "npm run build"
   },
