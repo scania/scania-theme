@@ -2,3 +2,9 @@
 @import '../mixins';
 @import '../components/dropdowns';
 @import '../components/button';
+
+
+.dropdown-item.text-danger{
+  color: $danger;
+  color: Var(--danger);
+}
