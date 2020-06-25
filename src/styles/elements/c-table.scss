@@ -1,3 +1,9 @@
+@import '../variables';
+@import '../components/table';
+@import '../components/forms';
+@import '../components/dropdowns';
+@import '../components/button';
+
 .sort-desc {
   transform: rotate(180deg);
 }

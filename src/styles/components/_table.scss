@@ -2,7 +2,7 @@
 
 .table {
   border: 1px solid $table-border-color;
-
+  border-collapse: collapse;
 
   caption {
     caption-side: top;
