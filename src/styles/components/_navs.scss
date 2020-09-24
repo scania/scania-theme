@@ -1,11 +1,9 @@
 @import '../variables';
 
 .nav-link {
-  //IE
-  text-decoration: none;
-
   --link-color:#{$dark-01};
-  --link-decoration: none;
+
+  text-decoration: none;
   font-size: 1.4rem;
   font-weight: bold;
   margin: 1rem 1.4rem 0.9rem;
@@ -16,15 +14,12 @@
   }
 
   &:hover {
-    text-decoration: none;
-    --link-decoration: none;
-    --link-color-hover:#{$blue};
+    color: $blue;
   }
 
   &:active,
   &.active,
   &[active]:not([active="false"]) {
-    --link-color-active:#{$blue};
     &, &:hover {
       border-bottom: 2px solid #{$red};
     }
@@ -32,7 +27,6 @@
 
   &.disabled {
     color: $link-color-disabled;
-    --link-color: #{$link-color-disabled};
     font-weight: normal;
   }
 }

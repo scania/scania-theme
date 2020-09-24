@@ -4,11 +4,11 @@
   color: $light-01; // IE
   padding: 5px;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none; //IE
 
   // IE underline
   &:hover {
-    text-decoration: underline;
+    text-decoration: underline; //IE
   }
 
 }
@@ -40,6 +40,7 @@
   --link-decoration: none;
   --link-decoration-hover: underline;
   --link-color-active: Var(--light-01);
+  --link-bg-hover: transparent;
 
   display: block;
   background-color: #000;

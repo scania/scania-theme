@@ -3,16 +3,16 @@
 @mixin nav-link {
   color: $dark-02; // IE
   padding: 15px;
-  text-decoration: none;
   text-align: center;
-  text-transform: capitalize;
-  font-weight: bold;
-  background: transparent;
+  background: transparent; //IE
+  text-decoration: none; //IE
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: underline; //IE
+    color: $dark-02; //IE
   }
 }
+
 @mixin title {
   font-family: 'Scania Sans Headline';
   font-weight: normal;
@@ -31,6 +31,8 @@
   --link-color: Var(--dark-02);
   --link-decoration: none;
   --link-decoration-hover: underline;
+  --link-color-hover: Var(--dark-02);
+  --link-color-active: Var(--dark-02);
 
   display: flex;
   flex-wrap: wrap;
@@ -56,7 +58,7 @@
   overflow: hidden;
   background-color: inherit;
   z-index: 10;
-  
+
   &:after {
     @include title;
   }
@@ -227,7 +229,7 @@
       width: auto;
       text-align: right;
 
-      .navbar-nav { 
+      .navbar-nav {
         display: inline-block;
       }
     }
@@ -250,18 +252,18 @@
   }
   :host([variation=dealer]) {
     .navbar {
-  
+
       margin-right: 235px;
 
       .navbar-brand {
         text-decoration: none;
       }
-  
+
       > .navbar-title {
         display: none;
       }
     }
-  
+
     .navbar-symbol {
       &::before {
         width: 210px;
