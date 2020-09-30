@@ -12,8 +12,6 @@ $green:         #2C5234;
 $teal:          #20c997;
 $cyan:          #17a2b8;
 
-// $gray:          #97999B;
-
 // Interaction colors
 $primary:       #033a6a;
 $secondary:     #fff;
@@ -28,15 +26,6 @@ $dark:          #53565A;
 $theme-01:      $blue;
 $theme-02:      $white;
 $theme-03:      $red;
-
-// Tint colors
-// $primary-01:    #062b4a;
-// $primary-02:    #062b4a;
-// $primary-04:    #92bbf3;
-
-// $secondary-01:  #999;
-// $secondary-02:  #999;
-// $secondary-04:  #fff;
 
 $success-01:   #f2f9f5;
 $success-02:   #dff0d8;
@@ -67,17 +56,6 @@ $dark-01:      #94999d;
 $dark-02:      #6c757d;
 $dark-03:      #212529;
 
-// Gray colors
-// $gray-100:      #f8f9fa;
-// $gray-200:      #e9ecef;
-// $gray-300:      #dee2e6;
-// $gray-400:      #ced4da;
-// $gray-500:      #adb5bd;
-// $gray-600:      #6c757d;
-// $gray-700:      #495057;
-// $gray-800:      #343a40;
-// $gray-900:      #212529;
-
 // Global Font variables
 $font-size-base:              1.4rem;
 $font-weight-normal:          400;
@@ -98,25 +76,20 @@ $h6-font-size:                $font-size-base;
 $headings-font-family:        'Scania Sans Semi Condensed', Arial, Helvetica, sans-serif;
 $headings-color:              $theme-01;
 
+// Body
 $body-bg:                     $white;
 $body-color:                  $dark;
 
-$link-color:                  $info;
-$link-color-hover:            $info;
-$link-color-active:           $primary;
+//Link
+// FIXME: Add correct colours when foundation is done
+$link-color:                  $dark-02;
+$link-color-hover:            $light;
+$link-color-active:           $blue;
 $link-color-disabled:         $light;
-
-// Global Article Font
-// TODO: Disabled article for now
-// $font-size-article:           1.8rem;
-// $font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
-
-// $h1-font-size-article:        $font-size-article * 5;
-// $h2-font-size-article:        $font-size-article * 3.33;
-// $h3-font-size-article:        $font-size-article * 1.94;
-// $h4-font-size-article:        $font-size-article * 1.33;
-// $h5-font-size-article:        $font-size-article;
-// $h6-font-size-article:        $font-size-article;
+$link-bg:                     inherit;
+$link-bg-hover:               inherit;
+$link-decoration:             underline;
+$link-decoration-hover:       none;
 
 // Global Border settings
 $border-radius:               3px;
@@ -137,18 +110,12 @@ $pagination-bg-color:         transparent;
 // List-groups
 $border-radius-list-group:    $border-radius;
 
-// Lists
+// All colours
 $global-colors: (
   'blue':       $blue,
-  // 'indigo':     $indigo,
-  // 'purple':     $purple,
-  // 'pink':       $pink,
   'red':        $red,
   'orange':     $orange,
-  // 'yellow':     $yellow,
   'green':      $green,
-  // 'teal':       $teal,
-  // 'cyan':       $cyan,
   'white':      $white,
   'black':      $black
 );
@@ -158,18 +125,6 @@ $theme-colors: (
   'theme-02': $theme-02,
   'theme-03': $theme-03
 );
-
-// $primary-colors: (
-//   'primary-01': $primary-01,
-//   'primary-02': $primary-02,
-//   'primary-03': $primary-03
-// );
-
-// $secondary-colors: (
-//   'secondary-01': $secondary-01,
-//   'secondary-02': $secondary-02,
-//   'secondary-03': $secondary-03
-// );
 
 $success-colors: (
   'success-01': $success-01,
@@ -212,25 +167,13 @@ $dark-colors: (
   'dark-03': $dark-03
 );
 
-// $gray-colors: (
-//   'gray-01': $gray-100,
-//   'gray-02': $gray-200,
-//   'gray-03': $gray-300,
-//   'gray-04': $gray-400,
-//   'gray-05': $gray-500,
-//   'gray-06': $gray-600,
-//   'gray-07': $gray-700,
-//   'gray-08': $gray-800,
-//   'gray-09': $gray-900
-// );
-
 $interaction-colors: (
   'primary':    $primary,
   'secondary':  $secondary,
   'success':    $success,
   'info':       $info,
   'warning':    $warning,
-  'danger':     $danger
+  'danger':     $danger,
 );
 
 $extra-colors: (
@@ -238,14 +181,32 @@ $extra-colors: (
   'dark':       $dark
 );
 
-$element-colors: (
-  'headings-color': $headings-color,
+$link-options: (
   'link-color': $link-color,
   'link-color-hover': $link-color-hover,
   'link-color-active': $link-color-active,
-  'link-color-disabled': $link-color-disabled
+  'link-color-disabled': $link-color-disabled,
+  'link-bg': $link-bg,
+  'link-bg-hover': $link-bg-hover,
+  'link-decoration': $link-decoration,
+  'link-decoration-hover': $link-decoration-hover
 );
 
+$all-colors: (
+  'global':       $global-colors,
+  'theme':        $theme-colors,
+  'success':      $success-colors,
+  'info':         $info-colors,
+  'warning':      $warning-colors,
+  'danger':       $danger-colors,
+  'light':        $light-colors,
+  'dark':         $dark-colors,
+  'interaction':  $interaction-colors,
+  'extra':        $extra-colors,
+  'link':         $link-options
+);
+
+// Font-sizes
 $heading-sizes: (
   'h1': $h1-font-size,
   'h2': $h2-font-size,
@@ -253,30 +214,6 @@ $heading-sizes: (
   'h4': $h4-font-size,
   'h5': $h5-font-size,
   'h6': $h6-font-size
-);
-
-// $heading-sizes-article: (
-//   'h1': $h1-font-size-article,
-//   'h2': $h2-font-size-article,
-//   'h3': $h3-font-size-article,
-//   'h4': $h4-font-size-article,
-//   'h5': $h5-font-size-article,
-//   'h6': $h6-font-size-article
-// );
-
-$all-colors: (
-  'global':       $global-colors,
-  'theme':        $theme-colors,
-  'interaction':  $interaction-colors,
-  'extra':        $extra-colors,
-  // 'primary':      $primary-colors,
-  // 'secondary':    $secondary-colors,
-  'success':      $success-colors,
-  'info':         $info-colors,
-  'warning':      $warning-colors,
-  'danger':       $danger-colors,
-  'light':        $light-colors,
-  'dark':         $dark-colors,
 );
 
 // Merge all colors in to theme-colors and
