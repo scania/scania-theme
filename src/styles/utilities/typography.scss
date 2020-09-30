@@ -1,33 +1,6 @@
 @import '../variables';
 @import '../mixins';
 
-@mixin link {
-  color: $link-color;
-  color: Var(--link-color);
-  text-decoration: underline;
-  text-decoration: Var(--link-decoration, underline);
-  background-color: inherit;
-  background-color: Var(--link-bg, inherit);
-
-  &:hover,
-  &:active,
-  &.active,
-  &[active]:not([active="false"]) {
-    color: $link-color-hover;
-    color: Var(--link-color-hover);
-    text-decoration: none;
-    text-decoration: Var(--link-decoration-hover, none);
-    background-color: inherit;
-    background-color: Var(--link-bg-hover, inherit);
-  }
-
-  &:active,
-  &.active {
-    color: $link-color-active;
-    color: Var(--link-color-active);
-  }
-}
-
 h1,
 h2,
 h3,
@@ -47,19 +20,35 @@ h6 { font-family: $font-family-base; }
 h6 { font-style: italic; }
 
 a {
-  @include link;
+  color: $link-color; //IE
+  color: Var(--link-color);
+  text-decoration: $link-decoration; //IE
+  text-decoration: Var(--link-decoration);
+  background-color: $link-bg; //IE
+  background-color: Var(--link-bg);
+
+  &:hover,
+  &:active,
+  &.active,
+  &[active]:not([active="false"]) {
+    color: $link-color-hover; //IE
+    color: Var(--link-color-hover);
+    text-decoration: $link-decoration-hover; //IE
+    text-decoration: Var(--link-decoration-hover);
+    background-color: $link-bg-hover; //IE
+    background-color: Var(--link-bg-hover);
+  }
+
+  &:active,
+  &.active {
+    color: $link-color-active; //IE
+    color: Var(--link-color-active);
+  }
 }
 
 p {
   margin-bottom: 1.5rem;
 }
-
-// article {
-//   font-family: $font-family-article;
-//   font-size: $font-size-article;
-
-//   @include renderMap($heading-sizes-article, 'font-size');
-// }
 
 .lead {
   font-size: 1.8rem;
@@ -67,6 +56,6 @@ p {
 
 label {
   font-weight: bold;
-  color: $dark-01;
+  color: $dark-01; //IE
   color: Var(--dark-01);
 }
