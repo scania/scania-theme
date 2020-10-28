@@ -1,0 +1,33 @@
+// @import '../../prefrix';
+@import 'grid-mixins';
+
+//FIXME: remove Just as reference to understand
+$base-unit: 8px; //FIXME: needs to be implemented in scania-theme
+
+:root {
+  font-size: $base-unit;
+}
+
+// Layout scale
+// 1 rem = 8px;
+$spacing-layout-01: 2rem; // 16px
+$spacing-layout-02: 3rem; // 24px
+$spacing-layout-03: 4rem; // 32px
+$spacing-layout-04: 6rem; // 48px
+$spacing-layout-05: 8rem; // 64px
+$spacing-layout-06: 12rem; // 96px;
+$spacing-layout-07: 16rem; // 128px
+$spacing-layout-08: 20rem; // 160px
+
+// Element scale
+// 1 rem = 8px;
+$spacing-element-01: 0.25rem; //2px
+$spacing-element-02: 0.5rem; //4px
+$spacing-element-03: 1rem; //8px
+$spacing-element-04: 1.5rem; //12
+$spacing-element-05: 2rem; //16 px
+$spacing-element-06: 3rem; //24 px
+$spacing-element-07: 4rem; //32px
+$spacing-element-08: 5rem; //40px
+$spacing-element-09: 6rem; //48px
+

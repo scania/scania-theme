@@ -40,7 +40,7 @@ selectorParser.registerNestingOperators('>', '+', '~');
 selectorParser.registerAttrEqualityMods('^', '$', '*', '~');
 selectorParser.enableSubstitutes();
 
-const build = series(clean, initFolders, initFonts, initImages, initIcons, initFavicons, initTheme);
+const build = series(clean, initFolders, initFonts, initImages, initIcons, initFavicons, initTheme, copyScss);
 const start = series(build, serve, watches);
 
 export {
@@ -86,7 +86,7 @@ function initFolders(cb) {
   fs.remove(outputFolder);
 
   setTimeout(() => {
-    ['fonts', 'images', 'styles'].map(folder => {
+    ['fonts', 'images', 'styles', 'newStyles'].map(folder => {
       fs.mkdirSync(`${outputFolder}/${folder}`, { recursive: true });
     });
   });
@@ -375,6 +375,11 @@ function generateFontFace(file, props) {
     props
   }
   src: url("${filename}.woff") format("woff")\n}\n`;
+}
+
+function copyScss() {
+  return src(['src/styles/**/*','src/newStyles/**/*'])
+    .pipe(dest(`${outputFolder}/scss/`));
 }
 
 function copyImages() {

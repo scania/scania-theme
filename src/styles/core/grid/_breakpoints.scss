@@ -1,0 +1,41 @@
+/*
+Small: sm - 320px 4 col
+Medium: md - 672px 8 col
+Large: lg - 1065px 16 col
+XLarge: xlg - 1312px 16 col
+XXLarge: xxlg - 1584px 16 col
+*/
+
+$sdds-grid-breakpoints: (
+  sm: (
+    columns: 4,
+    margin: 0,
+    width: 320px,
+    size: 15%
+  ),
+  md: (
+    columns: 8,
+    margin: 8px,
+    width: 672px,
+    size: 7.5%
+  ),
+  lg: (
+    columns: 16,
+    margin: 16px,
+    width: 1056px,
+    size: 3.1%
+  ),
+  xlg: (
+    columns: 16,
+    margin: 16px,
+    width: 1312px,
+    size: 3.75%
+  ),
+  xxlg: (
+    columns: 16,
+    margin: 24px,
+    width: 1584px,
+    size: 4.2%
+  ),
+) !default;
+

@@ -1,0 +1,175 @@
+@import '../../prefrix';
+@import 'breakpoints';
+
+//FIXME: Remove for dev
+.outside {
+  height: 60px;
+}
+
+@mixin grid-container($prefix) {
+  #{$prefix}-container {
+    // padding-left: $spacing-layout-02;
+    // padding-right: $spacing-layout-02;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 198rem;
+
+    //FIXME: Remove for dev
+    font-size: 16px;
+    background-color:#f5e3e3;
+  }
+
+}
+
+@mixin grid-row($prefix) {
+  #{$prefix}-row {
+    display:flex;
+    flex-wrap: wrap;
+
+    //FIXME: Remove for dev
+    background-color: #ff9999;
+    outline: 1px dashed blue;
+  }
+}
+
+@mixin grid-col($prefix) {
+  // xl-1?
+  #{$prefix}-col-xxl-1 {
+    margin-left: $spacing-layout-01; //gutter WIP
+    margin-right: $spacing-layout-01; //gutter WIP
+    padding-right: $spacing-layout-01; //padding WIP
+    padding-left: $spacing-layout-01; //padding WIP
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 4.167%;
+    max-width: 4.167%;
+    display: block;
+
+    //FIXME: Remove for dev
+    background-color: #ffffff;
+    outline: 1px dashed green;
+
+    //FIXME create mixin
+    &.gutterless {
+      flex-basis: 6.25%;
+      max-width: 6.25%;
+      margin-right: 0; //gutter WIP
+      margin-left: 0; //gutter WIP
+    }
+  }
+
+  #{$prefix}-col-xlg-1 {
+    margin-left: $spacing-layout-01; //gutter WIP
+    margin-right: $spacing-layout-01; //gutter WIP
+    padding-right: $spacing-layout-01; //padding WIP
+    padding-left: $spacing-layout-01; //padding WIP
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 3.75%;
+    max-width: 3.75%;
+    display: block;
+
+    //FIXME: Remove for dev
+    background-color: #ffffff;
+    outline: 1px dashed green;
+
+    //FIXME create mixin
+    &.gutterless {
+      flex-basis: 6.25%;
+      max-width: 6.25%;
+      margin-right: 0; //gutter WIP
+      margin-left: 0; //gutter WIP
+    }
+  }
+
+  #{$prefix}-col-lg-1 {
+    margin-left: $spacing-layout-01; //gutter WIP
+    margin-right: $spacing-layout-01; //gutter WIP
+    padding-right: $spacing-layout-01; //padding WIP
+    padding-left: $spacing-layout-01; //padding WIP
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 3.1%;
+    max-width: 3.1%;
+    display: block;
+
+    //FIXME: Remove for dev
+    background-color: #ffffff;
+    outline: 1px dashed green;
+
+    //FIXME create mixin
+    &.gutterless {
+      flex-basis: 6.25%;
+      max-width: 6.25%;
+      margin-right: 0; //gutter WIP
+      margin-left: 0; //gutter WIP
+    }
+  }
+
+  #{$prefix}-col-md-1 {
+    margin-left: $spacing-layout-01; //gutter WIP
+    margin-right: $spacing-layout-01; //gutter WIP
+    padding-right: $spacing-layout-01; //padding WIP
+    padding-left: $spacing-layout-01; //padding WIP
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 7.5%;
+    max-width: 7.5%;
+    display: block;
+
+    //FIXME: Remove for dev
+    background-color: #ffffff;
+    outline: 1px dashed green;
+
+    //FIXME create mixin
+    &.gutterless {
+      flex-basis: 12.5%;
+      max-width: 12.5%;
+      margin-right: 0; //gutter WIP
+      margin-left: 0; //gutter WIP
+    }
+  }
+
+  #{$prefix}-col-sm-1 {
+    margin-left: $spacing-layout-01; //gutter WIP
+    margin-right: $spacing-layout-01; //gutter WIP
+    padding-right: $spacing-layout-01; //padding WIP
+    padding-left: $spacing-layout-01; //padding WIP
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 15%;
+    max-width: 15%;
+    display: block;
+
+    //FIXME: Remove for dev
+    background-color: #ffffff;
+    outline: 1px dashed green;
+
+    //FIXME create mixin
+    &.gutterless {
+      flex-basis: 25%;
+      max-width: 25%;
+      margin-right: 0; //gutter WIP
+      margin-left: 0; //gutter WIP
+    }
+  }
+
+
+}
+
+
+@mixin grid-container-breakpoints($prefix, $breakpoints) {
+
+  @each $key, $values in $breakpoints {
+    $breakpoint-margin: map-get($values, 'margin');
+    $breakpoint-width: map-get($values, 'width');
+    @media (min-width:  $breakpoint-width ) {
+        #{$prefix}-container {
+            padding-right: $breakpoint-margin;
+            padding-left: $breakpoint-margin;
+        }
+    }
+  }
+}
+
