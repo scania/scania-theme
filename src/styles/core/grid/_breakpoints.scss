@@ -6,36 +6,85 @@ XLarge: xlg - 1312px 16 col
 XXLarge: xxlg - 1584px 16 col
 */
 
+//TODO: Add rem instead of px
 $sdds-grid-breakpoints: (
   sm: (
-    columns: 4,
-    margin: 0,
     width: 320px,
-    size: 15%
+    columns: 4,
+    size: 0.15,
+    margin: 0,
+    padding: 8px,
+    gutter: 32px
   ),
   md: (
-    columns: 8,
-    margin: 8px,
     width: 672px,
-    size: 7.5%
+    columns: 8,
+    size: 0.075,
+    margin: 16px,
+    padding: 8px,
+    gutter: 32px
   ),
   lg: (
-    columns: 16,
-    margin: 16px,
     width: 1056px,
-    size: 3.1%
+    columns: 16,
+    size: 0.03125,
+    margin: 16px,
+    padding: 8px,
+    gutter: 32px
   ),
   xlg: (
-    columns: 16,
-    margin: 16px,
     width: 1312px,
-    size: 3.75%
+    columns: 16,
+    size: 0.0375,
+    margin: 16px,
+    padding: 16px,
+    gutter: 32px
   ),
   xxlg: (
-    columns: 16,
-    margin: 24px,
     width: 1584px,
-    size: 4.2%
+    columns: 16,
+    size: 0.0416666666666667,
+    margin: 24px,
+    padding: 16px,
+    gutter: 32px
   ),
 ) !default;
 
+//TODO: add gutterless as map
+$sdds-grid-breakpoints-gutterless: (
+  sm: (
+    width: 320px,
+    columns: 4,
+    size: 0.25,
+    margin: 0,
+    padding: 8px
+  ),
+  md: (
+    width: 672px,
+    columns: 8,
+    size: 0.125,
+    margin: 16px,
+    padding: 16px
+  ),
+  lg: (
+    width: 1056px,
+    columns: 16,
+    size: 0.0625,
+    margin: 16px,
+    padding: 16px
+  ),
+  xlg: (
+    width: 1312px,
+    columns: 16,
+    size: 0.0625,
+    margin: 16px,
+    padding: 16px
+  ),
+  xxlg: (
+    width: 1584px,
+    columns: 16,
+    size: 0.0625,
+    margin: 24px,
+    padding: 16px
+  ),
+) !default;

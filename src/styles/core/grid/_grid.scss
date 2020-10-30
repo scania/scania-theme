@@ -32,9 +32,11 @@ offsets
 // Gutter WIP
 
 // Margin WIP
-
 @include grid-row($prefix);
 
 // Col WIP
-@include grid-col($prefix);
+// @include grid-col($prefix); //FIXME: to be removed
+@include grid-col-sizes($sdds-grid-breakpoints);
+
+@include grid-gutterless-col($sdds-grid-breakpoints-gutterless);
 

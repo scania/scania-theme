@@ -1,23 +1,25 @@
 @import '../../prefrix';
 @import 'breakpoints';
 
-//FIXME: Remove for dev
+//FIXME: Remove this, debug
 .outside {
-  height: 60px;
+  height: 80px;
+  background-color:#ecd8d8;
+  outline: 1px solid #4c0808;
 }
+
+
 
 @mixin grid-container($prefix) {
   #{$prefix}-container {
-    // padding-left: $spacing-layout-02;
-    // padding-right: $spacing-layout-02;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
     max-width: 198rem;
 
-    //FIXME: Remove for dev
+    //FIXME: Remove this, debug
     font-size: 16px;
-    background-color:#f5e3e3;
+    background-color:#ef5252;
   }
 
 }
@@ -27,143 +29,19 @@
     display:flex;
     flex-wrap: wrap;
 
-    //FIXME: Remove for dev
-    background-color: #ff9999;
+    //FIXME: Remove this, debug
+    background-color: white;
     outline: 1px dashed blue;
   }
 }
 
-@mixin grid-col($prefix) {
-  // xl-1?
-  #{$prefix}-col-xxl-1 {
-    margin-left: $spacing-layout-01; //gutter WIP
-    margin-right: $spacing-layout-01; //gutter WIP
-    padding-right: $spacing-layout-01; //padding WIP
-    padding-left: $spacing-layout-01; //padding WIP
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 4.167%;
-    max-width: 4.167%;
-    display: block;
-
-    //FIXME: Remove for dev
-    background-color: #ffffff;
-    outline: 1px dashed green;
-
-    //FIXME create mixin
-    &.gutterless {
-      flex-basis: 6.25%;
-      max-width: 6.25%;
-      margin-right: 0; //gutter WIP
-      margin-left: 0; //gutter WIP
-    }
-  }
-
-  #{$prefix}-col-xlg-1 {
-    margin-left: $spacing-layout-01; //gutter WIP
-    margin-right: $spacing-layout-01; //gutter WIP
-    padding-right: $spacing-layout-01; //padding WIP
-    padding-left: $spacing-layout-01; //padding WIP
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 3.75%;
-    max-width: 3.75%;
-    display: block;
-
-    //FIXME: Remove for dev
-    background-color: #ffffff;
-    outline: 1px dashed green;
-
-    //FIXME create mixin
-    &.gutterless {
-      flex-basis: 6.25%;
-      max-width: 6.25%;
-      margin-right: 0; //gutter WIP
-      margin-left: 0; //gutter WIP
-    }
-  }
-
-  #{$prefix}-col-lg-1 {
-    margin-left: $spacing-layout-01; //gutter WIP
-    margin-right: $spacing-layout-01; //gutter WIP
-    padding-right: $spacing-layout-01; //padding WIP
-    padding-left: $spacing-layout-01; //padding WIP
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 3.1%;
-    max-width: 3.1%;
-    display: block;
-
-    //FIXME: Remove for dev
-    background-color: #ffffff;
-    outline: 1px dashed green;
-
-    //FIXME create mixin
-    &.gutterless {
-      flex-basis: 6.25%;
-      max-width: 6.25%;
-      margin-right: 0; //gutter WIP
-      margin-left: 0; //gutter WIP
-    }
-  }
-
-  #{$prefix}-col-md-1 {
-    margin-left: $spacing-layout-01; //gutter WIP
-    margin-right: $spacing-layout-01; //gutter WIP
-    padding-right: $spacing-layout-01; //padding WIP
-    padding-left: $spacing-layout-01; //padding WIP
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 7.5%;
-    max-width: 7.5%;
-    display: block;
-
-    //FIXME: Remove for dev
-    background-color: #ffffff;
-    outline: 1px dashed green;
-
-    //FIXME create mixin
-    &.gutterless {
-      flex-basis: 12.5%;
-      max-width: 12.5%;
-      margin-right: 0; //gutter WIP
-      margin-left: 0; //gutter WIP
-    }
-  }
-
-  #{$prefix}-col-sm-1 {
-    margin-left: $spacing-layout-01; //gutter WIP
-    margin-right: $spacing-layout-01; //gutter WIP
-    padding-right: $spacing-layout-01; //padding WIP
-    padding-left: $spacing-layout-01; //padding WIP
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 15%;
-    max-width: 15%;
-    display: block;
-
-    //FIXME: Remove for dev
-    background-color: #ffffff;
-    outline: 1px dashed green;
-
-    //FIXME create mixin
-    &.gutterless {
-      flex-basis: 25%;
-      max-width: 25%;
-      margin-right: 0; //gutter WIP
-      margin-left: 0; //gutter WIP
-    }
-  }
-
-
-}
-
-
 @mixin grid-container-breakpoints($prefix, $breakpoints) {
 
   @each $key, $values in $breakpoints {
+
     $breakpoint-margin: map-get($values, 'margin');
     $breakpoint-width: map-get($values, 'width');
+
     @media (min-width:  $breakpoint-width ) {
         #{$prefix}-container {
             padding-right: $breakpoint-margin;
@@ -173,3 +51,89 @@
   }
 }
 
+@mixin grid-col-sizes($breakpoints) {
+
+  // Size
+  @each $sizes, $values in $breakpoints {
+     $breakpoint-columns: map-get($values, 'columns');
+     $breakpoint-size: map-get($values, 'size');
+     $breakpoint-gutter: map-get($values, 'gutter');
+     $breakpoint-padding: map-get($values, 'padding');
+     $breakpoint-width: map-get($values, 'width');
+
+    //  Each column for everysize
+    @for $i from 1 through $breakpoint-columns {
+
+      #{$prefix}-col-#{$sizes}-#{$i} {
+        display: block;
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 100%;
+        max-width: 100%;
+      }
+
+      @media (min-width:  $breakpoint-width ) {
+        #{$prefix}-col-#{$sizes}-#{$i} {
+          @include grid-col-size($breakpoint-size, $i);
+          @include grid-col-padding($breakpoint-padding);
+          @include grid-gutters($breakpoint-gutter);
+
+          //FIXME: Remove this, debug
+          background-color: #ffafaf;
+          outline: 1px solid red;
+
+        }
+      }
+    }
+  }
+}
+
+@mixin grid-col-padding($padding) {
+  padding: 0 $padding;
+}
+
+@mixin grid-col-size($size, $i) {
+  
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: percentage($size * $i + 0.02083 * ($i - 1));
+  max-width: percentage($size * $i + 0.02083 * ($i - 1) );
+}
+
+@mixin grid-gutters($gutter) {
+  margin: 0 $gutter / 2;
+}
+
+//Gutterless col sizes
+@mixin grid-gutterless-col($breakpoints) {
+
+  // Size
+  @each $sizes, $values in $breakpoints {
+    $breakpoint-columns: map-get($values, 'columns');
+    $breakpoint-size: map-get($values, 'size');
+    $breakpoint-gutter: map-get($values, 'gutter');
+    $breakpoint-padding: map-get($values, 'padding');
+    $breakpoint-width: map-get($values, 'width');
+
+   //  Each column for everysize
+    @for $i from 1 through $breakpoint-columns {
+
+      @media (min-width:  $breakpoint-width ) {
+        #{$prefix}-col-#{$sizes}-#{$i}.gutterless {
+          display: block;
+          flex-grow: 0;
+          flex-shrink: 0;
+          flex-basis:  percentage($breakpoint-size * $i);
+          max-width:  percentage($breakpoint-size * $i);
+          padding: 0 $breakpoint-padding;
+          margin: 0;
+
+          //FIXME: Remove this, debug
+          background-color: #ffafaf;
+          outline: 1px solid red;
+        }
+      }
+    }
+  }
+}
