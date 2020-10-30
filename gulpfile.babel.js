@@ -324,7 +324,7 @@ document.addEventListener('storeReady', function(event) {
   favicons = favicons.map(function(val) { return val.replace(/\%root\%\\//g, root) } );
   theme.favicons = favicons;
 
-  store.dispatch({ type: actions.ADD_THEME, theme : {${themeName}: theme} });
+  store.state.theme.items['scania'] = theme;
 });
   `,
   { flag: 'w' });
