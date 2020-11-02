@@ -11,7 +11,6 @@ $sdds-grid-breakpoints: (
   sm: (
     width: 320px,
     columns: 4,
-    size: 0.15,
     margin: 0,
     padding: 8px,
     gutter: 32px
@@ -19,7 +18,6 @@ $sdds-grid-breakpoints: (
   md: (
     width: 672px,
     columns: 8,
-    size: 0.075,
     margin: 16px,
     padding: 8px,
     gutter: 32px
@@ -27,7 +25,6 @@ $sdds-grid-breakpoints: (
   lg: (
     width: 1056px,
     columns: 16,
-    size: 0.03125,
     margin: 16px,
     padding: 8px,
     gutter: 32px
@@ -35,7 +32,6 @@ $sdds-grid-breakpoints: (
   xlg: (
     width: 1312px,
     columns: 16,
-    size: 0.0375,
     margin: 16px,
     padding: 16px,
     gutter: 32px
@@ -43,7 +39,6 @@ $sdds-grid-breakpoints: (
   xxlg: (
     width: 1584px,
     columns: 16,
-    size: 0.0416666666666667,
     margin: 24px,
     padding: 16px,
     gutter: 32px
@@ -55,36 +50,36 @@ $sdds-grid-breakpoints-gutterless: (
   sm: (
     width: 320px,
     columns: 4,
-    size: 0.25,
     margin: 0,
-    padding: 8px
+    padding: 16px,
+    gutter: 0
   ),
   md: (
     width: 672px,
     columns: 8,
-    size: 0.125,
     margin: 16px,
-    padding: 16px
+    padding: 16px,
+    gutter: 0px
   ),
   lg: (
     width: 1056px,
     columns: 16,
-    size: 0.0625,
     margin: 16px,
-    padding: 16px
+    padding: 16px,
+    gutter: 0px
   ),
   xlg: (
     width: 1312px,
     columns: 16,
-    size: 0.0625,
     margin: 16px,
-    padding: 16px
+    padding: 16px,
+    gutter: 0px
   ),
   xxlg: (
     width: 1584px,
     columns: 16,
-    size: 0.0625,
     margin: 24px,
-    padding: 16px
+    padding: 16px,
+    gutter: 0px
   ),
 ) !default;

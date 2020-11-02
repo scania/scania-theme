@@ -23,20 +23,14 @@ margin
 offsets
 */
 
-// Container WIP
 @include grid-container($prefix);
 
-//Container breakpoints WIP
 @include grid-container-breakpoints($prefix, $sdds-grid-breakpoints);
 
-// Gutter WIP
-
-// Margin WIP
 @include grid-row($prefix);
 
-// Col WIP
-// @include grid-col($prefix); //FIXME: to be removed
 @include grid-col-sizes($sdds-grid-breakpoints);
 
 @include grid-gutterless-col($sdds-grid-breakpoints-gutterless);
 
+@include grid-offset-col($sdds-grid-breakpoints);
