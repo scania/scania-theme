@@ -29,7 +29,7 @@ offsets
 
 @include grid-row($prefix);
 
-@include grid-col-sizes($sdds-grid-breakpoints);
+@include grid-make-col($sdds-grid-breakpoints);
 
 @include grid-gutterless-col($sdds-grid-breakpoints-gutterless);
 
