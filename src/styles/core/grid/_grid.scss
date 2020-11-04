@@ -1,36 +1,27 @@
-@import 'grid-vars';
-@import 'grid-mixins';
 @import '../../prefrix';
 @import 'breakpoints';
-
-// Prefix
-/*
-prefix: sdds-x-x
-container, col, row
-  prefix-col-s
-  prefix-col-md
-  prefix-col-lg
-  prefix-col-xlg
-  prefix-col-xxlg
-*/
+@import 'grid-vars';
+@import 'grid-mixins';
 
 /*
-FIXME: what to do
-container
-col x 6
-gutter
-margin
-offsets
+Mixin file for create grid layout, container, rows and columns
+Setting up grid layout based on breakpoint maping
 */
 
+// Container for the gridsystem
 @include grid-container($prefix);
 
+//Setup breakpoints for the container
 @include grid-container-breakpoints($prefix, $sdds-grid-breakpoints);
 
+// Row which columns are places
 @include grid-row($prefix);
 
+// Create columns
 @include grid-make-col($sdds-grid-breakpoints);
 
+//Creates gutterless columns
 @include grid-gutterless-col($sdds-grid-breakpoints-gutterless);
 
+// Adding offset classes for the grid
 @include grid-offset-col($sdds-grid-breakpoints);

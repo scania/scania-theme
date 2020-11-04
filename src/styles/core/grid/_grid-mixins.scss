@@ -9,6 +9,7 @@
   outline: 1px solid #4c0808;
 }
 
+// Containers
 @mixin grid-container($prefix) {
   #{$prefix}-container {
     margin-left: auto;
@@ -23,6 +24,25 @@
 
 }
 
+// Grid breakpoints
+@mixin grid-container-breakpoints($prefix, $breakpoints) {
+
+  @each $key, $values in $breakpoints {
+
+    $breakpoint-margin: map-get($values, 'margin');
+    $breakpoint-width: map-get($values, 'width');
+    @debug $breakpoint-width;
+
+    @media (min-width:  $breakpoint-width ) {
+      #{$prefix}-container {
+          padding-right: $breakpoint-margin;
+          padding-left: $breakpoint-margin;
+      }
+    }
+  }
+}
+
+// Rows
 @mixin grid-row($prefix) {
   #{$prefix}-row {
     display:flex;
@@ -34,22 +54,7 @@
   }
 }
 
-@mixin grid-container-breakpoints($prefix, $breakpoints) {
-
-  @each $key, $values in $breakpoints {
-
-    $breakpoint-margin: map-get($values, 'margin');
-    $breakpoint-width: map-get($values, 'width');
-
-    @media (min-width:  $breakpoint-width ) {
-        #{$prefix}-container {
-            padding-right: $breakpoint-margin;
-            padding-left: $breakpoint-margin;
-        }
-    }
-  }
-}
-
+// Columns
 @mixin grid-make-col($breakpoints) {
 
   // Size
@@ -85,19 +90,23 @@
   }
 }
 
+// Column size calculation
 @mixin grid-col-size($columns, $i) {
   display: block;
   flex-grow: 0;
   flex-shrink: 0;
+  // Index divided by amount of the columns
   flex-basis: percentage(($i / $columns));
   max-width: percentage(($i / $columns));
 }
 
+// Gutters
 @mixin grid-gutters($gutter, $breakpoint-padding) {
   $padding: $gutter / 2 + $breakpoint-padding;
   padding: 0 $padding;
 }
 
+// Gutterless columns
 @mixin grid-gutterless-col($breakpoints) {
 
   // Size
@@ -125,6 +134,7 @@
   }
 }
 
+// Column offset
 @mixin grid-offset-col($breakpoints) {
 
   @each $sizes, $values in $breakpoints {
@@ -145,6 +155,7 @@
   }
 }
 
+// Offset calculation
 @mixin grid-offset($columns, $i) {
   margin-left: percentage(($i / $columns));
 }
