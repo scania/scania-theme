@@ -31,7 +31,6 @@
 
     $breakpoint-margin: map-get($values, 'margin');
     $breakpoint-width: map-get($values, 'width');
-    @debug $breakpoint-width;
 
     @media (min-width:  $breakpoint-width ) {
       #{$prefix}-container {
