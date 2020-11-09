@@ -1,14 +1,6 @@
 @import '../../prefix';
 @import 'breakpoints';
 
-//FIXME: Remove this, debug
-.outside {
-  height: 50px;
-  word-break: break-all;
-  background-color:#ecd8d8;
-  outline: 1px solid #4c0808;
-}
-
 // Containers
 @mixin grid-container($prefix) {
   #{$prefix}-container {
@@ -16,20 +8,12 @@
     margin-right: auto;
     width: 100%;
     max-width: $screen-xxl;
-
-    //FIXME: Remove this, debug
-    font-size: 16px;
-    background-color:#ef5252;
   }
 
   #{$prefix}-container-fluid {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-
-    //FIXME: Remove this, debug
-    font-size: 16px;
-    background-color:#ef5252;
   }
 
 }
@@ -53,6 +37,7 @@
   }
 }
 
+// Grid breakpoints for full-width
 @mixin grid-container-full-width-breakpoints($prefix,$breakpoint-width,$breakpoint-margin) {
   @media (min-width:  $breakpoint-width) {
     #{$prefix}-container-fluid {
@@ -67,10 +52,6 @@
   #{$prefix}-row {
     display:flex;
     flex-wrap: wrap;
-
-    //FIXME: Remove this, debug
-    background-color: white;
-    outline: 1px dashed blue;
   }
 }
 
@@ -93,10 +74,6 @@
         #{$prefix}-col-#{$sizes}-#{$i} {
           @include grid-col-size($breakpoint-columns, $i);
           @include grid-gutters($breakpoint-gutter, $breakpoint-padding);
-
-          //FIXME: Remove this, debug
-          background-color: #ffafaf;
-          outline: 1px solid red;
 
         }
       }
@@ -148,10 +125,6 @@
           @include grid-col-size($breakpoint-columns, $i);
           @include grid-gutters($breakpoint-gutter, $breakpoint-padding);
           margin: 0;
-
-          //FIXME: Remove this, debug
-          background-color: #ffafaf;
-          outline: 1px solid red;
         }
       }
     }

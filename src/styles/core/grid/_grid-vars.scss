@@ -1,13 +1,8 @@
-//FIXME: remove Just as reference to understand, Remove this, debug
-//Testing only
-$base-unit: 4px; //FIXME: needs to be implemented in scania-theme
+/* 
+  Contains spacing variables for the layout
+*/
 
-//FIXME: Remove, for dev
-:root {
-  font-size: $base-unit;
-}
-
-// 1 rem = 8px;
+// 1 rem = 4px;
 // Layout scale
 $spacing-layout-01: 2rem; // 8px
 $spacing-layout-02: 4rem; // 16px
