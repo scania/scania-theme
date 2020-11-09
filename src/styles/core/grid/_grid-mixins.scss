@@ -1,4 +1,4 @@
-@import '../../prefrix';
+@import '../../prefix';
 @import 'breakpoints';
 
 //FIXME: Remove this, debug
@@ -15,7 +15,17 @@
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: 198rem;
+    max-width: $screen-xxl;
+
+    //FIXME: Remove this, debug
+    font-size: 16px;
+    background-color:#ef5252;
+  }
+
+  #{$prefix}-container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 
     //FIXME: Remove this, debug
     font-size: 16px;
@@ -37,6 +47,17 @@
           padding-right: $breakpoint-margin;
           padding-left: $breakpoint-margin;
       }
+    }
+
+    @include grid-container-full-width-breakpoints($prefix,$breakpoint-width,$breakpoint-margin);
+  }
+}
+
+@mixin grid-container-full-width-breakpoints($prefix,$breakpoint-width,$breakpoint-margin) {
+  @media (min-width:  $breakpoint-width) {
+    #{$prefix}-container-fluid {
+        padding-right: $breakpoint-margin;
+        padding-left: $breakpoint-margin;
     }
   }
 }
@@ -66,13 +87,7 @@
     //  Each column for everysize
     @for $i from 1 through $breakpoint-columns {
 
-      #{$prefix}-col-#{$sizes}-#{$i} {
-        display: block;
-        flex-grow: 0;
-        flex-shrink: 0;
-        flex-basis: 100%;
-        max-width: 100%;
-      }
+      @include grid-col-size-full-width($prefix, $sizes, $i);
 
       @media (min-width:  $breakpoint-width ) {
         #{$prefix}-col-#{$sizes}-#{$i} {
@@ -86,6 +101,16 @@
         }
       }
     }
+  }
+}
+
+// Column size when it goes below it's breakpoint
+@mixin grid-col-size-full-width($prefix, $sizes, $i) {
+  #{$prefix}-col-#{$sizes}-#{$i} {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 100%;
   }
 }
 
