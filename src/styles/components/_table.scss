@@ -6,7 +6,8 @@
 
   caption {
     caption-side: top;
-    padding: .75rem;
+    //FIXME: Add correct rem
+    padding: 1.875rem;
     font-weight: bold;
     color: $secondary;
     color: Var(--secondary);
@@ -31,12 +32,14 @@
   td {
     background-color: inherit;
     box-shadow: inherit;
+    //FIXME: add variable
     padding: 1.2rem 1.2rem 1.3rem;
   }
 
   &.table-sm {
     th,
     td {
+      //FIXME: add variable
       padding: .4rem .5rem .5rem;
     }
   }

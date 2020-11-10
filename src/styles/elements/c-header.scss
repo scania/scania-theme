@@ -16,7 +16,8 @@
 @mixin title {
   font-family: 'Scania Sans Headline';
   font-weight: normal;
-  font-size: 1.8rem;
+  //FIXME: Add correct rem
+  font-size: 4.5rem;
   color: #53565a;
   line-height: 1;
   padding: 0 10px;
@@ -39,7 +40,8 @@
   flex-shrink: 0;
   background-color: #fff;
   font-family: 'Scania Sans';
-  font-size: 1.4rem;
+  //FIXME: Add correct rem
+  font-size: 3.5rem;
   z-index: 1000;
   padding: 0;
   border-bottom: 1px solid #e2e2e2;
@@ -84,6 +86,7 @@
   }
   .navbar-nav {
     font-family: 'Scania Sans';
+    //FIXME: Add variable
     font-size: 1.2rem;
     text-transform: uppercase;
     color: #747472;

@@ -49,7 +49,8 @@ footer {
 @media (max-width: 991px) {
 
   ::slotted(a) {
-    padding: 1.7rem 3rem;
+    //FIXME: Add correct rem
+    padding: 4.25rem 7.5rem;
   }
 
   .main {
@@ -58,9 +59,11 @@ footer {
   .list-group {
 
     &-item {
+      //FIXME: Add variable
       font-size: 1.6rem;
       font-weight: bold;
-      padding: 1.7rem 3rem;
+      //FIXME: Add correct rem
+      padding: 4.25rem 7.5rem;
 
       &.active {
         background-color: transparent;
