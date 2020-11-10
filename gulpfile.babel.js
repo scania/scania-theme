@@ -316,7 +316,6 @@ document.addEventListener('storeReady', function(event) {
   theme = theme.${themeName};
   var favicons = theme.favicons;
   var store = event.detail.store;
-  var actions = event.detail.actions;
   var root = document.querySelector('script[src$="${themeName}-theme.js"]').src.replace('${themeName}-theme.js', '');
 
   theme.components = document.head.attachShadow ? theme.components.default : theme.components.ie;
@@ -324,7 +323,11 @@ document.addEventListener('storeReady', function(event) {
   favicons = favicons.map(function(val) { return val.replace(/\%root\%\\//g, root) } );
   theme.favicons = favicons;
 
-  store.dispatch({ type: actions.ADD_THEME, theme : {${themeName}: theme} });
+  const newValue = store.get('theme');
+
+  newValue.items['scania'] = theme;
+
+  store.set('theme', newValue);
 });
   `,
   { flag: 'w' });
