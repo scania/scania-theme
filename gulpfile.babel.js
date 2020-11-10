@@ -253,12 +253,12 @@ function initFavicons() {
 }
 
 async function initTheme(cb) {
-  let theme = { 
+  let theme = {
     [themeName]: {
       components: { default: { }, ie: { } }
     }
   };
-  let themeNoRefs = { 
+  let themeNoRefs = {
     [themeName]: {
       components: { default: { }, ie: { } }
     }
