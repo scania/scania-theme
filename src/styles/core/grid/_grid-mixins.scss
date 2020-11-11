@@ -8,10 +8,6 @@
     margin-right: auto;
     width: 100%;
     max-width: $screen-xxl;
-
-    //FIXME: Remove this, debug
-    font-size: 16px;
-    background-color:#ef5252;
   }
 
   #{$prefix}-container-fluid {
