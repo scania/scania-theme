@@ -116,7 +116,7 @@
   @media (min-width:  $width) {
     #{$prefix}-col ,#{$prefix}-col-#{$sizes} {
       flex-grow: 1;
-      flex-shrink: 0;
+      flex-basis: 0;
       max-width: 100%;
       @include grid-gutters($gutter, $padding);
     }
