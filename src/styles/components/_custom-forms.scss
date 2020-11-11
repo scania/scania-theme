@@ -5,7 +5,7 @@
 @import 'node_modules/bootstrap/scss/mixins/gradients';
 
 @import '../variables';
-@import '../core/grid/grid-vars';
+@import '../core/spacing/spacing';
 
 $gray-500:                                        $dark-02;
 $component-bg:                                    theme-color("light");

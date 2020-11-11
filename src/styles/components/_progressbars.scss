@@ -2,7 +2,7 @@
 // TODO: Add variable for border-radius that is global
 
 @import '../variables';
-@import '../core/grid/grid-vars';
+@import '../core/spacing/spacing';
 
 .progress-bar {
   @include background('primary');
