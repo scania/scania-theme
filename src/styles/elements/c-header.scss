@@ -1,4 +1,5 @@
 @import '../variables';
+@import '../core/grid/grid-vars';
 
 @mixin nav-link {
   color: $dark-02; // IE
@@ -86,8 +87,8 @@
   }
   .navbar-nav {
     font-family: 'Scania Sans';
-    //FIXME: Add variable
-    font-size: 1.2rem;
+    //FIXME: Add correct rem
+    font-size: $spacing-element-04;
     text-transform: uppercase;
     color: #747472;
     margin-top: -10px;

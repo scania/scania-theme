@@ -1,4 +1,5 @@
 @import '../variables';
+@import '../core/grid/grid-vars';
 
 .table {
   border: 1px solid $table-border-color;
@@ -32,15 +33,15 @@
   td {
     background-color: inherit;
     box-shadow: inherit;
-    //FIXME: add variable
-    padding: 1.2rem 1.2rem 1.3rem;
+    //FIXME: Add correct rem
+    padding: $spacing-element-04 $spacing-element-04 3.25rem;
   }
 
   &.table-sm {
     th,
     td {
-      //FIXME: add variable
-      padding: .4rem .5rem .5rem;
+      //FIXME: Add correct rem
+      padding: $spacing-element-01 1.25rem 1.25rem;
     }
   }
 }
