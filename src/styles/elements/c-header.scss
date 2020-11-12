@@ -161,6 +161,8 @@
   &-icon {
     // This make the icon the same size as the logotype, making it easier to handle the parent element padding needed
     margin: 8px;
+    //FIXME: Add correct rem
+    font-size: 3.125rem;
   }
 }
 
