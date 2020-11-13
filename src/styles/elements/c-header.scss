@@ -58,7 +58,7 @@
 .navbar {
   flex: 1;
   padding: 0;
-  overflow: hidden;
+  // overflow: hidden; This style is making so that the dropdown content is hidden behind <c-header>
   background-color: inherit;
   z-index: 10;
 
