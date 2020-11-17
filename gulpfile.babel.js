@@ -40,7 +40,7 @@ selectorParser.registerNestingOperators('>', '+', '~');
 selectorParser.registerAttrEqualityMods('^', '$', '*', '~');
 selectorParser.enableSubstitutes();
 
-const build = series(clean, initFolders, initFonts, initImages, initIcons, initFavicons, initTheme);
+const build = series(clean, initFolders, initFonts, initImages, initIcons, initFavicons, initTheme, copyScss);
 const start = series(build, serve, watches);
 
 export {
@@ -86,7 +86,7 @@ function initFolders(cb) {
   fs.remove(outputFolder);
 
   setTimeout(() => {
-    ['fonts', 'images', 'styles'].map(folder => {
+    ['fonts', 'images', 'styles', 'scss'].map(folder => {
       fs.mkdirSync(`${outputFolder}/${folder}`, { recursive: true });
     });
   });
@@ -506,4 +506,10 @@ function ie(item, name) {
   }
 
   return item;
+}
+
+function copyScss() {
+  console.log('Copying scss...')
+  return src('src/styles/**/*.scss')
+  .pipe(dest(`${outputFolder}/scss/`));
 }
